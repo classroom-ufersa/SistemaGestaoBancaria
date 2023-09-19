@@ -1,4 +1,4 @@
-
+#include "contaBancaria.h"
 
 typedef struct contabancaria{
 
@@ -8,7 +8,7 @@ typedef struct contabancaria{
    int abertura;
    float saldo;
    char status;
-   
+
 }Contabancaria;
 
 
