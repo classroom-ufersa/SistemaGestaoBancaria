@@ -1,9 +1,10 @@
 #include "contaBancaria.h"
+#include "agencia.h"
 
 struct contabancaria{
 
    char cliente[51];
-   int data;
+   char data[12];
    float saldo;
    Agenciabancaria *agencia;
    char status[11];
@@ -11,7 +12,7 @@ struct contabancaria{
 
 };
 
-Contabancaria *criar_conta(char *cliente, int data, float saldo, char *status, int numero)
+Contabancaria *criar_conta(char *cliente, char* data, float saldo, char *status, int numero)
 {
    Contabancaria *contabancaria = (Contabancaria *)malloc(sizeof(Contabancaria));
    if (contabancaria == NULL){
@@ -21,14 +22,14 @@ Contabancaria *criar_conta(char *cliente, int data, float saldo, char *status, i
    }
 
 strcpy(contabancaria->cliente, cliente);   
-contabancaria->data = data;
+strcpy(contabancaria->data, data);
 contabancaria->saldo = saldo;
 strcpy(contabancaria->status, status);  
 contabancaria->numero = numero;
-
+contabancaria->agencia = NULL;
 return contabancaria;
 }
-
+/*
 void conta_salva(Contabancaria *contabancaria)
 {
 
@@ -61,3 +62,4 @@ void libera_conta(Contabancaria *contabancaria)
     
  free(contabancaria);
 }
+*/

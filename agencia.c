@@ -1,17 +1,16 @@
-#include "contaBancaria.h"
-#include "agencia.h"
+#include "contaBancaria.c"
 
 struct agenciabancaria{
 
 char nome[51];
 int codigo;
 char localizacao [31];
-Contas *contas;
+Contabancaria *contas;
 char horario[15];
 
 };
-
-Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, int contas, int horario) {
+/*
+Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, int contas, char* horario) {
     
       Agenciabancaria *criar_agencia = (Agenciabancaria*)malloc(sizeof(Agenciabancaria));
     if(criar_agencia == NULL) {
@@ -60,3 +59,4 @@ void libera_agencia(Agenciabancaria *agenciabancaria)
     
     free(agenciabancaria);
 }
+*/
