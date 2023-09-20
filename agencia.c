@@ -44,10 +44,11 @@ void agencia_salva(Agenciabancaria *agenciabancaria)
     char *localizacao = agenciabancaria->localizacao;
     int contas = agenciabancaria->contas;
     int horario = agenciabancaria->horario;
+    agenciabancaria->documento = documento
     nome[strcspn(nome, "\n")] = '\0';
     localizacao[strcspn(localizacao, "\n")] = '\0';
 
     
-    fprintf(fp, " %s\t%s\t%lld\n", nome, cargo, funcionario->documento);
+    fprintf(fp, " %s\t%d\t%s\t%d\t%d\n", nome, codigo, localizacao, contas, horario agenciabancaria->documento);
     fclose(fp); 
 }
