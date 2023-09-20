@@ -29,12 +29,14 @@ contabancaria->numero = numero;
 contabancaria->agencia = NULL;
 return contabancaria;
 }
+
+
 /*
 void conta_salva(Contabancaria *contabancaria)
 {
 
     
-    FILE *fp = fopen("saida.txt", "a"); // Abre arquivo "a" (abre um arquivo no modo de inclusão)
+    FILE *fp = fopen("contaban.txt", "a"); // Abre arquivo "a" (abre um arquivo no modo de inclusão)
     if (fp == NULL)                    
     {
         printf("Erro ao abrir o arquivo"); 
@@ -42,7 +44,7 @@ void conta_salva(Contabancaria *contabancaria)
     }
         
     char *cliente = contabancaria->nome;
-    int data = contabancaria->data;
+    char *data = contabancaria->data;
     float saldo = contabancaria->saldo;
     char *status = contabancaria->status;
     int numero = contabancaria->numero;
@@ -51,7 +53,7 @@ void conta_salva(Contabancaria *contabancaria)
     status[strcspn(status, "\n")] = '\0';
 
     
-    fprintf(fp, " %s\t%d\t%f\t%s\t%d\n", nome, codigo, localizacao, contas, horario contabancaria->doc);
+    fprintf(fp, " %s\t%s\t%f\t%s\t%d\n", nome, codigo, localizacao, contas, horario contabancaria->doc);
     fclose(fp); 
 }
 

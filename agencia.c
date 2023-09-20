@@ -10,6 +10,7 @@ char horario[15];
 
 };
 
+
 Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, char* horario) {
     
       Agenciabancaria *criar_agencia = (Agenciabancaria*)malloc(sizeof(Agenciabancaria));
@@ -27,12 +28,26 @@ Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, char* 
     return criar_agencia;
 }
 
+
+
 /*
+
+Agenciabancaria *cadastrar_cliente (){
+    Agenciabancaria *cadastrar_cliente = (Agenciabancaria*)malloc(sizeof(Agenciabancaria));
+    if(cadastrar_cliente == NULL){
+        printf ("Variavel cadastra_cliente não foi alocada dinamicamente! \n ");
+        exit(1);
+    }
+
+    
+    return cadastrar_cliente;
+}
+
 void agencia_salva(Agenciabancaria *agenciabancaria)
 {
 
     
-    FILE *fp = fopen("saida.txt", "a"); // Abre arquivo "a" (abre um arquivo no modo de inclusão)
+    FILE *fp = fopen("agenciaban.txt", "a"); // Abre arquivo "a" (abre um arquivo no modo de inclusão)
     if (fp == NULL)                    
     {
         printf("Erro ao abrir o arquivo"); 
@@ -49,7 +64,7 @@ void agencia_salva(Agenciabancaria *agenciabancaria)
     localizacao[strcspn(localizacao, "\n")] = '\0';
 
     
-    fprintf(fp, " %s\t%d\t%s\t%d\t%d\n", nome, codigo, localizacao, contas, horario agenciabancaria->documento);
+    fprintf(fp, " %s\t%d\t%s\t%s\n", nome, codigo, localizacao, horario, agenciabancaria->documento);
     fclose(fp); 
 }
 

@@ -9,16 +9,15 @@ int main(void){
     printf(" %s\n", nome1->status);
     printf(" %d\n", nome1->numero);
 
-    Agenciabancaria * agencia = criar_agencia("Paulo", 1134, "São Bento", "09:30 ate 15:00" );
+    Agenciabancaria * agencia = criar_agencia("Banco", 1134, "São Bento", "09:30 ate 15:00" );
     printf(" %s\n", agencia->nome);
     printf(" %d\n", agencia->codigo);
     printf(" %s\n", agencia->localizacao);
     printf(" %s\n", agencia->horario);
-    
 
-  /*  
+ /*  
     
-    
+ 
     int op;
 
 
