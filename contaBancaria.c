@@ -1,14 +1,15 @@
 #include "contaBancaria.h"
 
-typedef struct contabancaria{
+struct contabancaria{
 
    char cliente[51];
    int data;
    float saldo;
+   Agenciabancaria *agencia;
    char status[11];
    int numero;
 
-}Contabancaria;
+};
 
 Contabancaria *criar_conta(char *cliente, int data, float saldo, char *status, int numero)
 {

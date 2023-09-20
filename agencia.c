@@ -1,14 +1,15 @@
+#include "contaBancaria.h"
 #include "agencia.h"
 
-typedef struct agenciabancaria{
+struct agenciabancaria{
 
 char nome[51];
 int codigo;
 char localizacao [31];
-int contas;
-int horario;
+Contas *contas;
+char horario[15];
 
-}Agenciabancaria;
+};
 
 Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, int contas, int horario) {
     
