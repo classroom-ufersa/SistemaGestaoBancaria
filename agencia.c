@@ -5,13 +5,21 @@ struct agenciabancaria{
 char nome[51];
 int codigo;
 char localizacao [31];
-Contabancaria *contas;
+Lista *contas;
 char horario[15];
 
 };
 
 
+struct lista{
+
+Contabancaria *conta;
+Lista *prox;
+
+};
+
 Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, char* horario) {
+
     
       Agenciabancaria *criar_agencia = (Agenciabancaria*)malloc(sizeof(Agenciabancaria));
     if(criar_agencia == NULL) {
@@ -28,21 +36,41 @@ Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, char* 
     return criar_agencia;
 }
 
-
-
-/*
-
-Agenciabancaria *cadastrar_cliente (){
-    Agenciabancaria *cadastrar_cliente = (Agenciabancaria*)malloc(sizeof(Agenciabancaria));
-    if(cadastrar_cliente == NULL){
-        printf ("Variavel cadastra_cliente não foi alocada dinamicamente! \n ");
-        exit(1);
+Lista * lista_insere_ordena(Lista *k, Contabancaria *conta){
+    Lista *novo;
+    Lista *ant = NULL;
+    Lista *p = k;
+    while (p != NULL && strcmp(p->conta->cliente, conta->cliente )< 0)
+    {
+        ant = p;
+        p = p->prox;
+        
     }
+    novo = (Lista *)malloc(sizeof(Lista));
+    novo->conta = conta;
+    if (ant == NULL)
+    {
+        novo ->prox = k;
+        k = novo;
 
-    
-    return cadastrar_cliente;
+
+    }else
+    {
+        novo->prox = ant-> prox;
+        ant->prox = novo;
+
+    }
+    return k;
 }
 
+Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancaria *agenciabancaria){
+    
+    agenciabancaria->contas = lista_insere_ordena(agenciabancaria->contas,contabancaria);
+
+    return agenciabancaria;
+    
+    }
+/*
 void agencia_salva(Agenciabancaria *agenciabancaria)
 {
 

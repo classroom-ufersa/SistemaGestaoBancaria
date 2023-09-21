@@ -15,6 +15,11 @@ int main(void){
     printf(" %s\n", agencia->localizacao);
     printf(" %s\n", agencia->horario);
 
+    agencia = cadastrar_cliente (nome1, agencia);
+    printf(" %s\n", agencia->contas->conta->cliente);
+   
+
+
  /*  
     
  
