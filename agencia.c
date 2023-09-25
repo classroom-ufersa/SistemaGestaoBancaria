@@ -24,7 +24,7 @@ Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, char* 
       Agenciabancaria *criar_agencia = (Agenciabancaria*)malloc(sizeof(Agenciabancaria));
     if(criar_agencia == NULL) {
 
-        printf("Variavel criar_agencia nao foi alocada dinamicamente! \n");
+        printf("Memoria insuficiente! \n");
         exit(1);
     }
     strcpy(criar_agencia->nome, nome);   
