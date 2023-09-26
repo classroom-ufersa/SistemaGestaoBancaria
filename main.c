@@ -38,13 +38,13 @@ int main(void){
 
 do {
     printf("\n MENU DE OPÇÕES \n");
-    printf(" 1 - Adicionar conta");
+    printf(" 1 - Criar agência");
+    printf(" 1 - Cadastra conta");
     printf(" 2 - Remover conta");
     printf(" 3 - Listar contas cadastradas");
     printf(" 4 - Buscar conta");
     printf(" 5 - Editar conta");
     printf(" 6 - Consultar contas ativas em uma dada agência");
-    printf(" 7 - Consultar contas ativas em uma dada agência");
     printf(" 8 - Sair");
 
     if (scanf("%d", &op) != 1) // verifica se o que foi digitado é um inteiro
