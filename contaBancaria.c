@@ -3,16 +3,16 @@
 
 struct contabancaria{
 
-   char cliente[51];
-   char data[12];
-   float saldo;
    Agencia *agencia;
+   char cliente[51];
+   char dataAbertura[12];
+   float saldo;
    char status[11];
    int numero;
 
 };
 
-Contabancaria *criar_conta(char *cliente, char* data, float saldo, char *status, int numero)
+Contabancaria *criar_conta(char *cliente, char* dataAbertura, float saldo, char *status, int numero)
 {
    Contabancaria *contabancaria = (Contabancaria *)malloc(sizeof(Contabancaria));
    if (contabancaria == NULL){
@@ -22,7 +22,7 @@ Contabancaria *criar_conta(char *cliente, char* data, float saldo, char *status,
    }
 
 strcpy(contabancaria->cliente, cliente);   
-strcpy(contabancaria->data, data);
+strcpy(contabancaria->dataAbertura, dataAbertura);
 contabancaria->saldo = saldo;
 strcpy(contabancaria->status, status);  
 contabancaria->numero = numero;
