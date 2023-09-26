@@ -1,28 +1,11 @@
-/*Bibliotecas utilizadas*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "contaBancaria.h"  // para acessar a definição de ContaBancaria
 
+typedef struct Agencia Agencia;
+typedef struct Lista Lista;
 
-typedef struct agenciabancaria Agenciabancaria;
+/* Função para cadastrar uma nova agencia bancaria, alocando memoria */
+Agencia *criar_agencia(char *nome, int codigo, char *localizacao, char *horario, int numClientes);
 
-typedef struct lista Lista;
-
-
-/*Função para cadastra uma nova agencia bancaria, alocando memoria*/
-
-//Função para cadastra uma nova agencia bancaria, alocando memoria
-Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, char* horario);
-
-// funçao para ordenar contas
-Lista * lista_insere_ordena(Lista *k, Contabancaria *conta);
-// funcao para cadastrar cliente em agencia 
-
-Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancaria *agenciabancaria);
-/*
-//Função para salva arquivos
-
-void agencia_salva(Agenciabancaria *agenciabancaria);
-
-
-// função libera agencias vai liberar a memoria ocupada
-void libera_agencia(Agenciabancaria ** age ,FILE * fp);
-
-*/

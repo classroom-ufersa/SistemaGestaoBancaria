@@ -6,7 +6,7 @@ struct contabancaria{
    char cliente[51];
    char data[12];
    float saldo;
-   Agenciabancaria *agencia;
+   Agencia *agencia;
    char status[11];
    int numero;
 

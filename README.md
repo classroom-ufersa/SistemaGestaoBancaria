@@ -4,7 +4,7 @@ Um Sistema de Gestão Bancária é uma ferramenta fundamental que permite o cada
 
 # Problematica
 
-Desenvolver um sistema bancário dedicado à gerenciamento das informações dos clientes, permitindo que os funcionários realizem o cadastro de novos clientes e também consultem a lista de clientes já cadastrados
+Fazer o desenvolver um sistema bancário dedicado à gerenciamento das informações dos clientes, permitindo que os funcionários realizem o cadastro de novos clientes e também consultem a lista de clientes já cadastrados
 
 # Introdução 
 
