@@ -67,11 +67,10 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
     
     agenciabancaria->contas = lista_insere_ordena(agenciabancaria->contas,contabancaria);
 
-    return Contabancaria;
+    return agenciabancaria;
     }
 /*
-=======
-    return agenciabancaria;
+    
     
     }
 /*

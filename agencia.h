@@ -8,8 +8,6 @@ typedef struct lista Lista;
 //Função para cadastra uma nova agencia bancaria, alocando memoria
 Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, char* horario);
 
-// funçao para ordenar contas
-Lista * lista_insere_ordena(Lista *k, Contabancaria conta);
 
 // funçao para ordenar contas
 Lista * lista_insere_ordena(Lista *k, Contabancaria *conta);

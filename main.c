@@ -21,13 +21,12 @@ int main(void){
     printf(" %d\n", agencia->codigo);
     printf(" %s\n", agencia->localizacao);
     printf(" %s\n", agencia->horario);
-   
 
-
-    agencia = cadastrar_cliente (nome1, agencia);
-    printf(" %s\n", agencia->contas->conta->cliente);
 
     agencia = cadastrar_cliente (nome2, agencia);
+    agencia = cadastrar_cliente (nome1, agencia);
+    
+    printf(" %s\n", agencia->contas->conta->cliente);
     printf(" %s\n", agencia->contas->prox->conta->cliente);
     
    
