@@ -8,6 +8,7 @@ struct Lista {
     struct Lista *ant;
 };
 
+
 // Definição da estrutura da Agência Bancária
 struct Agencia{
     char nome[51];
@@ -16,7 +17,7 @@ struct Agencia{
     struct Lista *contas;
     char horario[15];
     int numClientes;
-};
+    };
 
 // Função para criar uma agência bancária
 struct Agencia *criar_agencia(char *nome, int codigo, char *localizacao, char *horario, int numClientes) {
@@ -34,3 +35,5 @@ struct Agencia *criar_agencia(char *nome, int codigo, char *localizacao, char *h
 
     return agencia;
 }
+
+

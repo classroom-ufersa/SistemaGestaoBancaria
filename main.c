@@ -9,17 +9,27 @@ int main(void){
     printf(" %s\n", nome1->status);
     printf(" %d\n", nome1->numero);
 
+    Contabancaria * nome2 = criar_conta("Almeida", "10/04/2021", 156.12, "ativo", 13833 );
+    printf(" %s\n", nome2->cliente);
+    printf(" %s\n", nome2->data);
+    printf(" %.2f\n", nome2->saldo);
+    printf(" %s\n", nome2->status);
+    printf(" %d\n", nome2->numero);
+
     Agenciabancaria * agencia = criar_agencia("Banco", 1134, "São Bento", "09:30 ate 15:00" );
     printf(" %s\n", agencia->nome);
     printf(" %d\n", agencia->codigo);
     printf(" %s\n", agencia->localizacao);
     printf(" %s\n", agencia->horario);
 
+
+    agencia = cadastrar_cliente (nome2, agencia);
     agencia = cadastrar_cliente (nome1, agencia);
+    
     printf(" %s\n", agencia->contas->conta->cliente);
+    printf(" %s\n", agencia->contas->prox->conta->cliente);
+    
    
-
-
  /*  
     
  
@@ -28,13 +38,13 @@ int main(void){
 
 do {
     printf("\n MENU DE OPÇÕES \n");
-    printf(" 1 - Adicionar conta");
+    printf(" 1 - Criar agência");
+    printf(" 1 - Cadastra conta");
     printf(" 2 - Remover conta");
     printf(" 3 - Listar contas cadastradas");
     printf(" 4 - Buscar conta");
     printf(" 5 - Editar conta");
     printf(" 6 - Consultar contas ativas em uma dada agência");
-    printf(" 7 - Consultar contas ativas em uma dada agência");
     printf(" 8 - Sair");
 
     if (scanf("%d", &op) != 1) // verifica se o que foi digitado é um inteiro
