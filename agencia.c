@@ -10,7 +10,6 @@ char horario[15];
 
 };
 
-
 struct lista{
 
 Contabancaria *conta;
@@ -64,18 +63,24 @@ Lista * lista_insere_ordena(Lista *k, Contabancaria *conta){
 }
 
 Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancaria *agenciabancaria){
+
     
     agenciabancaria->contas = lista_insere_ordena(agenciabancaria->contas,contabancaria);
 
+    return Contabancaria;
+    }
+/*
+=======
     return agenciabancaria;
     
     }
 /*
+
 void agencia_salva(Agenciabancaria *agenciabancaria)
 {
 
     
-    FILE *fp = fopen("agenciaban.txt", "a"); // Abre arquivo "a" (abre um arquivo no modo de inclusão)
+    FILE *fp = fopen("agenciaban.txt", "w"); // Abre arquivo "a" (abre um arquivo no modo de inclusão)
     if (fp == NULL)                    
     {
         printf("Erro ao abrir o arquivo"); 
@@ -102,4 +107,7 @@ void libera_agencia(Agenciabancaria *agenciabancaria)
     
     free(agenciabancaria);
 }
+
+
+=======
 */
