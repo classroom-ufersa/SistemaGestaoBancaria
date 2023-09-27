@@ -1,39 +1,33 @@
-#include "contaBancaria.h"  // cabeçalho para acessar a definição de ContaBancaria
+#include "agencia.h"
 
-
-// Definição de um nó da lista duplamente encadeada
-struct Lista {
-    struct ContaBancaria *conta;
-    struct Lista *prox;
-    struct Lista *ant;
-};
-
-
-// Definição da estrutura da Agência Bancária
-struct Agencia{
-    char nome[51];
+// Estrutura de dados para Agência
+typedef struct agencia {
+    char nome[50];
     int codigo;
-    char localizacao[31];
-    struct Lista *contas;
-    char horario[15];
+    char localizacao[100];
     int numClientes;
-    };
+    int numContas;
+    char horario[20];
+    struct Agencia *anterior;
+    struct Agencia *proximo;
+} Agencia;
 
-// Função para criar uma agência bancária
-struct Agencia *criar_agencia(char *nome, int codigo, char *localizacao, char *horario, int numClientes) {
-    struct Agencia *agencia = (struct Agencia *)malloc(sizeof(struct Agencia));
-    if (agencia == NULL) {
-        printf("Memória insuficiente!\n");
+Agencia *criarAgencia(char nome[], int codigo, char localizacao[], int numClientes, int numContas, char horario[]) {
+    Agencia *novaAgencia = (Agencia *)malloc(sizeof(Agencia));
+    if (novaAgencia == NULL) {
+        printf("Erro: Falha na alocação de memória para a Agência.\n");
         exit(1);
     }
-    strcpy(agencia->nome, nome);
-    agencia->codigo = codigo;
-    strcpy(agencia->localizacao, localizacao);
-    strcpy(agencia->horario, horario);
-    agencia->numClientes = numClientes;
-    agencia->contas = NULL;
 
-    return agencia;
+    strcpy(novaAgencia->nome, nome);
+    novaAgencia->codigo = codigo;
+    strcpy(novaAgencia->localizacao, localizacao);
+    novaAgencia->numClientes = numClientes;
+    novaAgencia->numContas = numContas;
+    strcpy(novaAgencia->horario, horario);
+    novaAgencia->anterior = NULL;
+    novaAgencia->proximo = NULL;
+
+    return novaAgencia;
 }
-
 
