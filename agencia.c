@@ -95,11 +95,11 @@ void agencia_salva(Agenciabancaria *agenciabancaria)
     fprintf(fp, " %s\t%d\t%s\t%s\n", nome, codigo, localizacao, horario, agenciabancaria->documento);
     fclose(fp); 
 }
-
+*/
 // função libera agencias vai liberar a memoria ocupada
 void libera_agencia(Agenciabancaria *agenciabancaria)
 {
     
     free(agenciabancaria);
 }
-*/
+
