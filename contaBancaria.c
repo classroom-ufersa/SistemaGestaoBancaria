@@ -1,12 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 #include "contaBancaria.h"
 
 // Estrutura de dados para Conta Bancária
 typedef struct contabancaria {
     int numeroConta;
     Agencia *agencia;
+    char nomeAgencia[20];
     char cliente[50];
     char dataAbertura[11]; // Formato "dd/mm/aaaa"
     float saldo;
@@ -15,7 +14,7 @@ typedef struct contabancaria {
     struct ContaBancaria *proximo;
 } ContaBancaria;
 
-ContaBancaria *criarContaBancaria(int numeroConta, Agencia *agencia, char cliente[], char dataAbertura[], float saldo, char status[]) {
+ContaBancaria *criarContaBancaria( Agencia *agencia, char cliente[], char dataAbertura[], float saldo, char status[], int numeroConta) {
     ContaBancaria *novaConta = (ContaBancaria *)malloc(sizeof(ContaBancaria));
     if (novaConta == NULL) {
         printf("Erro: Falha na alocação de memória para a Conta Bancária.\n");
@@ -23,7 +22,6 @@ ContaBancaria *criarContaBancaria(int numeroConta, Agencia *agencia, char client
     }
 
     novaConta->numeroConta = numeroConta;
-    novaConta->agencia = agencia;
     strcpy(novaConta->cliente, cliente);
     strcpy(novaConta->dataAbertura, dataAbertura);
     novaConta->saldo = saldo;
@@ -46,20 +44,23 @@ void lerDadosConta() {
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
         if (strncmp(linha, "Conta", 5) == 0) {
-            // Encontrou uma linha de conta, ler e exibir os campos
-            int numeroAgencia;
+            // Encontra uma linha de conta, ler e exibir os campos
+            char nomeAgencia[20];
             char cliente[50];
             char dataAbertura[11];
             float saldo;
             char status[10];
+            int numeroAgencia;
 
-            if (sscanf(linha, "Conta\t%d\t%s\t%s\t%f\t%s", &numeroAgencia, cliente, dataAbertura, &saldo, status) == 5) {
-                printf("Número da Agência: %d\n", numeroAgencia);
+            if (sscanf(linha, "Conta\t%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroAgencia) == 6) {
+                printf("Nome da Agência: %s\n", nomeAgencia);
                 printf("Cliente: %s\n", cliente);
                 printf("Data de Abertura: %s\n", dataAbertura);
                 printf("Saldo: %.2f\n", saldo);
                 printf("Status: %s\n", status);
+                printf("Número da Agência: %d\n", numeroAgencia);
                 printf("\n");
+
             } else {
                 printf("Erro: Formato de linha de conta inválido.\n");
             }

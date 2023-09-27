@@ -1,7 +1,5 @@
 #include "agencia.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 
 // Estrutura de dados para Agência
 typedef struct agencia {
