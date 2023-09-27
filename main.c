@@ -28,16 +28,16 @@ int main(void){
 
 do {
     printf("\n MENU DE OPÇÕES \n");
-    printf(" 1 - Adicionar conta");
-    printf(" 2 - Remover conta");
-    printf(" 3 - Listar contas cadastradas");
-    printf(" 4 - Buscar conta");
-    printf(" 5 - Editar conta");
-    printf(" 6 - Consultar contas ativas em uma dada agência");
+    printf(" 1 - Criar agência bancaria");
+    printf(" 2 - Adicionar conta");
+    printf(" 3 - Remover conta");
+    printf(" 4 - Listar contas cadastradas");
+    printf(" 5 - Buscar conta");
+    printf(" 6 - Editar conta");
     printf(" 7 - Consultar contas ativas em uma dada agência");
     printf(" 8 - Sair");
 
-    if (scanf("%d", &op) != 1) // verifica se o que foi digitado é um inteiro
+    if (scanf(" %d", &op) != 1) // verifica se o que foi digitado é um inteiro
     {
         printf(" Invalido. Tente novamente");
         
@@ -47,6 +47,9 @@ do {
     switch (op)
     {
         case 1:
+        
+        agencia = criaragenciabancaria(char *nome, int codigo, char* localizacao, char* horario);
+
         break;
 
         case 2:
