@@ -1,16 +1,16 @@
 #include "contaBancaria.c"
 /*#include "agencia.c"*/
 
-int main(void){
+int main(void)
+{
 
-    
     lerDadosConta();
-
- 
+    /*char nomeagencia[] = "Agencia1";
+    consultarContasAtivas(nomeagencia);*/
 
     /*
-    
- 
+
+
     int op;
 
 
@@ -28,7 +28,7 @@ do {
     if (scanf("%d", &op) != 1) // verifica se o que foi digitado é um inteiro
     {
         printf(" Invalido. Tente novamente");
-        
+
     }
 
 
@@ -61,7 +61,7 @@ do {
 
         break;
 
-    default: 
+    default:
     printf ("Tente novamente, opcao fornecida está invalida! \n");
 
 
@@ -71,8 +71,7 @@ do {
 
 
 */
-// Libere a memória alocada para a conta bancária
-    
+    // Libere a memória alocada para a conta bancária
 
     return 0;
 }

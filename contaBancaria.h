@@ -11,3 +11,5 @@ ContaBancaria *criarContaBancaria( Agencia *agencia, char cliente[], char dataAb
 
 /*Função para ler todas as contas bancarias presentes no arquivo dados.txt*/
 void lerDadosConta();
+
+void consultarContasAtivas(char *nomeagencia);

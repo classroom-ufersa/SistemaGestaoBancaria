@@ -1,8 +1,11 @@
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "contaBancaria.h"
 
 // Estrutura de dados para Conta Bancária
-typedef struct contabancaria {
+typedef struct contabancaria
+{
     int numeroConta;
     Agencia *agencia;
     char nomeAgencia[20];
@@ -14,9 +17,11 @@ typedef struct contabancaria {
     struct ContaBancaria *proximo;
 } ContaBancaria;
 
-ContaBancaria *criarContaBancaria( Agencia *agencia, char cliente[], char dataAbertura[], float saldo, char status[], int numeroConta) {
+ContaBancaria *criarContaBancaria(Agencia *agencia, char cliente[], char dataAbertura[], float saldo, char status[], int numeroConta)
+{
     ContaBancaria *novaConta = (ContaBancaria *)malloc(sizeof(ContaBancaria));
-    if (novaConta == NULL) {
+    if (novaConta == NULL)
+    {
         printf("Erro: Falha na alocação de memória para a Conta Bancária.\n");
         exit(1);
     }
@@ -32,18 +37,21 @@ ContaBancaria *criarContaBancaria( Agencia *agencia, char cliente[], char dataAb
     return novaConta;
 }
 
-
-void lerDadosConta() {
+void lerDadosConta()
+{
     FILE *arquivo = fopen("dados.txt", "r");
-    if (arquivo == NULL) {
+    if (arquivo == NULL)
+    {
         printf("Erro: Não foi possível abrir o arquivo 'dados.txt'.\n");
         exit(1);
     }
 
     char linha[256];
 
-    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
-        if (strncmp(linha, "Conta", 5) == 0) {
+    while (fgets(linha, sizeof(linha), arquivo) != NULL)
+    {
+        if (strncmp(linha, "Conta", 5) == 0)
+        {
             // Encontra uma linha de conta, ler e exibir os campos
             char nomeAgencia[20];
             char cliente[50];
@@ -52,7 +60,8 @@ void lerDadosConta() {
             char status[10];
             int numeroAgencia;
 
-            if (sscanf(linha, "Conta\t%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroAgencia) == 6) {
+            if (sscanf(linha, "Conta\t%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroAgencia) == 6)
+            {
                 printf("Nome da Agência: %s\n", nomeAgencia);
                 printf("Cliente: %s\n", cliente);
                 printf("Data de Abertura: %s\n", dataAbertura);
@@ -60,8 +69,9 @@ void lerDadosConta() {
                 printf("Status: %s\n", status);
                 printf("Número da Agência: %d\n", numeroAgencia);
                 printf("\n");
-
-            } else {
+            }
+            else
+            {
                 printf("Erro: Formato de linha de conta inválido.\n");
             }
         }
@@ -69,5 +79,59 @@ void lerDadosConta() {
 
     fclose(arquivo);
 }
+/*
+void consultarContasAtivas(char *nomeagencia)
+{
 
+    FILE *arquivo = fopen("dados.txt", "r");
+    if (arquivo == NULL)
+    {
+        printf("Erro: Não foi possível abrir o arquivo 'dados.txt'.\n");
+        exit(1);
+    }
 
+    char linha[256];
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL)
+    {
+        if (strncmp(linha, "Conta", 5) == 0)
+        {
+            // Encontra uma linha de conta, ler e exibir os campos
+            char nomeAgencia[20];
+            char cliente[50];
+            char dataAbertura[11];
+            float saldo;
+            char status[10];
+            int numeroAgencia;
+            char auxiliar[] = "Ativa";
+
+            if (sscanf(linha, "Conta\t%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroAgencia) == 6)
+            {
+                if (strcmp(nomeagencia, nomeAgencia) == 0)
+                {
+                    if (strcmp(status, auxiliar) == 0)
+                    {
+                        printf("Nome da Agência: %s\n", nomeAgencia);
+                        printf("Cliente: %s\n", cliente);
+                        printf("Data de Abertura: %s\n", dataAbertura);
+                        printf("Saldo: %.2f\n", saldo);
+                        printf("Status: %s\n", status);
+                        printf("Número da Agência: %d\n", numeroAgencia);
+                        printf("\n");
+                    }
+                    else
+                    {
+                        printf("Nenhuma conta ativa.\n");
+                    }
+                }
+            }
+            else
+            {
+                printf("Erro: Formato de linha de conta inválido.\n");
+            }
+        }
+    }
+
+    fclose(arquivo);
+}
+*/
