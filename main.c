@@ -1,4 +1,5 @@
-#include "agencia.c"
+#include "contaBancaria.h"
+#include "agencia.h"
 
 int main(void){
 
@@ -70,6 +71,8 @@ do {
 
 
 */
+// Libere a memória alocada para a conta bancária
+    
 
     return 0;
 }
