@@ -110,6 +110,25 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
             }
         }
         }
+
+
+        void remove_conta(Agenciabancaria *agencia, int qntcontas){
+            for (i = 0; i < agencia->qntcontas; i++){
+                if(agencia->contas[i]->qntcontas == qntcontas){
+
+                    free(agencia->contas[i]);
+
+                    for (int j = i; j < agencias->qntcontas -1; j++){
+                        agencais->contas[j] = agencia->contas[j+1];
+                    }
+                    agencia->qntcontas--;
+                    qntcontas = 1;
+                    break;
+                }
+            }
+
+            return qntcontas;
+        }
 /*
 void agencia_salva(Agenciabancaria *agenciabancaria)
 {

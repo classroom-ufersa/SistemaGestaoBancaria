@@ -28,7 +28,7 @@ int main(void){
     char nome[51], localizacao[51], horario[15];
     int numero;
     int i;
-    qntcontas = 0;
+    int qntcontas = 0;
     int j;
 
 do {
@@ -114,11 +114,21 @@ do {
         case 4:
 
         //Remove conta cadastra
-        
+        printf("Informe qual a conta deseja excluir");
+        scanf(" %d", &numero);
         for (i = 0; i < qntdagencias, i++){
             if (agencias[i]->codigo == numero){
-                if (remove_conta_cadastrada(agencias[i], ))
+                if (remove_conta_cadastrada(agencias[i]->numero)){
+                    printf("Conta excluida \n");
+                }else{
+                    printf("Conta nao encontrada \n");
+                }
+                break;
             }
+        }
+
+        if (i == qntagencias){
+            printf("Agencia nao encontrada")
         }
 
 
