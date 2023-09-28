@@ -28,7 +28,8 @@ int main(void){
     char nome[51], localizacao[51], horario[15];
     int numero;
     int i;
-
+    qntcontas = 0;
+    int j;
 
 do {
 
@@ -96,8 +97,9 @@ do {
             if (agencias[i]->codigo == numero){
                 printf("Contas cadastradas na agencia %s:", agencias[i]->nome);
 
-                for(j = 0; j < agencias[i]->qntagencias; j++) {
-
+                for(j = 0; j < agencias[i]->qntcontas; j++) {
+                    
+                    printf("",agencias[i]->contas[j]->nome);
                                 
                 }
                 break;
