@@ -22,7 +22,7 @@ ContaBancaria *criarContaBancaria(Agencia *agencia, char cliente[], char dataAbe
     ContaBancaria *novaConta = (ContaBancaria *)malloc(sizeof(ContaBancaria));
     if (novaConta == NULL)
     {
-        printf("Erro: Falha na alocação de memória para a Conta Bancária.\n");
+        printf("Memoria insuficiente!\n");
         exit(1);
     }
 
@@ -37,7 +37,7 @@ ContaBancaria *criarContaBancaria(Agencia *agencia, char cliente[], char dataAbe
     return novaConta;
 }
 
-void lerDadosConta()
+void listarContasCadastradas()
 {
     FILE *arquivo = fopen("dados.txt", "r");
     if (arquivo == NULL)
@@ -58,16 +58,16 @@ void lerDadosConta()
             char dataAbertura[11];
             float saldo;
             char status[10];
-            int numeroAgencia;
+            int numeroConta;
 
-            if (sscanf(linha, "Conta\t%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroAgencia) == 6)
+            if (sscanf(linha, "Conta\t%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroConta) == 6)
             {
                 printf("Nome da Agência: %s\n", nomeAgencia);
                 printf("Cliente: %s\n", cliente);
                 printf("Data de Abertura: %s\n", dataAbertura);
                 printf("Saldo: %.2f\n", saldo);
                 printf("Status: %s\n", status);
-                printf("Número da Agência: %d\n", numeroAgencia);
+                printf("Número da Agência: %d\n", numeroConta);
                 printf("\n");
             }
             else
@@ -79,10 +79,9 @@ void lerDadosConta()
 
     fclose(arquivo);
 }
-/*
-void consultarContasAtivas(char *nomeagencia)
-{
 
+void removerContaPorNumero(int numeroConta)
+{
     FILE *arquivo = fopen("dados.txt", "r");
     if (arquivo == NULL)
     {
@@ -90,39 +89,28 @@ void consultarContasAtivas(char *nomeagencia)
         exit(1);
     }
 
+    FILE *temp = fopen("temp.txt", "w");
+    if (temp == NULL)
+    {
+        printf("Erro: Não foi possível criar o arquivo temporário.\n");
+        fclose(arquivo);
+        exit(1);
+    }
+
     char linha[256];
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
+        // Verifica se a linha é uma linha de conta
         if (strncmp(linha, "Conta", 5) == 0)
         {
-            // Encontra uma linha de conta, ler e exibir os campos
-            char nomeAgencia[20];
-            char cliente[50];
-            char dataAbertura[11];
-            float saldo;
-            char status[10];
-            int numeroAgencia;
-            char auxiliar[] = "Ativa";
-
-            if (sscanf(linha, "Conta\t%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroAgencia) == 6)
+            int numConta;
+            if (sscanf(linha, "Conta\t%*s\t%*s\t%*s\t%*f\t%*s\t%d", &numConta) == 1) //O caractere * em sscanf foi usado para indicar que o valor lido pelo especificador de formato correspondente deve ser ignorado. 
             {
-                if (strcmp(nomeagencia, nomeAgencia) == 0)
+                if (numConta != numeroConta)
                 {
-                    if (strcmp(status, auxiliar) == 0)
-                    {
-                        printf("Nome da Agência: %s\n", nomeAgencia);
-                        printf("Cliente: %s\n", cliente);
-                        printf("Data de Abertura: %s\n", dataAbertura);
-                        printf("Saldo: %.2f\n", saldo);
-                        printf("Status: %s\n", status);
-                        printf("Número da Agência: %d\n", numeroAgencia);
-                        printf("\n");
-                    }
-                    else
-                    {
-                        printf("Nenhuma conta ativa.\n");
-                    }
+                    // Se o número da conta não coincide, escreva a linha no arquivo temporário
+                    fputs(linha, temp);
                 }
             }
             else
@@ -130,8 +118,19 @@ void consultarContasAtivas(char *nomeagencia)
                 printf("Erro: Formato de linha de conta inválido.\n");
             }
         }
+        else
+        {
+            // Se não for uma linha de conta, escreva a linha no arquivo temporário
+            fputs(linha, temp);
+        }
     }
 
     fclose(arquivo);
+    fclose(temp);
+
+    // Renomeia o arquivo temporário para substituir o original
+    remove("dados.txt");
+    rename("temp.txt", "dados.txt");
+
+    printf("Conta removida com sucesso.\n");
 }
-*/

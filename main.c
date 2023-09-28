@@ -1,77 +1,31 @@
 #include "contaBancaria.c"
-/*#include "agencia.c"*/
+#include "agencia.c"
 
-int main(void)
+int main()
 {
+    
 
-    lerDadosConta();
-    /*char nomeagencia[] = "Agencia1";
-    consultarContasAtivas(nomeagencia);*/
+   Agencia *agencia = criarAgencia("Agencia1", 123, "Rua Principal", 100, 10, "10:00-18:00");
 
-    /*
+    ContaBancaria *conta1 = criarContaBancaria(agencia, "Pedro", "15/01/2022", 5000, "Ativa", 1001);
 
+    // Listar todas as contas cadastradas
+    printf("Lista de todas as contas cadastradas:\n");
+    listarContasCadastradas();
 
-    int op;
+    // Remover uma conta específica
+    int numeroContaARemover = 2002;
+    removerContaPorNumero(numeroContaARemover);
 
+    // Listar novamente após a remoção
+    printf("\nLista de contas após a remoção da conta %d:\n", numeroContaARemover);
+    listarContasCadastradas();
 
-do {
-    printf("\n MENU DE OPÇÕES \n");
-    printf(" 1 - Criar agência");
-    printf(" 1 - Cadastra conta");
-    printf(" 2 - Remover conta");
-    printf(" 3 - Listar contas cadastradas");
-    printf(" 4 - Buscar conta");
-    printf(" 5 - Editar conta");
-    printf(" 6 - Consultar contas ativas em uma dada agência");
-    printf(" 8 - Sair");
-
-    if (scanf("%d", &op) != 1) // verifica se o que foi digitado é um inteiro
-    {
-        printf(" Invalido. Tente novamente");
-
-    }
-
-
-    switch (op)
-    {
-        case 1:
-        break;
-
-        case 2:
-        break;
-
-        case 3:
-        break
-
-        case 4:
-        break;
-
-        case 5:
-        break;
-
-        case 6:
-        break;
-
-        case 7:
-        break;
-
-        case 8:
-
-        printf("Sair!! ");
-
-        break;
-
-    default:
-    printf ("Tente novamente, opcao fornecida está invalida! \n");
-
-
-    }
-}while(op !=8);
-
-
-
-*/
-    // Libere a memória alocada para a conta bancária
+    // Lembre-se de liberar a memória alocada para a Agência e Conta Bancária (isso pode ser feito em suas funções principais)
+    free(agencia);
+    free(conta1);
 
     return 0;
 }
+
+ 
