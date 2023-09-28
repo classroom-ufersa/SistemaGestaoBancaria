@@ -22,22 +22,24 @@ int main(void){
 
    
     
-    Agenciabancaria * agencia = criar_agencia();
+    Agenciabancaria ** agencias = (Agenciabancaria**)malloc(sizeof(Agenciabancaria*));
+    int qntagencias = 0;
     int op;
-    
+    char nome[51], localizacao[51], horario[15];
+    int numero;
 
 
 do {
 
-    printf("\n MENU DE OPÇÕES \n");
-    printf(" 1 - Criar agência bancaria");
-    printf(" 2 - Adicionar conta");
-    printf(" 3 - Remover conta");
-    printf(" 4 - Listar contas cadastradas");
-    printf(" 5 - Buscar conta");
-    printf(" 6 - Editar conta");
-    printf(" 7 - Consultar contas ativas em uma dada agência");
-    printf(" 8 - Sair");
+    printf("\n MENU DE OPCOES \n");
+    printf(" 1 - Criar agencia bancaria \n");
+    printf(" 2 - Adicionar conta \n");
+    printf(" 3 - Remover conta \n");
+    printf(" 4 - Listar contas cadastradas \n");
+    printf(" 5 - Buscar conta \n");
+    printf(" 6 - Editar conta \n");
+    printf(" 7 - Consultar contas ativas em uma dada agencia \n");
+    printf(" 8 - Sair \n");
 
     if (scanf(" %d", &op) != 1) // verifica se o que foi digitado é um inteiro
     {
@@ -49,7 +51,18 @@ do {
     switch (op)
     {
         case 1:
-
+        
+        printf("Informe o nome da agencia: ");
+        scanf(" %[^\n]", nome);
+        printf("Informe o codigo da agencia: ");
+        scanf(" %d", &numero);
+        printf("Informe a localização da agencia: ");
+        scanf(" %[^\n]", localizacao);
+        printf("Informe o horario de funcionamento da agencia: ");
+        scanf(" %[^\n]", horario);
+        agencias[qntagencias] = criar_agencia(nome, numero, localizacao, horario);
+        qntagencias++;
+        agencias = realloc(agencias, (qntagencias+1)*sizeof(Agenciabancaria));
         break;
 /*
         case 2:
