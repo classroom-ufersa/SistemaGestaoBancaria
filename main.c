@@ -1,7 +1,7 @@
 #include "agencia.c"
 
 int main(void){
-
+/*
     Contabancaria * nome1 = criar_conta("joao", "15/09/2023", 1506.65, "ativo", 12711 );
     printf(" %s\n", nome1->cliente);
     printf(" %s\n", nome1->data);
@@ -18,12 +18,13 @@ int main(void){
     agencia = cadastrar_cliente (nome1, agencia);
     printf(" %s\n", agencia->contas->conta->cliente);
    
-
+*/
 
    
     
- 
+    Agenciabancaria * agencia = criar_agencia();
     int op;
+    
 
 
 do {
@@ -49,51 +50,12 @@ do {
     {
         case 1:
 
-        // criar agencia bancaria 
-
-        Agenciabancaria * agencia = criar_agencia(nome, codigo, localizacao, horario);
-
-        printf("Informe o nome da agência \n");
-        scanf(" %[^\n]", agencia->nome);
-
-        printf("Informe o código da agência \n");
-        scanf (" %d", agencia->codigo);
-        
-        printf("Informe a localização da agencia \n");
-        scanf(" %[^\n]", agencia->localizacao);
-
-        printf("Informe o horário de funcionamento");
-        scanf(" %[^\n]", agencia->horario);
-
-
-
         break;
 /*
         case 2:
         // Cadastrar cliente
 
-       Contabancaria * con = cadastrar_cliente(codigo, cliente, data, saldo, status, numero)
-
-        printf("Informe o código da agencia: \n");
-        scanf(" %d", con->codigo);
-
-        printf("Informe o nome do cliente \n");
-        scanf(" %[^\n]", con->cliente);
-
-        printf("Informe a data de abertura da conta \n");
-        scanf(" %[^\n]", con->data);
-
-        printf("Informe o saldo da conta bancaria \n");
-        scanf(" %.2f", con->saldo);
-
-        printf("Informe qual o status da conta (Ativa, Desativada ou Bloqueaad) \n");
-        scanf(" %[^\n]", con->status);
-
-        printf("Digite o numero da conta");
-        scanf(" %d", con->numero);
-
-
-
+      
         
         break;
 
@@ -104,47 +66,13 @@ do {
         case 4:
 
         //Lista as contas cadastradas
-
-        Contabancaria * lista = contacadastrada();
-
+        
         break;
 
         case 5:
         // Buscar conta
 
-         do
-            {
-                printf("Informe qual a conta que deseja buscar: \n");
-                if (scanf(" %d", &numero) == 1)
-                {
-                    
-                }
-                else
-                {
-                    printf("Conta inválida. Digite novamente:\n");
-                    // Limpar o buffer de entrada para evitar loop infinito
-                    while (getchar() != '\n')
-                        ;
-                }
-            } while (!numero);
-
-            //Após verificar se o que foi digitado é valido é feito a busca
-            Contabancaria *con = buscarconta(con, numero);
-            if (con != NULL)
-            {
-                printf("\n Cliente encontrado! \n");
-                printf("Cliente: %s\n", con->cliente);
-                printf("Numero: %d\n", con->numero);
-                printf("Data de abertura: %s\n", con->data);
-                printf("Saldo: %.2f", con->saldo);
-                printf("Status: %s", con->status);
-                
-            }
-            else
-            {
-                printf("Cliente nao encontrado! \n");
-            }
-
+        
         break;
 
         case 6:
