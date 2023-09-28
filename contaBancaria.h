@@ -14,3 +14,9 @@ void removerContaPorNumero(int numeroConta);
 
 /*Função para litar todas as contas cadastradas no arquivo dados.txt*/
 void listarContasCadastradas();
+
+// Função para buscar uma conta pelo número de identificação e imprimir seus dados
+void buscarEImprimirContaPorNumero(int numeroConta);
+
+/* Função para adionar uma conta na lista de contas em ordem alfabética
+void adicionarContaEmOrdem(ContaBancaria **lista, ContaBancaria *novaConta);*/

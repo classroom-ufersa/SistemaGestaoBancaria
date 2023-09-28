@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "contaBancaria.h"
+#include "agencia.h"
 
 // Estrutura de dados para Conta Bancária
 typedef struct contabancaria
@@ -134,3 +135,98 @@ void removerContaPorNumero(int numeroConta)
 
     printf("Conta removida com sucesso.\n");
 }
+
+// Função para buscar uma conta pelo número de identificação e imprimir seus dados
+void buscarEImprimirContaPorNumero(int numeroConta)
+{
+    FILE *arquivo = fopen("dados.txt", "r");
+    if (arquivo == NULL)
+    {
+        printf("Erro: Não foi possível abrir o arquivo 'dados.txt'.\n");
+        exit(1);
+    }
+
+    char linha[256];
+    int contaEncontrada = 0; // Variável para indicar se a conta foi encontrada
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL)
+    {
+        if (strncmp(linha, "Conta", 5) == 0)
+        {
+            int numConta;
+            if (sscanf(linha, "Conta\t%*s\t%*s\t%*s\t%*f\t%*s\t%d", &numConta) == 1)
+            {
+                if (numConta == numeroConta)
+                {
+                    // Encontrou a conta com o número desejado, extrair os campos e imprimir os dados
+                    char nomeAgencia[20];
+                    char cliente[50];
+                    char dataAbertura[11];
+                    float saldo;
+                    char status[10];
+
+                    sscanf(linha, "Conta\t%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numConta);
+
+                    printf("Nome da Agência: %s\n", nomeAgencia);
+                    printf("Cliente: %s\n", cliente);
+                    printf("Data de Abertura: %s\n", dataAbertura);
+                    printf("Saldo: %.2f\n", saldo);
+                    printf("Status: %s\n", status);
+                    printf("Número da Agência: %d\n", numConta);
+                    printf("\n");
+
+                    contaEncontrada = 1; // Indica que a conta foi encontrada
+                    break; // Como a conta foi encontrada, podemos sair do loop
+                }
+            }
+            else
+            {
+                printf("Erro: Formato de linha de conta inválido.\n");
+            }
+        }
+    }
+
+    fclose(arquivo);
+
+    if (!contaEncontrada)
+    {
+        printf("Conta com o número %d não encontrada.\n", numeroConta);
+    }
+}
+
+/* // Função para adicionar uma conta na lista de contas em ordem alfabética
+void adicionarContaEmOrdem(ContaBancaria **lista, ContaBancaria *novaConta)
+{
+    if (*lista == NULL)
+    {
+        // Se a lista estiver vazia, a nova conta se torna o primeiro elemento da lista
+        *lista = novaConta;
+    }
+    else
+    {
+        // Caso contrário, encontre o ponto de inserção em ordem alfabética com base no nome do cliente
+        ContaBancaria *atual = *lista;
+        ContaBancaria *anterior = NULL;
+
+        while (atual != NULL && strcmp(novaConta->cliente, atual->cliente) > 0)
+        {
+            anterior = atual;
+            atual = atual->proximo;
+        }
+
+        // Insira a nova conta na posição correta
+        if (anterior == NULL)
+        {
+            // Inserir no início da lista
+            novaConta->proximo = *lista;
+            *lista = novaConta;
+        }
+        else
+        {
+            // Inserir no meio ou no final da lista
+            anterior->proximo = novaConta;
+            novaConta->proximo = atual;
+        }
+    }
+} */
+
