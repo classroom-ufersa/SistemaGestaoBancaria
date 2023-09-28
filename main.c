@@ -52,7 +52,7 @@ do {
     switch (op)
     {
         case 1:
-        
+        // criar agencia bancaria 
         printf("Informe o nome da agencia: ");
         scanf(" %[^\n]", nome);
         printf("Informe o codigo da agencia: ");
@@ -88,13 +88,38 @@ do {
         
         case 3:
         // Listar contas cadastradas
-      
+
+        printf ("Informe o codigo da agencia a qual deseja listar \n");
+        scanf(" %d", &numero);
+
+        for (i = 0; i < qntagencias; i++){
+            if (agencias[i]->codigo == numero){
+                printf("Contas cadastradas na agencia %s:", agencias[i]->nome);
+
+                for(j = 0; j < agencias[i]->qntagencias; j++) {
+
+                                
+                }
+                break;
+            }
+        }
+        if ( i == qntagencias){
+            printf("Agencia nao localizada");
+        }
+        
         break;
 /*
         case 4:
 
-        //Lista as contas cadastradas
+        //Remove conta cadastra
         
+        for (i = 0; i < qntdagencias, i++){
+            if (agencias[i]->codigo == numero){
+                if (remove_conta_cadastrada(agencias[i], ))
+            }
+        }
+
+
         break;
 
         case 5:
