@@ -15,6 +15,12 @@ Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, char* 
 Lista * lista_insere_ordena(Lista *k, Contabancaria *conta);
 // funcao para cadastrar cliente em agencia 
 Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancaria *agenciabancaria);
+// funcao para cadastrar conta bancaria
+Agenciabancaria *cadastrar_conta(Agenciabancaria* agencia);
+// funcao para listar agencias cadastradas
+void listar_agencias(Agenciabancaria **agencias, int qntagencias);
+
+
 /*
 //Função para salva arquivos
 

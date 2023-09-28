@@ -27,13 +27,14 @@ int main(void){
     int op;
     char nome[51], localizacao[51], horario[15];
     int numero;
+    int i;
 
 
 do {
 
     printf("\n MENU DE OPCOES \n");
     printf(" 1 - Criar agencia bancaria \n");
-    printf(" 2 - Adicionar conta \n");
+    printf(" 2 - Cadastrar conta \n");
     printf(" 3 - Remover conta \n");
     printf(" 4 - Listar contas cadastradas \n");
     printf(" 5 - Buscar conta \n");
@@ -64,18 +65,32 @@ do {
         qntagencias++;
         agencias = realloc(agencias, (qntagencias+1)*sizeof(Agenciabancaria));
         break;
-/*
+
         case 2:
         // Cadastrar cliente
 
+        printf("Informe qual agencia deseja cadastrar o cliente");
+        scanf (" %d", &numero);
+
+        for(i=0; i<=qntagencias; i++){
+            if(agencias[i]->codigo == numero){
+                break;
+            }
+        }
+        if( i> qntagencias){
+            printf("Agencia nao existe");
+        }else{
+            agencias[i] = cadastrar_conta(agencias[i]);
+        }
       
         
         break;
-
+        
         case 3:
-        //
+        // Listar contas cadastradas
+      
         break;
-
+/*
         case 4:
 
         //Lista as contas cadastradas
