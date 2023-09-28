@@ -194,6 +194,48 @@ void buscarEImprimirContaPorNumero(int numeroConta)
     }
 }
 
+// Função para verificar e mostrar contas ativas em uma determinada agencia
+void verificarContasAtivasPorAgencia(const char *nomeAgencia)
+{
+    FILE *arquivo = fopen("dados.txt", "r");
+    if (arquivo == NULL)
+    {
+        printf("Erro: Não foi possível abrir o arquivo 'dados.txt'.\n");
+        exit(1);
+    }
+
+    char linha[256];
+
+    printf("Contas com status 'Ativa' na agência '%s':\n", nomeAgencia);
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL)
+    {
+        if (strncmp(linha, "Conta", 5) == 0)
+        {
+            // Encontra uma linha de conta, ler e verifica o nome da agência e o status
+            char agencia[20];
+            char status[10];
+
+            if (sscanf(linha, "Conta\t%s\t%*s\t%*s\t%*f\t%s", agencia, status) == 2)
+            {
+                if (strcmp(agencia, nomeAgencia) == 0 && strcmp(status, "Ativa") == 0)
+                {
+                    // Se o nome da agência e o status forem correspondentes, é imprimido os detalhes da conta
+                    printf("%s", linha);
+                }
+            }
+            else
+            {
+                printf("Erro: Formato de linha de conta inválido.\n");
+            }
+        }
+    }
+
+    fclose(arquivo);
+}
+
+
+
 /* // Função para adicionar uma conta na lista de contas em ordem alfabética
 void adicionarContaEmOrdem(ContaBancaria **lista, ContaBancaria *novaConta)
 {

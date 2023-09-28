@@ -34,6 +34,11 @@ int main()
     printf("\nBuscando e imprimindo conta com o número %d:\n", numeroContaABuscar);
     buscarEImprimirContaPorNumero(numeroContaABuscar);
 
+    // Verificar contas ativas em uma agência específica
+    const char *nomeAgenciaParaVerificar = "Fortaleza";
+    printf("\nVerificando contas ativas na agência '%s':\n", nomeAgenciaParaVerificar);
+    verificarContasAtivasPorAgencia(nomeAgenciaParaVerificar);
+
     return 0;
 }
 
