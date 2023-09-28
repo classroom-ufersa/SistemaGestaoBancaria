@@ -4,6 +4,13 @@
 
 int main()
 {
+
+    Agencia *listaAgencias = NULL; // Inicializa a lista de agências como vazia
+
+      Agencia *agencia = criarAgencia("Recife", 123, "Rua Principal", 100, 10, "10:00-18:00");
+    
+    // Chame a função para adicionar a agência em ordem
+    adicionarAgenciaEmOrdem(&listaAgencias, agencia);
     /* Agencia *agencia = criarAgencia("Agencia1", 123, "Rua Principal", 100, 10, "10:00-18:00");
 
     // Crie uma lista de contas vazia

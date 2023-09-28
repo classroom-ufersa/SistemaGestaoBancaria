@@ -1,8 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 #include "contaBancaria.h"
-#include "agencia.h"
+
 
 // Estrutura de dados para Conta Bancária
 typedef struct contabancaria
