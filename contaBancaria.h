@@ -7,10 +7,10 @@ typedef struct contabancaria ContaBancaria;
 /*Função para cadastra uma nova conta bancaria, alocando memoria*/
 ContaBancaria *criarContaBancaria( Agencia *agencia, char cliente[], char dataAbertura[], float saldo, char status[], int numeroConta);
 
-/*Função para remover conta do arquivo dados.txt*/
+/*Função para remover conta do arquivo contas.txt*/
 void removerContaPorNumero(int numeroConta);
 
-/*Função para litar todas as contas cadastradas no arquivo dados.txt*/
+/*Função para litar todas as contas cadastradas no arquivo contas.txt*/
 void listarContasCadastradas();
 
 // Função para buscar uma conta pelo número de identificação e imprimir seus dados

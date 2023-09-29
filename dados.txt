@@ -1,9 +1,0 @@
-Tipo    Agencia	Codigo	Localizacao	NumClientes	Contas	Horario
-Agencia	Recife	123	Rua Principal	100	10	10:00-18:00
-Tipo    Agencia Codigo  Localizacao NumClientes Contas  Horario
-Agencia Fortaleza    123 Rua Principal   100 10:00-18:00
-Agencia Natal    456 Avenida Secundaria  50  09:00-17:00
-Conta   Fortaleza    Alice   15/01/2022  5000    Ativa   1001
-Conta   Fortaleza    Carol   25/03/2022  7000    Ativa   2001
-Conta   Fortaleza    Diego   30/04/2022  4000    Desativada  2002
-Conta   Natal    Eduardo 10/05/2022  6000    Ativa   2003
