@@ -19,8 +19,8 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
 Agenciabancaria *cadastrar_conta(Agenciabancaria* agencia);
 // funcao para listar agencias cadastradas
 void listar_agencias(Agenciabancaria **agencias, int qntagencias);
-
-
+// funcao para localizar contas
+void localizar_conta(Agenciabancaria **agencias, int qntagencias, int numero);
 /*
 //Função para salva arquivos
 

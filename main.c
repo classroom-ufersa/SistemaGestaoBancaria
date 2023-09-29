@@ -131,15 +131,13 @@ do {
             printf("Agencia nao encontrada")
         }
 
-
         break;
-
-        case 5:
-        // Buscar conta
 
         
+        //buscar cliente
+        case 5:
         break;
-
+        
         case 6:
         //
         break;

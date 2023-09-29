@@ -113,7 +113,7 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
 
 
         void remove_conta(Agenciabancaria *agencia, int qntcontas){
-            for (i = 0; i < agencia->qntcontas; i++){
+            for (int i = 0; i < agencia->qntcontas; i++){
                 if(agencia->contas[i]->qntcontas == qntcontas){
 
                     free(agencia->contas[i]);
@@ -129,7 +129,34 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
 
             return qntcontas;
         }
+/* funcao para o caso 5
+    void localizar_conta(Agenciabancaria **agencias, int qntagencias, int numero){
+        int i, j, conta_localizada = 0;
+
+        for (i = 0; i < qntagencias; i++){
+            for(j = 0; j < agencias[i]->qntcontas; j++){
+                if (agencias[i]->contas[j]->numero == numero){
+                    printf("Conta localizada na agencia: %s", agencias[i]->nome);
+                    printf("Numero da conta: %d", agencias[i]->contas[j]->numero);
+                    printf("Cliente: %s\n", agencias[i]->contas[j]-:cliente);
+                    printf("Saldo: %.2f", agencias[i]->contas[j]->saldo);
+                    conta_localizada = 1;
+                    
+
+                }
+            }
+            if(conta_localizada){
+                //
+            }
+        }if(!conta_localizada){
+            printf("Conta nao localizada");
+            
+        }
+    }
+
+*/
 /*
+        
 void agencia_salva(Agenciabancaria *agenciabancaria)
 {
 
