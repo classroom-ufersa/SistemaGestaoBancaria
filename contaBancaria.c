@@ -164,14 +164,14 @@ void listarContasCadastradas()
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
-            char nomeAgencia[20];
-            char cliente[50];
+            char nomeAgencia[50];                  
+            char cliente[100];
             char dataAbertura[11];
             float saldo;
             char status[10];
             int numeroConta;
 
-            if (sscanf(linha, "%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroConta) == 6)
+            if (sscanf(linha, "%49[^\t]\t%99[^\t]\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroConta) == 6)
             {
                 printf("Nome da Agência: %s\n", nomeAgencia);
                 printf("Cliente: %s\n", cliente);
