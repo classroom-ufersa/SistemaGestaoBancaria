@@ -16,7 +16,7 @@ typedef struct contabancaria
     struct ContaBancaria *proximo;
 } ContaBancaria;
 
-ContaBancaria *criarContaBancaria(Agencia *agencia, char cliente[], char dataAbertura[], float saldo, char status[], int numeroConta)
+ContaBancaria *criarContaBancaria(char nomeAgencia[], char cliente[], char dataAbertura[], float saldo, char status[], int numeroConta)
 {
     ContaBancaria *novaConta = (ContaBancaria *)malloc(sizeof(ContaBancaria));
     if (novaConta == NULL)
@@ -27,6 +27,7 @@ ContaBancaria *criarContaBancaria(Agencia *agencia, char cliente[], char dataAbe
 
     novaConta->numeroConta = numeroConta;
     strcpy(novaConta->cliente, cliente);
+    strcpy(novaConta->nomeAgencia, nomeAgencia);
     strcpy(novaConta->dataAbertura, dataAbertura);
     novaConta->saldo = saldo;
     strcpy(novaConta->status, status);
@@ -36,46 +37,61 @@ ContaBancaria *criarContaBancaria(Agencia *agencia, char cliente[], char dataAbe
     return novaConta;
 }
 
-void listarContasCadastradas()
+// Função para buscar uma conta pelo número de identificação e imprimir seus dados
+void adicionarContaEmOrdem(ContaBancaria *novaConta)
 {
     FILE *arquivo = fopen("contas.txt", "r");
     if (arquivo == NULL)
     {
-        printf("Erro: Não foi possível abrir o arquivo 'contas.txt'.\n");
+        printf("Erro: Não foi possível abrir o arquivo 'contas.txt' para leitura.\n");
+        exit(1);
+    }
+
+    // Abre o arquivo temporário para escrever as contas em ordem
+    FILE *temp = fopen("temp.txt", "w");
+    if (temp == NULL)
+    {
+        printf("Erro: Não foi possível criar o arquivo temporário.\n");
+        fclose(arquivo);
         exit(1);
     }
 
     char linha[256];
+    int inserido = 0;  // Variável para verificar se a nova conta foi inserida no arquivo temporário
 
+    // Formate a nova conta em uma string
+    char novaContaString[256];
+    sprintf(novaContaString, "%s\t%s\t%s\t%.2f\t%s\t%d\n", novaConta->nomeAgencia, novaConta->cliente, novaConta->dataAbertura, novaConta->saldo, novaConta->status, novaConta->numeroConta);
+
+    // Loop para encontrar a posição correta para inserir a nova conta
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
-            char nomeAgencia[20];
-            char cliente[50];
-            char dataAbertura[11];
-            float saldo;
-            char status[10];
-            int numeroConta;
+        // Compara a linha inteira (todos os campos) de forma insensível a maiúsculas e minúsculas
+        if (strcasecmp(linha, novaContaString) > 0 && !inserido)
+        {
+            // Insere a nova conta antes desta linha
+            fprintf(temp, "%s", novaContaString);
+            inserido = 1;
+        }
 
-            if (sscanf(linha, "%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroConta) == 6)
-            {
-                printf("Nome da Agência: %s\n", nomeAgencia);
-                printf("Cliente: %s\n", cliente);
-                printf("Data de Abertura: %s\n", dataAbertura);
-                printf("Saldo: %.2f\n", saldo);
-                printf("Status: %s\n", status);
-                printf("Número da Agência: %d\n", numeroConta);
-                printf("\n");
-            }
-            else
-            {
-                printf("Erro: Formato de linha de conta inválido.\n");
-            }
-       
+        fputs(linha, temp); // Copia a linha para o arquivo temporário
+    }
+
+    // Se a nova conta ainda não foi inserida no arquivo temporário, insira no final
+    if (!inserido)
+    {
+        fprintf(temp, "%s", novaContaString);
     }
 
     fclose(arquivo);
+    fclose(temp);
+
+    // Substitui o arquivo original pelo temporário
+    remove("contas.txt");
+    rename("temp.txt", "contas.txt");
 }
 
+// Função para remover uma conta pelo número de identificação 
 void removerContaPorNumero(int numeroConta)
 {
     FILE *arquivo = fopen("contas.txt", "r");
@@ -120,7 +136,7 @@ void removerContaPorNumero(int numeroConta)
     fclose(arquivo);
     fclose(temp);
 
-    // Se a conta foi encontrada e removida, renomeie o arquivo temporário para substituir o original
+    // Se a conta foi encontrada e removida, o arquivo temporário é renomeado para substituir o original
     if (contaEncontrada)
     {
         remove("contas.txt");
@@ -134,63 +150,8 @@ void removerContaPorNumero(int numeroConta)
     }
 }
 
-
-// Função para buscar uma conta pelo número de identificação e imprimir seus dados
-void buscarEImprimirContaPorNumero(int numeroConta)
-{
-    FILE *arquivo = fopen("contas.txt", "r");
-    if (arquivo == NULL)
-    {
-        printf("Erro: Não foi possível abrir o arquivo 'contas.txt'.\n");
-        exit(1);
-    }
-
-    char linha[256];
-    int contaEncontrada = 0; // Variável para indicar se a conta foi encontrada
-
-    while (fgets(linha, sizeof(linha), arquivo) != NULL)
-    {
-        
-            int numConta;
-            if (sscanf(linha, "%*s\t%*s\t%*s\t%*f\t%*s\t%d", &numConta) == 1)
-            {
-                if (numConta == numeroConta)
-                {
-                    // Encontrou a conta com o número desejado, extrair os campos e imprimir os dados
-                    char nomeAgencia[20];
-                    char cliente[50];
-                    char dataAbertura[11];
-                    float saldo;
-                    char status[10];
-
-                    sscanf(linha, "%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numConta);
-
-                    printf("Nome da Agência: %s\n", nomeAgencia);
-                    printf("Cliente: %s\n", cliente);
-                    printf("Data de Abertura: %s\n", dataAbertura);
-                    printf("Saldo: %.2f\n", saldo);
-                    printf("Status: %s\n", status);
-                    printf("Número da Agência: %d\n", numConta);
-                    printf("\n");
-
-                    contaEncontrada = 1; // Indica que a conta foi encontrada
-                    break; // Como a conta foi encontrada, podemos sair do loop
-                }
-            }
-            
-        
-    }
-
-    fclose(arquivo);
-
-    if (!contaEncontrada)
-    {
-        printf("Conta com o número %d não encontrada.\n", numeroConta);
-    }
-}
-
-// Função para verificar e mostrar contas ativas em uma determinada agencia
-void verificarContasAtivasPorAgencia(const char *nomeAgencia)
+/*Função para listar todas as contas cadastradas no arquivo contas.txt*/
+void listarContasCadastradas()
 {
     FILE *arquivo = fopen("contas.txt", "r");
     if (arquivo == NULL)
@@ -201,27 +162,30 @@ void verificarContasAtivasPorAgencia(const char *nomeAgencia)
 
     char linha[256];
 
-    printf("Contas com status 'Ativa' na agência '%s':\n", nomeAgencia);
-
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
-    
-            char agencia[20];
+            char nomeAgencia[20];
+            char cliente[50];
+            char dataAbertura[11];
+            float saldo;
             char status[10];
+            int numeroConta;
 
-            if (sscanf(linha, "%s\t%*s\t%*s\t%*f\t%s", agencia, status) == 2)
+            if (sscanf(linha, "%s\t%s\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroConta) == 6)
             {
-                if (strcmp(agencia, nomeAgencia) == 0 && strcmp(status, "Ativa") == 0)
-                {
-                    // Se o nome da agência e o status forem correspondentes, é imprimido os detalhes da conta
-                    printf("%s", linha);
-                }
+                printf("Nome da Agência: %s\n", nomeAgencia);
+                printf("Cliente: %s\n", cliente);
+                printf("Data de Abertura: %s\n", dataAbertura);
+                printf("Saldo: %.2f\n", saldo);
+                printf("Status: %s\n", status);
+                printf("Número da Agência: %d\n", numeroConta);
+                printf("\n");
             }
             else
             {
                 printf("Erro: Formato de linha de conta inválido.\n");
             }
-        
+       
     }
 
     fclose(arquivo);
@@ -229,39 +193,5 @@ void verificarContasAtivasPorAgencia(const char *nomeAgencia)
 
 
 
-/* // Função para adicionar uma conta na lista de contas em ordem alfabética
-void adicionarContaEmOrdem(ContaBancaria **lista, ContaBancaria *novaConta)
-{
-    if (*lista == NULL)
-    {
-        // Se a lista estiver vazia, a nova conta se torna o primeiro elemento da lista
-        *lista = novaConta;
-    }
-    else
-    {
-        // Caso contrário, encontre o ponto de inserção em ordem alfabética com base no nome do cliente
-        ContaBancaria *atual = *lista;
-        ContaBancaria *anterior = NULL;
 
-        while (atual != NULL && strcmp(novaConta->cliente, atual->cliente) > 0)
-        {
-            anterior = atual;
-            atual = atual->proximo;
-        }
-
-        // Insira a nova conta na posição correta
-        if (anterior == NULL)
-        {
-            // Inserir no início da lista
-            novaConta->proximo = *lista;
-            *lista = novaConta;
-        }
-        else
-        {
-            // Inserir no meio ou no final da lista
-            anterior->proximo = novaConta;
-            novaConta->proximo = atual;
-        }
-    }
-} */
 

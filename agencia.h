@@ -19,7 +19,7 @@ typedef struct agencia {
 
 // Protótipos das funções
 Agencia *criarAgencia(char nome[], int codigo, char localizacao[], int numClientes, int numContas, char horario[]);
-void adicionarAgenciaEmOrdem(Agencia **lista, Agencia *novaAgencia);
+void adicionarAgenciaEmOrdem( Agencia *novaAgencia);
 
 #endif /* AGENCIA_H */
 
