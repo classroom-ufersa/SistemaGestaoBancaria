@@ -69,7 +69,8 @@ int main()
             // Implemente a remoção de conta aqui
             break;
         case 3:
-            // Implemente a listagem de contas cadastradas aqui
+            printf("\n\tTODAS AS CONTAS BANCARIAS CADASTRADAS\n");
+            listarContasCadastradas();
             break;
         case 4:
             printf("Informe o numero da conta que voce deseja buscar:\n ");

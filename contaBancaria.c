@@ -161,7 +161,7 @@ void listarContasCadastradas()
     }
 
     char linha[256];
-
+    int totalContas = 0;
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
         char nomeAgencia[50];
@@ -180,13 +180,14 @@ void listarContasCadastradas()
             printf("Status: %s\n", status);
             printf("Número da Agência: %d\n", numeroConta);
             printf("\n");
+            totalContas++;
         }
         else
         {
             printf("Erro: Formato de linha de conta inválido.\n");
         }
     }
-
+     printf("Total de Contas Bancarias Cadastradas: %d\n", totalContas);
     fclose(arquivo);
 }
 
