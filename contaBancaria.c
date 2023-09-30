@@ -1,7 +1,6 @@
 
 #include "contaBancaria.h"
 
-
 // Estrutura de dados para Conta Bancária
 typedef struct contabancaria
 {
@@ -37,7 +36,7 @@ ContaBancaria *criarContaBancaria(char nomeAgencia[], char cliente[], char dataA
     return novaConta;
 }
 
-// Função para buscar uma conta pelo número de identificação e imprimir seus dados
+// Função para adicionar uma nova conta em ordem alfabética
 void adicionarContaEmOrdem(ContaBancaria *novaConta)
 {
     FILE *arquivo = fopen("contas.txt", "r");
@@ -57,9 +56,9 @@ void adicionarContaEmOrdem(ContaBancaria *novaConta)
     }
 
     char linha[256];
-    int inserido = 0;  // Variável para verificar se a nova conta foi inserida no arquivo temporário
+    int inserido = 0; // Variável para verificar se a nova conta foi inserida no arquivo temporário
 
-    // Formate a nova conta em uma string
+    // Formata a nova conta em uma string
     char novaContaString[256];
     sprintf(novaContaString, "%s\t%s\t%s\t%.2f\t%s\t%d\n", novaConta->nomeAgencia, novaConta->cliente, novaConta->dataAbertura, novaConta->saldo, novaConta->status, novaConta->numeroConta);
 
@@ -74,7 +73,8 @@ void adicionarContaEmOrdem(ContaBancaria *novaConta)
             inserido = 1;
         }
 
-        fputs(linha, temp); // Copia a linha para o arquivo temporário
+        // Copia a linha existente para o arquivo temporário
+        fputs(linha, temp);
     }
 
     // Se a nova conta ainda não foi inserida no arquivo temporário, insira no final
@@ -91,7 +91,8 @@ void adicionarContaEmOrdem(ContaBancaria *novaConta)
     rename("temp.txt", "contas.txt");
 }
 
-// Função para remover uma conta pelo número de identificação 
+
+// Função para remover uma conta pelo número de identificação
 void removerContaPorNumero(int numeroConta)
 {
     FILE *arquivo = fopen("contas.txt", "r");
@@ -115,11 +116,11 @@ void removerContaPorNumero(int numeroConta)
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
         int numConta;
-        if (sscanf(linha, "%*49[^\t]\t%*99[^\t]\t%*s\t%*f\t%*s\t%d", &numConta) == 1) 
+        if (sscanf(linha, "%*49[^\t]\t%*99[^\t]\t%*s\t%*f\t%*s\t%d", &numConta) == 1)
         {
             if (numConta != numeroConta)
             {
-                // Se o número da conta não coincide, escreva a linha no arquivo temporário
+                // Se o número da conta não coincide, escreve a linha no arquivo temporário
                 fputs(linha, temp);
             }
             else
@@ -164,34 +165,83 @@ void listarContasCadastradas()
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
-            char nomeAgencia[50];                  
-            char cliente[100];
-            char dataAbertura[11];
-            float saldo;
-            char status[10];
-            int numeroConta;
+        char nomeAgencia[50];
+        char cliente[100];
+        char dataAbertura[11];
+        float saldo;
+        char status[10];
+        int numeroConta;
 
-            if (sscanf(linha, "%49[^\t]\t%99[^\t]\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroConta) == 6)
-            {
-                printf("Nome da Agência: %s\n", nomeAgencia);
-                printf("Cliente: %s\n", cliente);
-                printf("Data de Abertura: %s\n", dataAbertura);
-                printf("Saldo: %.2f\n", saldo);
-                printf("Status: %s\n", status);
-                printf("Número da Agência: %d\n", numeroConta);
-                printf("\n");
-            }
-            else
-            {
-                printf("Erro: Formato de linha de conta inválido.\n");
-            }
-       
+        if (sscanf(linha, "%49[^\t]\t%99[^\t]\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroConta) == 6)
+        {
+            printf("Nome da Agência: %s\n", nomeAgencia);
+            printf("Cliente: %s\n", cliente);
+            printf("Data de Abertura: %s\n", dataAbertura);
+            printf("Saldo: %.2f\n", saldo);
+            printf("Status: %s\n", status);
+            printf("Número da Agência: %d\n", numeroConta);
+            printf("\n");
+        }
+        else
+        {
+            printf("Erro: Formato de linha de conta inválido.\n");
+        }
     }
 
     fclose(arquivo);
 }
 
+// Função para buscar uma conta por número e imprimir seus dados
+void buscarContaPorNumero(int numeroConta)
+{
+    FILE *arquivo = fopen("contas.txt", "r");
+    if (arquivo == NULL)
+    {
+        printf("Erro: Não foi possível abrir o arquivo 'contas.txt' para leitura.\n");
+        exit(1);
+    }
 
+    char linha[256];
+    int contaEncontrada = 0; // Variável para verificar se a conta foi encontrada
 
+    while (fgets(linha, sizeof(linha), arquivo) != NULL)
+    {
+        int numConta;
+        if (sscanf(linha, "%*49[^\t]\t%*99[^\t]\t%*s\t%*f\t%*s\t%d", &numConta) == 1)
+        {
+            if (numConta == numeroConta)
+            {
+                char nomeAgencia[50];
+                char cliente[100];
+                char dataAbertura[11];
+                float saldo;
+                char status[10];
+                int numeroConta;
 
+                (sscanf(linha, "%49[^\t]\t%99[^\t]\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroConta) == 6);
 
+                printf("Conta encontrada:\n");
+                printf("Nome da Agência: %s\n", nomeAgencia);
+                printf("Cliente: %s\n", cliente);
+                printf("Data de Abertura: %s\n", dataAbertura);
+                printf("Saldo: %.2f\n", saldo);
+                printf("Status: %s\n", status);
+                printf("Número da Conta: %d\n", numConta);
+
+                contaEncontrada = 1; // Marca que a conta foi encontrada
+                break;               // Não é necessário continuar procurando
+            }
+        }
+        else
+        {
+            printf("Erro: Formato de linha de conta inválido.\n");
+        }
+    }
+
+    fclose(arquivo);
+
+    if (!contaEncontrada)
+    {
+        printf("Conta com número %d não encontrada.\n", numeroConta);
+    }
+}

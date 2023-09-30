@@ -60,7 +60,7 @@ void adicionarAgenciaEmOrdem( Agencia *novaAgencia) {
         fputs(linha, temp); // Copia a linha para o arquivo temporário
     }
 
-    // Se a agência ainda não foi inserida no arquivo temporário, insira no final
+    // Se a agência ainda não foi inserida no arquivo temporário, insire no final
     if (!inserido) {
         fprintf(temp, "%s\t%d\t%s\t%d\t%d\t%s\n", novaAgencia->nome, novaAgencia->codigo, novaAgencia->localizacao, novaAgencia->numClientes, novaAgencia->numContas, novaAgencia->horario);
     }

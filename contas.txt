@@ -1,2 +1,3 @@
-Acopiara	Diego Nascimento	29/09/2023	300.00	Ativa	2006
-
+Acopiara	Antonio Silva	30/09/2023	300.00	ativa	2009
+Brejo Santo	Antonio Silva	30/09/2023	300.00	ativa	2009
+Crato	Antonio Silva	30/09/2023	300.00	ativa	2009
