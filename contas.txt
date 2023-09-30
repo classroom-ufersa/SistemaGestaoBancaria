@@ -1,5 +1,4 @@
 Acopiara	Antonio Silva	30/09/2023	300.00	ativa	2001
-Brejo Santo	Antonio Silva	30/09/2023	300.00	ativa	2002
 Brejo Santo	Antonio Silva	30/09/2023	300.00	Desativada	2003
 Brejo Santo	Antonio Silva	30/09/2023	300.00	Ativa	2004
 Brejo Santo	Diego	30/09/2023	600.00	Ativa	2005

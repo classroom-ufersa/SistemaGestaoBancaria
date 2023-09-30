@@ -66,7 +66,19 @@ int main()
         scanf(" %d", &numConta);*/
             break;
         case 2:
-            // Implemente a remoção de conta aqui
+            printf("Informe o numero da conta que voce deseja remover:\n ");
+            int numConta;
+            if (scanf("%d", &numConta) != 1)
+            {
+                printf("Entrada inválida. Digite um número válido.\n");
+                while (getchar() != '\n')
+                {
+                    // Limpa o buffer de entrada para evitar loop infinito
+                }
+                continue; // Volta para o início do loop
+            }
+
+            removerContaPorNumero(numConta);
             break;
         case 3:
             printf("\n\tTODAS AS CONTAS BANCARIAS CADASTRADAS\n");
@@ -74,7 +86,6 @@ int main()
             break;
         case 4:
             printf("Informe o numero da conta que voce deseja buscar:\n ");
-            int numConta;
             if (scanf("%d", &numConta) != 1)
             {
                 printf("Entrada inválida. Digite um número válido.\n");
