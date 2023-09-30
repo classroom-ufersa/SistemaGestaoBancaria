@@ -27,5 +27,8 @@ void adicionarAgenciaEmOrdem( Agencia *novaAgencia);
 // Função para listar todas as agências cadastradas no arquivo "agencias.txt"
 void listarAgencias();
 
+// Função para buscar uma determinda agencia, se encontrar a agencia retorna 0, se não retorna 1.
+int buscarAgenciaPorNome(const char nome[]);
+
 #endif /* AGENCIA_H */
 

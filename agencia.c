@@ -114,6 +114,33 @@ void listarAgencias() {
     printf("Total de Agências: %d\n", totalAgencias);
 }
 
+// Função para buscar uma determinda agencia, se encontrar a agencia retorna 0, se não retorna 1.
+int buscarAgenciaPorNome(const char nome[]) {
+    FILE *arquivo = fopen("agencias.txt", "r");
+    if (arquivo == NULL) {
+        printf("Erro: Não foi possível abrir o arquivo 'agencias.txt' para leitura.\n");
+        exit(1);
+    }
+
+    char linha[256];
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        char nomeAgencia[50];
+
+        if (sscanf(linha, "%49[^\t]", nomeAgencia) == 1) {
+            if (strcasecmp(nomeAgencia, nome) == 0) {
+                fclose(arquivo);
+                return 0; // Agência encontrada
+            }
+        } else {
+            printf("Erro: Formato de linha de agência inválido.\n");
+        }
+    }
+
+    fclose(arquivo);
+    return 1; // Agência não encontrada
+}
+
 
 
 

@@ -344,7 +344,7 @@ void editarDadosContaPorNumero(int numeroConta)
                 int op;
                 do
                 {
-                    printf("\nESCOLHA UMA OPÇÃO:\n");
+                    printf("\nop UMA OPÇÃO:\n");
                     printf("1. EDITAR NOME DA AGÊNCIA\n");
                     printf("2. EDITAR CLIENTE\n");
                     printf("3. EDITAR DATA DE ABERTURA\n");
