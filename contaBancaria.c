@@ -245,3 +245,48 @@ void buscarContaPorNumero(int numeroConta)
         printf("Conta com número %d não encontrada.\n", numeroConta);
     }
 }
+
+// Função para consultar e listar todas as contas ativas em uma agência com base no nome da agência
+void ConsultarContasAtivasPorAgencia(char nomeAgencia[]) {
+    FILE *arquivo = fopen("contas.txt", "r");
+    if (arquivo == NULL) {
+        printf("Erro: Não foi possível abrir o arquivo 'contas.txt' para leitura.\n");
+        exit(1);
+    }
+
+    char linha[256];
+    int encontradas = 0; // Variável para verificar se foram encontradas contas ativas na agência
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        char nomeAgenciaConta[50];
+        char status[10];
+        char cliente[100];
+        char dataAbertura[11];
+        float saldo;
+        int numeroConta;
+
+        if (sscanf(linha, "%49[^\t]\t%99[^\t]\t%s\t%f\t%s\t%d", nomeAgenciaConta, cliente, dataAbertura, &saldo, status, &numeroConta) == 6) {
+            if (strcasecmp(nomeAgencia, nomeAgenciaConta) == 0 && strcasecmp(status, "Ativa") == 0) {
+                // A conta pertence à agência e está ativa
+                printf("Conta ativa na agência %s:\n", nomeAgencia);
+                printf("Nome da Agência: %s\n", nomeAgenciaConta);
+                printf("Cliente: %s\n", cliente);
+                printf("Data de Abertura: %s\n", dataAbertura);
+                printf("Saldo: %.2f\n", saldo);
+                printf("Status: %s\n", status);
+                printf("Número da Conta: %d\n", numeroConta);
+                printf("\n");
+                encontradas++;
+            }
+        } else {
+            printf("Erro: Formato de linha de conta inválido.\n");
+        }
+    }
+
+    fclose(arquivo);
+
+    if (encontradas == 0) {
+        printf("Nenhuma conta ativa encontrada na agência %s.\n", nomeAgencia);
+    }
+}
+

@@ -19,6 +19,6 @@ void listarContasCadastradas();
 // Função para buscar uma conta pelo número de identificação e imprimir seus dados
 void buscarContaPorNumero(int numeroConta);
 
-// Função para verificar e mostrar contas ativas em uma determinada agencia
-void verificarContasAtivasPorAgencia(const char *nomeAgencia);
+// Função para consultar e listar todas as contas ativas em uma agência com base no nome da agência
+void ConsultarContasAtivasPorAgencia(char nomeAgencia[]);
 
