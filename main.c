@@ -113,27 +113,6 @@ do {
 /*
         case 4:
 
-        //Remove conta cadastra
-        printf("Informe qual a conta deseja excluir");
-        scanf(" %d", &numero);
-        for (i = 0; i < qntcontas, i++){
-            if (agencias[i]->codigo == numero){
-                if (remove_conta_cadastrada(agencias[i]->numero)){
-                    printf("Conta excluida \n");
-                }else{
-                    printf("Conta nao encontrada \n");
-                }
-                break;
-            }
-        }
-
-        if (i == qntagencias){
-            printf("Agencia nao encontrada")
-        }
-
-        break;
-
-        
         //buscar cliente
         case 5:
         break;

@@ -110,83 +110,47 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
             }
         }
         }
+    Agenciabancaria *remover_conta(Agenciabancaria *agencia, int numero){
+        
+        if(agencia->contas == NULL)
+        {
+            return agenica;
+        }
+        agencia->contas = lista_remove(agencia->contas, numero);
+        return agencia;
+    }
 
+    
+    void liberar_agencias(Agenciabancaria *agencia){
+        if (agencia == NULL)
+        return;
 
-    void remove_conta(Agenciabancaria **agencia, int qntcontas){
-        pritf("Listar ");
-        for(int i; i<qntcontas, i++){
+        liberar_Lista_contas(agencia->contas);
+        free(agencia);
+    }
+
+    void liberar_agencias (Agenciabancaria **agencias, int qnt){
+        for (int i =0; i<qnt; i++){
+            liberar_agencias(agencias[i]);
+        }
+        free(agencias);
+    }
+
+    void salva_arquivo(Agenciabancaria **agencias, int qntdagencias){
+        FILE *arquivo = fopen("dados.txt", "w");
+        if (arquivo == NULL){
+            printf("Erro ao abrir o arquivo para escrira \n");
+        }
+        for (int i = 0; i < qntdagencias; i++)
+        {
             Agenciabancaria *agencia = agencia[i];
-            printf("clientes: %s, numero: %d, saldo: %.2f, status %s", agencia[i]->cliente, agencia[i]->numero, agencia[i]->saldo, agencia[i]->status);
-            Lista *contas = agencias->contas;
-            if (contas == NULL){
-                printf("");
-            }else{
-                printf("");
-                while( contas != NULL ) {
+            fprintf(arquivo, "Agencia %d\tNome:%s\tCodigo:%d\tLocalizacao:%s\tHorario:%s\n", i+1, agencia ->nome, agencia->codigo, agencia->localizacao, agencia->horario);
+            Lista *contas = agencia->contas;
+            while(contas != NULL){
                 Contabancaria *conta = contas->conta;
-                printf("Cliente: %s, numero: %d, saldo: %.2f, status %s", agencia[i]->cliente, agencia[i]->numero, agencia[i]->saldo, aggencia[i]->status);
-                conta = contas->prox;
-                }
+                fprintf(arquivo, "Cliente:%s\tData:%s\tSaldo:%.2f\tStatus:%s\tNumero:%d\n", conta->cliente, conta->data, cliente->saldo, cliente->status, cliente->numero);
+                contas = contas->prox;
             }
         }
+        fclose(arquivo);
     }
-/* funcao para o caso 5
-    void localizar_conta(Agenciabancaria **agencias, int qntagencias, int numero){
-        int i, j, conta_localizada = 0;
-
-        for (i = 0; i < qntagencias; i++){
-            for(j = 0; j < agencias[i]->qntcontas; j++){
-                if (agencias[i]->contas[j]->numero == numero){
-                    printf("Conta localizada na agencia: %s", agencias[i]->nome);
-                    printf("Numero da conta: %d", agencias[i]->contas[j]->numero);
-                    printf("Cliente: %s\n", agencias[i]->contas[j]-:cliente);
-                    printf("Saldo: %.2f", agencias[i]->contas[j]->saldo);
-                    conta_localizada = 1;
-                    
-
-                }
-            }
-            if(conta_localizada){
-                //
-            }
-        }if(!conta_localizada){
-            printf("Conta nao localizada");
-            
-        }
-    }
-
-*/
-/*
-        
-void agencia_salva(Agenciabancaria *agenciabancaria)
-{
-
-    
-    FILE *fp = fopen("agenciaban.txt", "a"); // Abre arquivo "a" (abre um arquivo no modo de inclusão)
-    if (fp == NULL)                    
-    {
-        printf("Erro ao abrir o arquivo"); 
-        exit(1);                           
-    }
-        
-    char *nome = agenciabancaria->nome;
-    int codigo = agenciabancaria->codigo;
-    char *localizacao = agenciabancaria->localizacao;
-    int contas = agenciabancaria->contas;
-    int horario = agenciabancaria->horario;
-    agenciabancaria->documento = documento
-    nome[strcspn(nome, "\n")] = '\0';
-    localizacao[strcspn(localizacao, "\n")] = '\0';
-
-    
-    fprintf(fp, " %s\t%d\t%s\t%s\n", nome, codigo, localizacao, horario, agenciabancaria->documento);
-    fclose(fp); 
-}
-*/
-// função libera agencias vai liberar a memoria ocupada
-void libera_agencia(Agenciabancaria *agenciabancaria)
-{
-    
-    free(agenciabancaria);
-}
-
