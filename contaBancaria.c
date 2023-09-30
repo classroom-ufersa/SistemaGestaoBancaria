@@ -219,7 +219,7 @@ void buscarContaPorNumero(int numeroConta)
 
                 (sscanf(linha, "%49[^\t]\t%99[^\t]\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numeroConta) == 6);
 
-                printf("Conta encontrada:\n");
+                printf("\nCONTA ENCONTRADA:\n");
                 printf("Nome da Agência: %s\n", nomeAgencia);
                 printf("Cliente: %s\n", cliente);
                 printf("Data de Abertura: %s\n", dataAbertura);
@@ -331,7 +331,7 @@ void editarDadosContaPorNumero(int numeroConta)
             if (numeroConta == numConta)
             {
                 contaEncontrada = 1;
-                printf("DADOS DA CONTA QUE SERA EDITADA:\n");
+                printf("DADOS DA CONTA QUE SERÁ EDITADA:\n");
                 printf("Nome da Agência: %s\n", nomeAgencia);
                 printf("Cliente: %s\n", cliente);
                 printf("Data de Abertura: %s\n", dataAbertura);
