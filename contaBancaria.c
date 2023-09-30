@@ -115,7 +115,7 @@ void removerContaPorNumero(int numeroConta)
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
         int numConta;
-        if (sscanf(linha, "%*s\t%*s\t%*s\t%*f\t%*s\t%d", &numConta) == 1)
+        if (sscanf(linha, "%*49[^\t]\t%*99[^\t]\t%*s\t%*f\t%*s\t%d", &numConta) == 1) 
         {
             if (numConta != numeroConta)
             {

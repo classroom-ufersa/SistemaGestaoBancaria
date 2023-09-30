@@ -1,4 +1,2 @@
 Acopiara	Diego Nascimento	29/09/2023	300.00	Ativa	2006
-Acopiara	Diego Nascimento	29/09/2023	300.00	Ativa	2006
-Brejo Santo	Diego	29/09/2023	300.00	Ativa	2007
-Crato	Diego Nascimento de Oliveira	29/09/2023	300.00	Ativa	2008
+
