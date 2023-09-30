@@ -24,5 +24,8 @@ Agencia *criarAgencia(char nome[], int codigo, char localizacao[], int numClient
 // Função para adicionar uma nova agencia em ordem alfabética
 void adicionarAgenciaEmOrdem( Agencia *novaAgencia);
 
+// Função para listar todas as agências cadastradas no arquivo "agencias.txt"
+void listarAgencias();
+
 #endif /* AGENCIA_H */
 

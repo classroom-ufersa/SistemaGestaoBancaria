@@ -74,7 +74,45 @@ void adicionarAgenciaEmOrdem( Agencia *novaAgencia) {
     rename("temp.txt", "agencias.txt");
 }
 
+// Função para listar todas as agências cadastradas no arquivo "agencias.txt"
+void listarAgencias() {
+    FILE *arquivo = fopen("agencias.txt", "r");
+    if (arquivo == NULL) {
+        printf("Erro: Não foi possível abrir o arquivo 'agencias.txt'.\n");
+        exit(1);
+    }
 
+    char linha[256];
+    int totalAgencias = 0;
+
+    // Ler e imprimir todas as agências
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        char nome[50];
+        int codigo;
+        char localizacao[100];
+        int numClientes;
+        int numContas;
+        char horario[20]; 
+        
+        if (sscanf(linha, "%49[^\t]\t%d\t%99[^\t]\t%d\t%d\t%19[^\t]", nome, &codigo, localizacao, &numClientes, &numContas, horario) == 6) {
+            printf("Nome da Agência: %s\n", nome);
+            printf("Código: %d\n", codigo);
+            printf("Localização: %s\n", localizacao);
+            printf("Número de Clientes: %d\n", numClientes);
+            printf("Número de Contas: %d\n", numContas);
+            printf("Horário: %s\n", horario);
+            printf("\n");
+            totalAgencias++;
+        }
+        else {
+            printf("Erro: Formato de linha de agência inválido.\n");
+        }
+    }
+
+    fclose(arquivo);
+
+    printf("Total de Agências: %d\n", totalAgencias);
+}
 
 
 
