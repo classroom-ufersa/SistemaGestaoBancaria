@@ -95,7 +95,7 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
 
         void listar_agencias(Agenciabancaria **agencias, int qntagencias){
         printf("Listar agencias e contas ");
-        for(int i; i<qtdagencias, i++);
+        for(int i; i<qntagencias, i++);
         Agenciabancaria * agencia = agencia[i];
         printf(" %s(nome), %d(codigo), %s(localizacao), %s(horario)", agencia[i]->nome, agencia[i]->codigo, agencia[i]->localizacao, agencia[i]->horario);
         Lista *contas = agencia->contas;
@@ -112,23 +112,24 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
         }
 
 
-        void remove_conta(Agenciabancaria *agencia, int qntcontas){
-            for (int i = 0; i < agencia->qntcontas; i++){
-                if(agencia->contas[i]->qntcontas == qntcontas){
-
-                    free(agencia->contas[i]);
-
-                    for (int j = i; j < agencias->qntcontas -1; j++){
-                        agencais->contas[j] = agencia->contas[j+1];
-                    }
-                    agencia->qntcontas--;
-                    qntcontas = 1;
-                    break;
+    void remove_conta(Agenciabancaria **agencia, int qntcontas){
+        pritf("Listar ");
+        for(int i; i<qntcontas, i++){
+            Agenciabancaria *agencia = agencia[i];
+            printf("clientes: %s, numero: %d, saldo: %.2f, status %s", agencia[i]->cliente, agencia[i]->numero, agencia[i]->saldo, agencia[i]->status);
+            Lista *contas = agencias->contas;
+            if (contas == NULL){
+                printf("");
+            }else{
+                printf("");
+                while( contas != NULL ) {
+                Contabancaria *conta = contas->conta;
+                printf("Cliente: %s, numero: %d, saldo: %.2f, status %s", agencia[i]->cliente, agencia[i]->numero, agencia[i]->saldo, aggencia[i]->status);
+                conta = contas->prox;
                 }
             }
-
-            return qntcontas;
         }
+    }
 /* funcao para o caso 5
     void localizar_conta(Agenciabancaria **agencias, int qntagencias, int numero){
         int i, j, conta_localizada = 0;
