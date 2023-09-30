@@ -116,7 +116,7 @@ do {
         //Remove conta cadastra
         printf("Informe qual a conta deseja excluir");
         scanf(" %d", &numero);
-        for (i = 0; i < qntdagencias, i++){
+        for (i = 0; i < qntcontas, i++){
             if (agencias[i]->codigo == numero){
                 if (remove_conta_cadastrada(agencias[i]->numero)){
                     printf("Conta excluida \n");
