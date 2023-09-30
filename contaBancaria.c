@@ -91,7 +91,6 @@ void adicionarContaEmOrdem(ContaBancaria *novaConta)
     rename("temp.txt", "contas.txt");
 }
 
-
 // Função para remover uma conta pelo número de identificação
 void removerContaPorNumero(int numeroConta)
 {
@@ -247,9 +246,11 @@ void buscarContaPorNumero(int numeroConta)
 }
 
 // Função para consultar e listar todas as contas ativas em uma agência com base no nome da agência
-void ConsultarContasAtivasPorAgencia(char nomeAgencia[]) {
+void ConsultarContasAtivasPorAgencia(char nomeAgencia[])
+{
     FILE *arquivo = fopen("contas.txt", "r");
-    if (arquivo == NULL) {
+    if (arquivo == NULL)
+    {
         printf("Erro: Não foi possível abrir o arquivo 'contas.txt' para leitura.\n");
         exit(1);
     }
@@ -257,7 +258,8 @@ void ConsultarContasAtivasPorAgencia(char nomeAgencia[]) {
     char linha[256];
     int encontradas = 0; // Variável para verificar se foram encontradas contas ativas na agência
 
-    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+    while (fgets(linha, sizeof(linha), arquivo) != NULL)
+    {
         char nomeAgenciaConta[50];
         char status[10];
         char cliente[100];
@@ -265,8 +267,10 @@ void ConsultarContasAtivasPorAgencia(char nomeAgencia[]) {
         float saldo;
         int numeroConta;
 
-        if (sscanf(linha, "%49[^\t]\t%99[^\t]\t%s\t%f\t%s\t%d", nomeAgenciaConta, cliente, dataAbertura, &saldo, status, &numeroConta) == 6) {
-            if (strcasecmp(nomeAgencia, nomeAgenciaConta) == 0 && strcasecmp(status, "Ativa") == 0) {
+        if (sscanf(linha, "%49[^\t]\t%99[^\t]\t%s\t%f\t%s\t%d", nomeAgenciaConta, cliente, dataAbertura, &saldo, status, &numeroConta) == 6)
+        {
+            if (strcasecmp(nomeAgencia, nomeAgenciaConta) == 0 && strcasecmp(status, "Ativa") == 0)
+            {
                 // A conta pertence à agência e está ativa
                 printf("Conta ativa na agência %s:\n", nomeAgencia);
                 printf("Nome da Agência: %s\n", nomeAgenciaConta);
@@ -278,15 +282,161 @@ void ConsultarContasAtivasPorAgencia(char nomeAgencia[]) {
                 printf("\n");
                 encontradas++;
             }
-        } else {
+        }
+        else
+        {
             printf("Erro: Formato de linha de conta inválido.\n");
         }
     }
 
     fclose(arquivo);
 
-    if (encontradas == 0) {
+    if (encontradas == 0)
+    {
         printf("Nenhuma conta ativa encontrada na agência %s.\n", nomeAgencia);
     }
 }
 
+// Função para editar os dados de uma conta com base no número da conta
+void editarDadosContaPorNumero(int numeroConta)
+{
+    FILE *arquivo = fopen("contas.txt", "r");
+    if (arquivo == NULL)
+    {
+        printf("Erro: Não foi possível abrir o arquivo 'contas.txt' para leitura.\n");
+        exit(1);
+    }
+
+    FILE *temp = fopen("temp.txt", "w");
+    if (temp == NULL)
+    {
+        printf("Erro: Não foi possível criar o arquivo temporário.\n");
+        fclose(arquivo);
+        exit(1);
+    }
+
+    char linha[256];
+    int contaEncontrada = 0; // Variável de sinalização
+    char nomeAgencia[50];
+    char cliente[100];
+    char dataAbertura[11];
+    float saldo;
+    char status[10];
+    int numConta;
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL)
+    {
+        if (sscanf(linha, "%49[^\t]\t%99[^\t]\t%s\t%f\t%s\t%d", nomeAgencia, cliente, dataAbertura, &saldo, status, &numConta) == 6)
+        {
+            if (numeroConta == numConta)
+            {
+                contaEncontrada = 1;
+                printf("DADOS DA CONTA QUE SERA EDITADA:\n");
+                printf("Nome da Agência: %s\n", nomeAgencia);
+                printf("Cliente: %s\n", cliente);
+                printf("Data de Abertura: %s\n", dataAbertura);
+                printf("Saldo: %.2f\n", saldo);
+                printf("Status: %s\n", status);
+                printf("Número da Conta: %d\n", numConta);
+                printf("\n");
+
+                // Menu de edição
+                int op;
+                do
+                {
+                    printf("\nESCOLHA UMA OPÇÃO:\n");
+                    printf("1. EDITAR NOME DA AGÊNCIA\n");
+                    printf("2. EDITAR CLIENTE\n");
+                    printf("3. EDITAR DATA DE ABERTURA\n");
+                    printf("4. EDITAR SALDO\n");
+                    printf("5. EDITAR STATUS\n");
+                    printf("6. SAIR\n");
+
+                    printf("Opção: ");
+                    if (scanf("%d", &op) != 1)
+                    {
+                        printf("Entrada inválida. Digite um número.\n");
+                        while (getchar() != '\n')
+                        {
+                            // Limpa o buffer de entrada para evitar loop infinito
+                        }
+                        continue; // Volta para o início do loop
+                    }
+                    getchar(); // Limpa o caractere de nova linha do buffer de entrada
+
+                    switch (op)
+                    {
+                    case 1:
+                        printf("Novo Nome da Agência: ");
+                        scanf("%49[^\n]", nomeAgencia);
+                        getchar(); // Limpa o buffer do teclado
+                        break;
+                    case 2:
+                        printf("Novo nome do Cliente: ");
+                        scanf("%99[^\n]", cliente);
+                        getchar(); // Limpa o buffer do teclado
+                        break;
+                    case 3:
+                        printf("Nova Data de Abertura (dd/mm/aaaa): ");
+                        scanf("%10[^\n]", dataAbertura);
+                        getchar(); // Limpa o buffer do teclado
+                        break;
+                    case 4:
+                        printf("Novo Saldo: ");
+                        scanf("%f", &saldo);
+                        getchar(); // Limpa o buffer do teclado
+                        break;
+                    case 5:
+                        printf("Novo Status: ");
+                        scanf("%9[^\n]", status);
+                        getchar(); // Limpa o buffer do teclado
+                        break;
+                    case 6:
+                        break; // Sai do loop
+                    default:
+                        printf("Opção inválida. Tente novamente.\n");
+                        break;
+                    }
+                } while (op != 6);
+
+                // Exibi os dados atualizados
+                printf("\nDADOS DA CONTA ATUALIZADOS:\n");
+                printf("Nome da Agência: %s\n", nomeAgencia);
+                printf("Cliente: %s\n", cliente);
+                printf("Data de Abertura: %s\n", dataAbertura);
+                printf("Saldo: %.2f\n", saldo);
+                printf("Status: %s\n", status);
+                printf("Número da Conta: %d\n", numConta);
+                printf("\n");
+
+                // Atualiza a linha com os novos dados, incluindo o número da conta
+                fprintf(temp, "%s\t%s\t%s\t%.2f\t%s\t%d\n", nomeAgencia, cliente, dataAbertura, saldo, status, numConta);
+            }
+            else
+            {
+                // Se a conta não corresponder ao número da conta, copie a linha original
+                fputs(linha, temp);
+            }
+        }
+        else
+        {
+            printf("Erro: Formato de linha de conta inválido.\n");
+        }
+    }
+
+    fclose(arquivo);
+    fclose(temp);
+
+    // Se a conta foi encontrada e editada, o arquivo temporário é renomeado para substituir o original
+    if (contaEncontrada)
+    {
+        remove("contas.txt");
+        rename("temp.txt", "contas.txt");
+        printf("Dados da conta atualizados com sucesso.\n");
+    }
+    else
+    {
+        printf("Conta com número %d não encontrada.\n", numeroConta);
+        remove("temp.txt"); // Remove o arquivo temporário
+    }
+}

@@ -4,7 +4,7 @@
 int main()
 {
 
-   ConsultarContasAtivasPorAgencia("Brejo Santo");
+   editarDadosContaPorNumero(2005);
     
 
     return 0;

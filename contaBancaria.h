@@ -22,3 +22,6 @@ void buscarContaPorNumero(int numeroConta);
 // Função para consultar e listar todas as contas ativas em uma agência com base no nome da agência
 void ConsultarContasAtivasPorAgencia(char nomeAgencia[]);
 
+// Função para editar os dados de uma conta com base no número da conta
+void editarDadosContaPorNumero(int numeroConta);
+
