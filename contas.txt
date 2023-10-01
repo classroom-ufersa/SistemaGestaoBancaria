@@ -1,4 +1,3 @@
-Acopiara	Antonio Silva	30/09/2023	300.00	ativa	2001
-Brejo Santo	Antonio Silva	30/09/2023	300.00	Desativada	2003
-Brejo Santo	Antonio Silva	30/09/2023	300.00	Ativa	2004
-Brejo Santo	Diego	30/09/2023	600.00	Ativa	2005
+Aracati	Antonio Silva	30/09/2023	700.00	Desativada	2004
+Brejo Santo	Diego Nascimento 	30/09/2023	500.00	Ativa	2003
+Crato	Antonio Silva	30/09/2023	300.00	ativa	2001

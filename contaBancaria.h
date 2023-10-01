@@ -22,6 +22,9 @@ void buscarContaPorNumero(int numeroConta);
 // Função para consultar e listar todas as contas ativas em uma agência com base no nome da agência
 void ConsultarContasAtivasPorAgencia(char nomeAgencia[]);
 
+// Função para ordenar o arquivo 'contas.txt' em ordem alfabética
+void ordenarArquivoEmOrdemAlfabetica();
+
 // Função para editar os dados de uma conta com base no número da conta
 void editarDadosContaPorNumero(int numeroConta);
 

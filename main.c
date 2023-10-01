@@ -20,8 +20,8 @@ int main()
         printf("1 - ADICIONAR CONTA BANCÁRIA\n");
         printf("2 - REMOVER CONTA BANCÁRIA\n");
         printf("3 - LISTAR CONTAS CADASTRADAS\n");
-        printf("4 - BUSCAR CONTA\n");
-        printf("5 - EDITAR CONTA\n");
+        printf("4 - BUSCAR CONTA BANCÁRIA\n");
+        printf("5 - EDITAR CONTA BANCÁRIA\n");
         printf("6 - CONSULTAR CONTAS ATIVAS EM UMA DADA AGÊNCIA\n");
         printf("7 - CONSULTAR QUANTITATIVO DE AGÊNCIAS\n");
         printf("8 - SAIR\n");
@@ -29,12 +29,13 @@ int main()
         printf("Escolha uma opção: ");
         scanf("%s", input);
 
-       // Tente converter a entrada para um número inteiro
+        // converte a entrada para um número inteiro
         char *endptr;
         op = strtol(input, &endptr, 10);
 
-        // Verifique se a conversão foi bem-sucedida e se o número está dentro do intervalo desejado
-        if (*endptr != '\0' || op < 1 || op > 8) {
+        // Verifica se a conversão foi bem-sucedida e se o número está dentro do intervalo desejado
+        if (*endptr != '\0' || op < 1 || op > 8)
+        {
             printf("Opção inválida. Digite um número válido de 1 a 8.\n");
             continue; // Volta para o início do loop
         }
@@ -99,7 +100,17 @@ int main()
             buscarContaPorNumero(numConta);
             break;
         case 5:
-            // Implemente a edição de conta aqui
+            printf("Informe o numero da conta que voce deseja editar:\n ");
+            if (scanf("%d", &numConta) != 1)
+            {
+                printf("Entrada inválida. Digite um número válido.\n");
+                while (getchar() != '\n')
+                {
+                    // Limpa o buffer de entrada para evitar loop infinito
+                }
+                continue; // Volta para o início do loop
+            }
+            editarDadosContaPorNumero(numConta);
             break;
         case 6:
             // Implemente a consulta de contas ativas em uma agência aqui
