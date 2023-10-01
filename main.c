@@ -1,6 +1,6 @@
 #include "agencia.c"
 
-int main(void){
+int main(){
 /*
     Contabancaria * nome1 = criar_conta("joao", "15/09/2023", 1506.65, "ativo", 12711 );
     printf(" %s\n", nome1->cliente);
@@ -90,30 +90,29 @@ do {
         case 3:
         // Listar contas cadastradas
 
-        printf ("Informe o codigo da agencia a qual deseja listar \n");
+        printf ("Informe o numero da conta que deseja remover \n");
         scanf(" %d", &numero);
-
-        for (i = 0; i < qntagencias; i++){
-            if (agencias[i]->codigo == numero){
-                printf("Contas cadastradas na agencia %s:", agencias[i]->nome);
-
-                for(j = 0; j < agencias[i]->qntcontas; j++) {
-                    
-                    printf("",agencias[i]->contas[j]->nome);
-                                
-                }
+        printf("Informe o codigo da agencia que a conta está registrada \n");
+        scanf(" %d", &j);
+        for(i=o; i<qntagencias; i++){
+            if(agencias[i]->codigo ==j){
                 break;
             }
-        }
-        if ( i == qntagencias){
+        }if(i == qntagencias){
             printf("Agencia nao localizada");
+        }else{
+            agencias[i] = remove_conta(agencias[i], numero);
+            salva_arquivo(agencias, qntagencias);
+            printf("Conta removida");
         }
-        
         break;
-/*
-        case 4:
 
+        case 4:
         //buscar cliente
+        listar_agencias(agencias, qntagencias);
+        break;
+
+        /*
         case 5:
         break;
         

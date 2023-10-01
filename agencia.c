@@ -154,3 +154,47 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
         }
         fclose(arquivo);
     }
+/*
+    Agenciabancaria **ler_arquivo(Agenciabancaria **agencias, int qtnd){
+        FILE *arquivo;
+        int i = 0;
+        char linhas[];
+        char *token;
+        Contabancaria aux;
+
+        arquivo = fopen("dados.txt", "r");
+        if (arquivo == NULL){
+            printf("");
+            exit(1);
+        }while (fgets(linhas,sizeof(linha),arquivo)!=NULL){
+            char *test = strstr(linha, "agencia");
+            if (test !=NULL)
+            {
+                if( i >= *qntd){
+                    agencias = realloc(agencias, (*qntd + 1)* sizeof(Agenciabancaria *));
+                    if(agencias ==NULL){
+                        printf("Erro ao alocar memoria \n");
+                        exit(1);
+                    }
+                    (*qtnd)++;
+                }
+            }
+            token = strtok(linha, ":");
+            token = strtok(NULL "\t");
+            strcpy(agencias[i]->nome, token);
+            token = strtok(NULL, ":");
+            token = strtok(NULL, "\t");
+            agencias[i]->codigo = atoi(token);
+            token = strtok (NULL, ":");
+            token = strtok(NULL, "\t");
+            strcpy(agencias[i]->localizacao, token);
+            token = strtok(NULL, ":");
+            token = strtok(NULL, "\n");
+            strcpy(agencias[i]->horario, token);
+            i++;
+        }else{
+            
+        }
+    }
+
+    */
