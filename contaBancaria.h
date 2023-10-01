@@ -28,3 +28,6 @@ void ordenarArquivoEmOrdemAlfabetica();
 // Função para editar os dados de uma conta com base no número da conta
 void editarDadosContaPorNumero(int numeroConta);
 
+// Função libera conta vai liberar a memoria ocupada
+void libera_conta(ContaBancaria *novaConta);
+

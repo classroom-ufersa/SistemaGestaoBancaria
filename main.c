@@ -1,16 +1,25 @@
 #include "contaBancaria.c"
 #include "agencia.c"
+#define TAMANHO_INICIAL 10
 
 int main()
 {
-
     char nomeAgencia[50];
     char cliente[100];
     char dataAbertura[11];
     float saldo;
-    char status[10];
-    int numConta;
+    char status[11];
+    int numeroConta;
 
+    int tamanho_atual = TAMANHO_INICIAL; // Variável para rastrear o tamanho atual do array de contas
+
+    // Aloca memória inicial para o array de ponteiros de contas
+    ContaBancaria **conta = malloc(sizeof(ContaBancaria *) * TAMANHO_INICIAL);
+    if (conta == NULL) // verifica se a alocação de memória foi bem sucedida ou não
+    {
+        exit(1); // // encerrar
+    }
+    int count_conta = 0;
     int op;
     char input[100]; // Buffer para entrada do usuário
 
@@ -43,29 +52,36 @@ int main()
         switch (op)
         {
         case 1:
-            /*// criar agencia bancaria
-        printf("Informe o nome da agencia: ");
-        scanf("%49[^\n]", nomeAgencia);
-        int resultado = buscarAgenciaPorNome(nomeAgencia);
-        if (resultado == 0)
-        {
-            printf("Agência encontrada.\n");
-        }
-        else
-        {
-            printf("Agência não encontrada.\n");
-        }
-        printf("Informe o nome do cliente: ");
-        scanf("%99[^\n]", &cliente);
-        printf("Informe a data de abertura da conta (dd/mm/aaaa): ");
-        scanf("%10[^\n]", dataAbertura);
-        printf("Informe o saldo da conta: ");
-        scanf(" %f", saldo);
-        printf("Informe o status da conta (ativa, desativada, bloqueada): ");
-        scanf("%9[^\n]", status);
-        printf("Informe o numero da conta: ");
-        scanf(" %d", &numConta);*/
+            // criar conta bancaria
+            printf("Informe o nome da agencia: ");
+            scanf(" %49[^\n]", nomeAgencia);
+            printf("Informe o nome do cliente: ");
+            scanf(" %99[^\n]", cliente);
+            printf("Informe a data de abertura da conta (dd/mm/aaaa): ");
+            scanf(" %10[^\n]", dataAbertura);
+            printf("Informe o saldo da conta: ");
+            scanf(" %f", &saldo);
+            printf("Informe o status da conta (ativa, desativada, bloqueada): ");
+            scanf(" %10[^\n]", status);
+            printf("Informe o numero da conta: ");
+            scanf(" %d", &numeroConta);
+
+            if (count_conta >= tamanho_atual)
+            {
+                // Se o array está cheio, realoque memória para um novo array com tamanho maior
+                tamanho_atual *= 2;
+                conta = realloc(conta, sizeof(ContaBancaria *) * tamanho_atual);
+
+                if (conta == NULL)
+                {
+                    exit(1); // Tratar erro de realocação de memória
+                }
+            }
+            conta[count_conta] = criarContaBancaria( nomeAgencia, cliente, dataAbertura, saldo, status, numeroConta);
+            adicionarContaEmOrdem(conta[count_conta]);
+            count_conta;
             break;
+
         case 2:
             printf("Informe o numero da conta que voce deseja remover:\n ");
             int numConta;
@@ -126,6 +142,13 @@ int main()
             printf("Opção inválida. Tente novamente.\n");
         }
     }
+// Libera a memória alocada para cada conta individualmente antes de liberar o array de ponteiros de conta
+    for (int i = 0; i < count_conta; i++)
+    {
+        libera_conta(conta[i]);
+    }
 
+    // Libera a memória alocada para o array de ponteiros de conta
+    free(conta);
     return 0;
 }

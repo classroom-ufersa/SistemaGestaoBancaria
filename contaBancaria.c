@@ -505,5 +505,8 @@ void editarDadosContaPorNumero(int numeroConta)
     ordenarArquivoEmOrdemAlfabetica();
 }
 
-
-
+// Função libera conta vai liberar a memoria ocupada
+void libera_conta(ContaBancaria *novaConta)
+{
+    free(novaConta);
+}
