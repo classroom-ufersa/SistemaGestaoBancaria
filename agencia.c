@@ -141,6 +141,64 @@ int buscarAgenciaPorNome(const char nome[]) {
     return 1; // Agência não encontrada
 }
 
+// Função para incrementar sempre que uma nova conta é criada em uma determinada agencia.
+void incrementarContas(const char nomeAgencia[]) {
+    FILE *arquivo = fopen("agencias.txt", "r");
+    if (arquivo == NULL) {
+        printf("Erro: Não foi possível abrir o arquivo 'agencias.txt' para leitura.\n");
+        exit(1);
+    }
+
+    FILE *temp = fopen("temp.txt", "w");
+    if (temp == NULL) {
+        printf("Erro: Não foi possível criar o arquivo temporário.\n");
+        fclose(arquivo);
+        exit(1);
+    }
+
+    char linha[256];
+    int encontrou = 0; // Variável para verificar se a agência já foi encontrada
+
+    // Loop para ler e processar as linhas do arquivo
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        char nomeAgenciaArquivo[50];
+
+        if (sscanf(linha, "%49[^\t]", nomeAgenciaArquivo) == 1) {
+            if (strcasecmp(nomeAgenciaArquivo, nomeAgencia) == 0) {
+                encontrou = 1;
+
+                // Atualiza o número de contas incrementando em 1
+                int codigo, numClientes, numContas;
+                char localizacao[100], horario[12];
+                sscanf(linha, "%49[^\t]\t%d\t%99[^\t]\t%d\t%d\t%11[^\t]",
+                       nomeAgenciaArquivo, &codigo, localizacao, &numClientes, &numContas, horario);
+                numContas += 1;
+
+                // Escreve a linha atualizada no arquivo temporário
+                fprintf(temp, "%s\t%d\t%s\t%d\t%d\t%s\n", nomeAgenciaArquivo, codigo, localizacao, numClientes, numContas, horario);
+            } else {
+                // Se a agência não for a procurada, copie a linha para o arquivo temporário
+                fputs(linha, temp);
+            }
+        } else {
+            printf("Erro: Formato de linha de agência inválido.\n");
+        }
+    }
+
+    // Se a agência não foi encontrada, exiba uma mensagem de erro
+    if (!encontrou) {
+        printf("Erro: Agência '%s' não encontrada no arquivo.\n", nomeAgencia);
+    }
+
+    // Fecha ambos os arquivos
+    fclose(arquivo);
+    fclose(temp);
+
+    // Substitui o arquivo original pelo temporário
+    remove("agencias.txt");
+    rename("temp.txt", "agencias.txt");
+}
+
 // Função libera agencia vai liberar a memoria ocupada
 void libera_agencia(Agencia *novaAgencia)
 {

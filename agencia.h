@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h> // Permite o uso dos tipos booleanos 
+#include <ctype.h> // permite utilizar funções para testar caracteres
+
 
 typedef struct agencia {
     char nome[50];
@@ -30,8 +33,13 @@ void listarAgencias();
 // Função para buscar uma determinda agencia, se encontrar a agencia retorna 0, se não retorna 1.
 int buscarAgenciaPorNome(const char nome[]);
 
+// Função para incrementar sempre que uma nova conta é criada em uma determinada agencia.
+void incrementarContas(const char nomeAgencia[]);
+
 // Função libera agencia vai liberar a memoria ocupada
 void libera_agencia(Agencia *novaAgencia);
+
+
 
 #endif /* AGENCIA_H */
 

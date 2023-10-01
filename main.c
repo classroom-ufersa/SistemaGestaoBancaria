@@ -45,6 +45,8 @@ int main()
     char input[100]; // Buffer para entrada do usuário
     int resultadoC1;
     int resultadoC6;
+    int nomeValido = 0; // Variável para verificar se o nome do cliente fornecido é válido
+    bool entradaValida = false; // Variável para verificar se a data de abertura fornecida é válida
 
     while (1)
     {
@@ -126,10 +128,57 @@ int main()
                 }
             } while (resultadoC1 != 0);
 
-            printf("Informe o nome do cliente: ");
-            scanf(" %99[^\n]", cliente);
-            printf("Informe a data de abertura da conta (dd/mm/aaaa): ");
-            scanf(" %10[^\n]", dataAbertura);
+            do
+            {
+                printf("Informe o nome do cliente: ");
+                scanf(" %99[^\n]", cliente);
+                getchar(); // Limpar o buffer
+
+                nomeValido = 1;
+                for (int i = 0; cliente[i] != '\0'; i++)
+                {
+                    if (!isalpha(cliente[i]) && !isspace(cliente[i]))
+                    {
+                        nomeValido = 0;
+                        break;
+                    }
+                }
+
+                if (!nomeValido)
+                {
+                    printf("O nome digitado contém caracteres inválidos.\n");
+                }
+            } while (!nomeValido);
+
+          
+
+    do {
+        printf("Informe a data de abertura da conta (dd/mm/aaaa): ");
+        scanf(" %11[^\n]", dataAbertura);
+
+        // Verifica se a entrada tem 10 caracteres, incluindo duas barras
+        if (strlen(dataAbertura) == 10) {
+            // Verifica se os caracteres nas posições 2 e 5 são barras
+            if (dataAbertura[2] == '/' && dataAbertura[5] == '/') {
+                // Verifica se os caracteres restantes são dígitos numéricos
+                bool isNumeric = true;
+                for (int i = 0; i < 10; i++) {
+                    if (i != 2 && i != 5 && !isdigit(dataAbertura[i])) {
+                        isNumeric = false;
+                        break;
+                    }
+                }
+                if (isNumeric) {
+                    entradaValida = true;
+                }
+            }
+        }
+
+        if (!entradaValida) {
+            printf("Formato de data inválido. Por favor, tente novamente.\n");
+        }
+    } while (!entradaValida);
+
             printf("Informe o saldo da conta: ");
             scanf(" %f", &saldo);
             printf("Informe o status da conta (ativa, desativada, bloqueada): ");
@@ -151,6 +200,7 @@ int main()
             conta[count_conta] = criarContaBancaria(nomeAgencia, cliente, dataAbertura, saldo, status, numeroConta);
             adicionarContaEmOrdem(conta[count_conta]);
             count_conta;
+            incrementarContas(nomeAgencia);
             break;
 
         case 2:
@@ -200,7 +250,7 @@ int main()
             editarDadosContaPorNumero(numConta);
             break;
         case 6:
-            
+
             do
             {
                 printf("Digite o nome da agência que deseja consultar quais contas estão ativas: ");
