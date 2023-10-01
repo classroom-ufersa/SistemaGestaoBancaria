@@ -43,10 +43,9 @@ int main()
 
     int op;
     char input[100]; // Buffer para entrada do usuário
-    int resultadoC1;
+
     int resultadoC6;
-    int nomeValido = 0; // Variável para verificar se o nome do cliente fornecido é válido
-    bool entradaValida = false; // Variável para verificar se a data de abertura fornecida é válida
+    int resultadoC1;
 
     while (1)
     {
@@ -78,10 +77,34 @@ int main()
         {
         case 1:
 
+            // Verifica se a agência digitada ja foi cadastrada, se não faz o cadastro
             do
             {
-                printf("Informe o nome da agencia: ");
-                scanf(" %49[^\n]", nomeAgencia);
+                // Verifica se o nome do cliente fornecido é válido
+                int nomeAgenciaValido = 0; // Variável para verificar se o nome do cliente fornecido é válido
+
+                do
+                {
+                    printf("Informe o nome da agencia: ");
+                    scanf(" %49[^\n]", nomeAgencia);
+                    getchar(); // Limpar o buffer
+
+                    nomeAgenciaValido = 1;
+                    for (int i = 0; nomeAgencia[i] != '\0'; i++)
+                    {
+                        if (!isalpha(nomeAgencia[i]) && !isspace(nomeAgencia[i]))
+                        {
+                            nomeAgenciaValido = 0;
+                            break;
+                        }
+                    }
+
+                    if (!nomeAgenciaValido)
+                    {
+                        printf("O nome digitado contém caracteres inválidos.\n");
+                    }
+                } while (!nomeAgenciaValido);
+
                 resultadoC1 = buscarAgenciaPorNome(nomeAgencia);
 
                 if (resultadoC1 != 0)
@@ -128,6 +151,8 @@ int main()
                 }
             } while (resultadoC1 != 0);
 
+            // Verifica se o nome do cliente fornecido é válido
+            int nomeValido = 0; // Variável para verificar se o nome do cliente fornecido é válido
             do
             {
                 printf("Informe o nome do cliente: ");
@@ -150,41 +175,101 @@ int main()
                 }
             } while (!nomeValido);
 
-          
+            // Verifica se a data de abertura fornecida é válida
+            bool entradaValida = false; // Variável para verificar se a data de abertura fornecida é válida
+            do
+            {
+                printf("Informe a data de abertura da conta (dd/mm/aaaa): ");
+                scanf(" %11[^\n]", dataAbertura);
 
-    do {
-        printf("Informe a data de abertura da conta (dd/mm/aaaa): ");
-        scanf(" %11[^\n]", dataAbertura);
+                // Verifica se a entrada tem 10 caracteres, incluindo duas barras
+                if (strlen(dataAbertura) == 10)
+                {
+                    // Verifica se os caracteres nas posições 2 e 5 são barras
+                    if (dataAbertura[2] == '/' && dataAbertura[5] == '/')
+                    {
+                        // Verifica se os caracteres restantes são dígitos numéricos
+                        bool isNumeric = true;
+                        for (int i = 0; i < 10; i++)
+                        {
+                            if (i != 2 && i != 5 && !isdigit(dataAbertura[i]))
+                            {
+                                isNumeric = false;
+                                break;
+                            }
+                        }
+                        if (isNumeric)
+                        {
+                            entradaValida = true;
+                        }
+                    }
+                }
 
-        // Verifica se a entrada tem 10 caracteres, incluindo duas barras
-        if (strlen(dataAbertura) == 10) {
-            // Verifica se os caracteres nas posições 2 e 5 são barras
-            if (dataAbertura[2] == '/' && dataAbertura[5] == '/') {
-                // Verifica se os caracteres restantes são dígitos numéricos
-                bool isNumeric = true;
-                for (int i = 0; i < 10; i++) {
-                    if (i != 2 && i != 5 && !isdigit(dataAbertura[i])) {
-                        isNumeric = false;
+                if (!entradaValida)
+                {
+                    printf("Formato de data inválido. Por favor, tente novamente.\n");
+                }
+            } while (!entradaValida);
+
+            // Verifica se o saldo da conta fornecido é válido
+            int saldoValido = 0;
+            do
+            {
+                printf("Informe o saldo da conta: ");
+                if (scanf(" %f", &saldo) == 1)
+                {
+                    saldoValido = 1;
+                }
+                else
+                {
+                    printf("Entrada inválida. Digite novamente:\n");
+                    // Limpar o buffer de entrada para evitar loop infinito
+                    while (getchar() != '\n')
+                        ;
+                }
+            } while (!saldoValido);
+
+            // Verifica se o status da conta fornecido é válido
+            int statusValido = 0; // Variável para verificar se o status da conta fornecido é válido
+            do
+            {
+                printf("Informe o status da conta (ativa, desativada, bloqueada): ");
+                scanf(" %10[^\n]", status);
+                getchar(); // Limpar o buffer
+
+                statusValido = 1;
+                for (int i = 0; status[i] != '\0'; i++)
+                {
+                    if (!isalpha(status[i]) && !isspace(status[i]))
+                    {
+                        statusValido = 0;
                         break;
                     }
                 }
-                if (isNumeric) {
-                    entradaValida = true;
+
+                if (!statusValido)
+                {
+                    printf("O status digitado contém caracteres inválidos.\n");
                 }
-            }
-        }
+            } while (!statusValido);
 
-        if (!entradaValida) {
-            printf("Formato de data inválido. Por favor, tente novamente.\n");
-        }
-    } while (!entradaValida);
-
-            printf("Informe o saldo da conta: ");
-            scanf(" %f", &saldo);
-            printf("Informe o status da conta (ativa, desativada, bloqueada): ");
-            scanf(" %10[^\n]", status);
-            printf("Informe o numero da conta: ");
-            scanf(" %d", &numeroConta);
+            // Verifica se o numero da conta fornecido é válido
+            int numContaValido = 0;
+            do
+            {
+                printf("Informe o numero da conta: ");
+                if (scanf(" %d", &numeroConta) == 1)
+                {
+                    numContaValido = 1;
+                }
+                else
+                {
+                    printf("Entrada inválida. Digite novamente:\n");
+                    // Limpar o buffer de entrada para evitar loop infinito
+                    while (getchar() != '\n')
+                        ;
+                }
+            } while (!numContaValido);
 
             if (count_conta >= tamanho_atual_conta)
             {
@@ -250,11 +335,32 @@ int main()
             editarDadosContaPorNumero(numConta);
             break;
         case 6:
-
+            // Verifica se a agência digitada ja foi cadastrada, se não faz o cadastro e faz a busca de contas ativas na agência
             do
             {
-                printf("Digite o nome da agência que deseja consultar quais contas estão ativas: ");
-                scanf(" %49[^\n]", nomeAgencia);
+                // Verifica se o nome do cliente fornecido é válido
+                int nomeAgenciaValido = 0; // Variável para verificar se o nome do cliente fornecido é válido
+                do
+                {
+                    printf("Informe o nome da agencia: ");
+                    scanf(" %49[^\n]", nomeAgencia);
+                    getchar(); // Limpar o buffer
+
+                    nomeAgenciaValido = 1;
+                    for (int i = 0; nomeAgencia[i] != '\0'; i++)
+                    {
+                        if (!isalpha(nomeAgencia[i]) && !isspace(nomeAgencia[i]))
+                        {
+                            nomeAgenciaValido = 0;
+                            break;
+                        }
+                    }
+
+                    if (!nomeAgenciaValido)
+                    {
+                        printf("O nome digitado contém caracteres inválidos.\n");
+                    }
+                } while (!nomeAgenciaValido);
                 resultadoC6 = buscarAgenciaPorNome(nomeAgencia);
 
                 if (resultadoC6 != 0)
