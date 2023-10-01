@@ -43,7 +43,8 @@ int main()
 
     int op;
     char input[100]; // Buffer para entrada do usuário
-    int resultado;
+    int resultadoC1;
+    int resultadoC6;
 
     while (1)
     {
@@ -79,9 +80,9 @@ int main()
             {
                 printf("Informe o nome da agencia: ");
                 scanf(" %49[^\n]", nomeAgencia);
-                resultado = buscarAgenciaPorNome(nomeAgencia);
+                resultadoC1 = buscarAgenciaPorNome(nomeAgencia);
 
-                if (resultado != 0)
+                if (resultadoC1 != 0)
                 {
                     printf("Essa agência não está no arquivo! Veja abaixo as agências que já estão.\n\n");
                     listarAgencias();
@@ -119,11 +120,11 @@ int main()
                         count_agencia;
 
                         printf("Nova agência criada com o nome '%s'.\n", nomeAgencia);
-                         printf("Continue com o cadastro da sua conta...\n");
-                        resultado = 0; // Para sair do loop
+                        printf("Continue com o cadastro da sua conta...\n");
+                        resultadoC1 = 0; // Para sair do loop
                     }
                 }
-            } while (resultado != 0);
+            } while (resultadoC1 != 0);
 
             printf("Informe o nome do cliente: ");
             scanf(" %99[^\n]", cliente);
@@ -199,7 +200,21 @@ int main()
             editarDadosContaPorNumero(numConta);
             break;
         case 6:
-            // Implemente a consulta de contas ativas em uma agência aqui
+            
+            do
+            {
+                printf("Digite o nome da agência que deseja consultar quais contas estão ativas: ");
+                scanf(" %49[^\n]", nomeAgencia);
+                resultadoC6 = buscarAgenciaPorNome(nomeAgencia);
+
+                if (resultadoC6 != 0)
+                {
+                    printf("Essa agência não está no arquivo! Veja abaixo as agências que estão.\n\n");
+                    listarAgencias();
+                }
+            } while (resultadoC6 != 0);
+
+            ConsultarContasAtivasPorAgencia(nomeAgencia);
             break;
         case 7:
             printf("\n\tTODAS AS AGÊNCIAS CADASTRADAS\n");
