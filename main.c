@@ -94,7 +94,7 @@ do {
         scanf(" %d", &numero);
         printf("Informe o codigo da agencia que a conta está registrada \n");
         scanf(" %d", &j);
-        for(i=o; i<qntagencias; i++){
+        for(i= 0; i<qntagencias; i++){
             if(agencias[i]->codigo ==j){
                 break;
             }

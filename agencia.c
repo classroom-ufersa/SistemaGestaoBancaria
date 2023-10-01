@@ -95,7 +95,8 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
 
         void listar_agencias(Agenciabancaria **agencias, int qntagencias){
         printf("Listar agencias e contas ");
-        for(int i; i<qntagencias, i++);
+        for(int i; i<qntagencias; i++)
+        {
         Agenciabancaria * agencia = agencia[i];
         printf(" %s(nome), %d(codigo), %s(localizacao), %s(horario)", agencia[i]->nome, agencia[i]->codigo, agencia[i]->localizacao, agencia[i]->horario);
         Lista *contas = agencia->contas;
@@ -108,13 +109,15 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
                 printf("cliente: %s, numero: %d , saldo %.2f, status %s", agencia[i]->cliente, agencia[i]->numero, agencia[i]->saldo, agencia[i]->status);
                 contas = contas->prox;
             }
+            printf("\n");
+        }
         }
         }
     Agenciabancaria *remover_conta(Agenciabancaria *agencia, int numero){
         
         if(agencia->contas == NULL)
         {
-            return agenica;
+            return agencia;
         }
         agencia->contas = lista_remove(agencia->contas, numero);
         return agencia;
