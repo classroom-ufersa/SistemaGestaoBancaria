@@ -1,4 +1,6 @@
 Aracati	Antonio Silva	30/09/2023	700.00	Desativada	2004
 Brasilia	Diego	01/10/2023	500.00	Ativa	2009
 Brejo Santo	Diego Nascimento 	30/09/2023	500.00	Ativa	2003
+Cajazeiras	Diego Nascimento	01/10/2023	600.00	ativa	2001
 Crato	Antonio Silva	30/09/2023	300.00	ativa	2001
+Patu	Diego	01/10/2023	800.00	ativa	2001114

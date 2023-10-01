@@ -92,9 +92,9 @@ void listarAgencias() {
         char localizacao[100];
         int numClientes;
         int numContas;
-        char horario[20]; 
+        char horario[12]; 
         
-        if (sscanf(linha, "%49[^\t]\t%d\t%99[^\t]\t%d\t%d\t%19[^\t]", nome, &codigo, localizacao, &numClientes, &numContas, horario) == 6) {
+        if (sscanf(linha, "%49[^\t]\t%d\t%99[^\t]\t%d\t%d\t%11[^\t]", nome, &codigo, localizacao, &numClientes, &numContas, horario) == 6) {
             printf("Nome da Agência: %s\n", nome);
             printf("Código: %d\n", codigo);
             printf("Localização: %s\n", localizacao);
@@ -141,6 +141,10 @@ int buscarAgenciaPorNome(const char nome[]) {
     return 1; // Agência não encontrada
 }
 
-
+// Função libera agencia vai liberar a memoria ocupada
+void libera_agencia(Agencia *novaAgencia)
+{
+    free(novaAgencia);
+}
 
 

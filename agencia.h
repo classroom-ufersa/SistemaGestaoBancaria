@@ -12,7 +12,7 @@ typedef struct agencia {
     char localizacao[100];
     int numClientes;
     int numContas;
-    char horario[20];
+    char horario[12];
     struct agencia *anterior;
     struct agencia *proximo;
 } Agencia;
@@ -29,6 +29,9 @@ void listarAgencias();
 
 // Função para buscar uma determinda agencia, se encontrar a agencia retorna 0, se não retorna 1.
 int buscarAgenciaPorNome(const char nome[]);
+
+// Função libera agencia vai liberar a memoria ocupada
+void libera_agencia(Agencia *novaAgencia);
 
 #endif /* AGENCIA_H */
 
