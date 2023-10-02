@@ -78,6 +78,7 @@ do {
             printf("Agencia nao existe");
         }else{
             agencias[i] = cadastrar_conta(agencias[i]);
+            salva_arquivo(agencias, qntagencias);
         }
       
         
@@ -108,16 +109,82 @@ do {
         listar_agencias(agencias, qntagencias);
         break;
 
-        /*
+        
     case '5':
+    printf("Informe o numero da conta que deseja buscar: ");
+    scanf(" %d", &numero);
+    printf("Informe o codigo da agencia em que deseja buscar a conta: ");
+    scanf(" %d", &j);
+    for (i =0; i< qntagencias; i++){
+        if (agencias[i]->codigo ==j){
+            Contabancaria *contaencontrada = buscar_conta(agencias[i]->contas, numero);
+            if(contaencontrada != NULL){
+                printf(" \nInformacoes da conta: \n");
+                printf("Nome da conta: %s\n", contaencontrada->cliente);
+                printf("Numero da conta: %d\n", contaencontrada->numero);
+                printf("Saldo: %.2f\n", contaencontrada->saldo);
+
+            }else{
+                printf("Conta nao localizada na agencia informada %d\n", j);
+
+            }
+            break;
+        }
+    }if(i == qntagencias){
+                printf("Agencia nao localizada \n");
+    }
         break;
         
     case '6':
-        //
-        break;
+        printf("Informe o numero da conta que deseja fazer alguma modificacao \n");
+        scanf(" %d", &numero);
+        printf("Informe o codigo da agencia em que deseja modifcar a conta \n");
+        scanf(" %d", &j);
+        for(i = 0; i < qntagencias; i++){
+            if (agencias[i]->codigo == j){
+                Contabancaria *contaeditar = buscar_conta(agencias[i]->contas, numero);
+                if(contaeditar !=NULL){
+                    printf(\n Informacoes da conta antes da edicao: \n);
+                    printf("Cliente: %s\n", contaeditar->cliente);
+                    printf("Numero: %d\n", contaeditar->numero);
+                    printf("Saldo: %.2f\n", contaeditar->saldo);
+                    printf("Status: %s\n", contaeditar->status);
 
+                    editar_conta(contaeditar);
+
+                    printf(\n Informacoes da conta antes da edicao: \n);
+                    printf("Cliente: %s\n", contaeditar->cliente);
+                    printf("Numero: %d\n", contaeditar->numero);
+                    printf("Saldo: %.2f\n", contaeditar->saldo);
+                    printf("Status: %s\n", contaeditar->status);
+
+                    salva_arquivo(agencias, qntagencias);
+                }
+                else{
+                    printf("Conta nao localizada na agencia %d\n", j);
+                }
+                break;
+            }
+        }
+        if (i == qntagencias){
+            printf("Agencia nao localizada \n");
+        }
+
+        break;
+        
     case '7':
-        break;*/
+    printf ("Informe o codigo da agencia da qual deseja consultar as contas ativas \n");
+    scanf(" %d", &j);
+    for (i = 0; i < qntagencias; i++){
+        if(agencias[i]->codigo == j){
+            listar_contas_ativas(agencias[i]->contas, j);
+            break;
+        }
+    }
+    if(i ==qntagencias){
+        printf("Agencia nao localizada \n")
+    }
+        break;
 
     case '8':
 
