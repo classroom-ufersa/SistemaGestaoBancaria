@@ -19,9 +19,7 @@ int main(){
     printf(" %s\n", agencia->contas->conta->cliente);
    
 */
-
    
-    
     
     int qntagencias = 0;
     char opcao;
@@ -31,7 +29,7 @@ int main(){
     int qntcontas = 0;
     int j;
     Agenciabancaria **agencias = NULL;
-    //agencias = ler_arquivo(agencias, &qntagencias);
+    agencias = ler_arquivo(agencias, &qntagencias);
 
 do {
 
@@ -58,9 +56,11 @@ do {
         scanf(" %[^\n]", localizacao);
         printf("Informe o horario de funcionamento da agencia: ");
         scanf(" %[^\n]", horario);
+
+        agencias = realloc(agencias, (qntagencias+1)*sizeof(Agenciabancaria));
         agencias[qntagencias] = criar_agencia(nome, numero, localizacao, horario);
         qntagencias++;
-        agencias = realloc(agencias, (qntagencias+1)*sizeof(Agenciabancaria));
+        
         break;
 
     case '2':
@@ -85,7 +85,7 @@ do {
         break;
         
     case '3':
-        // Listar contas cadastradas
+        // remover conta
 
         printf ("Informe o numero da conta que deseja remover \n");
         scanf(" %d", &numero);
@@ -105,12 +105,13 @@ do {
         break;
 
     case '4':
-        //buscar cliente
+        //listar agencias 
         listar_agencias(agencias, qntagencias);
         break;
 
         
     case '5':
+    // buscar conta
     printf("Informe o numero da conta que deseja buscar: ");
     scanf(" %d", &numero);
     printf("Informe o codigo da agencia em que deseja buscar a conta: ");
@@ -136,6 +137,7 @@ do {
         break;
         
     case '6':
+    // modificar
         printf("Informe o numero da conta que deseja fazer alguma modificacao \n");
         scanf(" %d", &numero);
         printf("Informe o codigo da agencia em que deseja modifcar a conta \n");
@@ -173,6 +175,8 @@ do {
         break;
         
     case '7':
+
+    //consultar contas ativas
     printf ("Informe o codigo da agencia da qual deseja consultar as contas ativas \n");
     scanf(" %d", &j);
     for (i = 0; i < qntagencias; i++){

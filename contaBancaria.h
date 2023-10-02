@@ -26,11 +26,11 @@ void editar_conta(Contabancaria *conta);
 
 
 // funcao para limpar buffer
-void Limpa_buffer(void);
+void limpa_buffer(void);
 
 
 // funcao para ler opcao 
-char Le_opcao(int menorValor, int maiorValor);
+char le_opcao(int menorValor, int maiorValor);
 
 // funcao para listar contas ativas
 void listar_contas_ativas(Lista *contas, int ativas);

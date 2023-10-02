@@ -162,21 +162,21 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
 
         arquivo = fopen("dados.txt", "r");
         if (arquivo == NULL){
-            printf("");
+            printf("Erro ao inicializar arquivo \n");
             exit(1);
-        }while (fgets(linha,sizeof(linha),arquivo)!=NULL){
+        }while (fgets(linha, sizeof(linha), arquivo)!= NULL){
             char *test = strstr(linha, "agencia");
-            if (test !=NULL)
+            if (test != NULL)
             {
                 if( i >= *qntd){
                     agencias = realloc(agencias, (*qntd + 1)* sizeof(Agenciabancaria *));
-                    if(agencias ==NULL){
+                    if(agencias == NULL){
                         printf("Erro ao alocar memoria \n");
                         exit(1);
                     }
                     (*qntd)++;
                 }
-                token = strtok(linha, ":");
+            token = strtok(linha, ":");
             token = strtok(NULL, "\t");
             strcpy(agencias[i]->nome, token);
             token = strtok(NULL, ":");
