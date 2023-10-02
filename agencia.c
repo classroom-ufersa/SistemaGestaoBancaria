@@ -196,8 +196,30 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
             strcpy(agencias[i]->horario, token);
             i++;
         }else{
-            
+            token = strtok(linha, ":");
+            token = strtok(NULL, "\t");
+            strcpy = (aux.cliente, token);
+            token = strtok(NULL, ":");
+            token = strtok(NULL, "\t");
+            strcpy =(aux.data, token);
+            token = strtok(NULL, ":");
+            token =strtok(NULL, "\t");
+            aux.saldo = atof(token);
+            token = strtok(linha, ":");
+            token = strtok(linha, "\t");
+            strcpy = (aux.status, token);
+            token = strtok(linha, ":");
+            token = strtok(linha "\t");
+            aux.numero = atoi(token);
+            if(agencias[i-1 == NULL])
+            {
+                printf("Erro \n");
+                exit(1);
+            }
+            Contabancaria *conta = criar_conta(aux.cliete, aux.data, aux.saldo, aux.numero );
+            agencias[i-1] = cadastra_cliente(conta, agencia[i-1]);
         }
     }
-
+    fclose(arquivo);
+    return agencias;
     */

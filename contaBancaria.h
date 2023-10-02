@@ -7,14 +7,31 @@
 
 typedef struct contabancaria Contabancaria;
 
-/*Função para cadastra uma nova conta bancaria, alocando memoria*/
-Contabancaria *criar_conta(char *cliente, char* data, float saldo, char *status, int numero);
-/*
-//Função para salva arquivos
-void conta_salva(Contabancaria *contabancaria);
+// funcao para remove da lista
+Lista *lista_remove(Lista *k, int numero);
+
+// funcao para criar conta bancaria
+Contabancaria *criar_conta(char *cliente, char *data, float saldo, char *status, int numero);
+
+//funcao para liberar conta bancaria
+void libera_conta(Contabancaria *contabancaria);
+
+//funcao para bsucar conta bancaria
+Contabancaria *buscar_conta(Lista *contas, int numero);
+
+// funcao para editar conta bancaria
+void editar_conta(Contabancaria *conta);
 
 
-// função libera conta vai liberar a memoria ocupada
-void libera_conta(Contabancaria ** con ,FILE * fp);
+// funcao para limpar buffer
+void Limpa_buffer(void);
 
-*/
+
+// funcao para ler opcao 
+char Le_opcao(int menorValor, int maiorValor);
+
+// funcao para listar contas ativas
+void listar_contas_ativas(Lista *contas, int ativas);
+
+//Funcao para liberar contas
+void liberar_lista_contas(Lista *lista);

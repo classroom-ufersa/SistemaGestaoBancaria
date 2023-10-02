@@ -30,6 +30,8 @@ int main(){
     int i;
     int qntcontas = 0;
     int j;
+    Agenciabancaria **agenicas == NULL;
+    agencias = ler_arquivo(agencias, &qntagencias);
 
 do {
 
@@ -42,17 +44,11 @@ do {
     printf(" 6 - Editar conta \n");
     printf(" 7 - Consultar contas ativas em uma dada agencia \n");
     printf(" 8 - Sair \n");
+    opcao = le_opcao ('1', '8');
 
-    if (scanf(" %d", &op) != 1) // verifica se o que foi digitado é um inteiro
+    switch (opcao)
     {
-        printf(" Invalido. Tente novamente");
-        
-    }
-
-
-    switch (op)
-    {
-        case 1:
+    case '1':
         // criar agencia bancaria 
         printf("Informe o nome da agencia: ");
         scanf(" %[^\n]", nome);
@@ -67,7 +63,7 @@ do {
         agencias = realloc(agencias, (qntagencias+1)*sizeof(Agenciabancaria));
         break;
 
-        case 2:
+    case '2':
         // Cadastrar cliente
 
         printf("Informe qual agencia deseja cadastrar o cliente");
@@ -87,7 +83,7 @@ do {
         
         break;
         
-        case 3:
+    case '3':
         // Listar contas cadastradas
 
         printf ("Informe o numero da conta que deseja remover \n");
@@ -107,26 +103,25 @@ do {
         }
         break;
 
-        case 4:
+    case '4':
         //buscar cliente
         listar_agencias(agencias, qntagencias);
         break;
 
         /*
-        case 5:
+    case '5':
         break;
         
-        case 6:
+    case '6':
         //
         break;
 
-        case 7:
+    case '7':
         break;*/
 
-        case 8:
+    case '8':
 
         printf("Sair!! ");
-
         break;
 
     default: 
@@ -134,11 +129,7 @@ do {
 
 
     }
-}while(op !=8);
-
-
-
-
-
+}while(op != '8');
+liberar_agencia(agencias, qntagencias);
     return 0;
 }
