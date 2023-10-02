@@ -7,6 +7,8 @@
 
 typedef struct contabancaria Contabancaria;
 
+typedef struct lista Lista;
+
 // funcao para remove da lista
 Lista *lista_remove(Lista *k, int numero);
 

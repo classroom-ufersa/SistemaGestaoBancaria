@@ -11,6 +11,12 @@ struct contabancaria{
    int numero;
 
 };
+struct lista{
+
+Contabancaria *conta;
+Lista *prox;
+
+};
 
 Contabancaria *criar_conta(char *cliente, char* data, float saldo, char *status, int numero)
 {
@@ -30,7 +36,7 @@ contabancaria->agencia = NULL;
 return contabancaria;
 }
 
-Lista *lista_remove(lista *k, int numero){
+Lista *lista_remove(Lista *k, int numero){
    Lista *ant = NULL;
    Lista *p = k;
    while (p != NULL && p->conta->numero != numero){
@@ -41,9 +47,9 @@ Lista *lista_remove(lista *k, int numero){
       return k;
    }if(ant == NULL){
       k = k->prox;
-   }else[
+   }else{
       ant->prox = p->prox;
-   ]
+   }
    free(p->conta);
    free(p);
    return k;
@@ -59,10 +65,10 @@ Contabancaria *buscar_conta(Lista *contas, int numero){
    return NULL;
 }
 
-void listar_contas_ativas (Listar *contas, int ativas){
+void listar_contas_ativas (Lista *contas, int ativas){
    while (contas != NULL){
       Contabancaria *conta = contas->conta;
-      if((ativas && strcmp(conta->status, "ativa") == 0) || (!ativas && strcmp(contas->status, "ativa") !=0)){
+      if((ativas && strcmp(conta->status, "ativa") == 0) || (!ativas && strcmp(conta->status, "ativa") !=0)){
          printf("Cliente: %s \n", conta->cliente);
          printf("Numero da conta: %d \n", conta->numero);
          printf("Saldo: %.2f\n", conta->saldo);
@@ -103,7 +109,7 @@ char le_opcao (int menorvalor, int maiorvalor){
 
       }
       else{
-         printf("Opcao invalida. \n tente dentre essas opcoes %c e %c", memorvalor, maiorvalor);;
+         printf("Opcao invalida. \n tente dentre essas opcoes %c e %c", menorvalor, maiorvalor);;
          limpa_buffer();
       }
    }

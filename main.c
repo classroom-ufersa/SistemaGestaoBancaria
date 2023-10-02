@@ -22,16 +22,16 @@ int main(){
 
    
     
-    Agenciabancaria ** agencias = (Agenciabancaria**)malloc(sizeof(Agenciabancaria*));
+    
     int qntagencias = 0;
-    int op;
+    char opcao;
     char nome[51], localizacao[51], horario[15];
     int numero;
     int i;
     int qntcontas = 0;
     int j;
-    Agenciabancaria **agenicas == NULL;
-    agencias = ler_arquivo(agencias, &qntagencias);
+    Agenciabancaria **agencias = NULL;
+    //agencias = ler_arquivo(agencias, &qntagencias);
 
 do {
 
@@ -144,7 +144,7 @@ do {
             if (agencias[i]->codigo == j){
                 Contabancaria *contaeditar = buscar_conta(agencias[i]->contas, numero);
                 if(contaeditar !=NULL){
-                    printf(\n Informacoes da conta antes da edicao: \n);
+                    printf("\n Informacoes da conta antes da edicao: \n");
                     printf("Cliente: %s\n", contaeditar->cliente);
                     printf("Numero: %d\n", contaeditar->numero);
                     printf("Saldo: %.2f\n", contaeditar->saldo);
@@ -152,7 +152,7 @@ do {
 
                     editar_conta(contaeditar);
 
-                    printf(\n Informacoes da conta antes da edicao: \n);
+                    printf("\n Informacoes da conta depois da edicao: \n");
                     printf("Cliente: %s\n", contaeditar->cliente);
                     printf("Numero: %d\n", contaeditar->numero);
                     printf("Saldo: %.2f\n", contaeditar->saldo);
@@ -182,7 +182,7 @@ do {
         }
     }
     if(i ==qntagencias){
-        printf("Agencia nao localizada \n")
+        printf("Agencia nao localizada \n");
     }
         break;
 
@@ -196,7 +196,7 @@ do {
 
 
     }
-}while(op != '8');
-liberar_agencia(agencias, qntagencias);
+}while(opcao != '8');
+liberar_agencias(agencias, qntagencias);
     return 0;
 }

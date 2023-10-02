@@ -3,7 +3,7 @@
 
 typedef struct agenciabancaria Agenciabancaria;
 
-typedef struct lista Lista;
+
 
 //funcao para criar agencia bancaria
 Agenciabancaria *criar_agencia(char *nome, int codigo, char *localizacao, char *horario);
@@ -27,10 +27,11 @@ void salvar_arquivo(Agenciabancaria **agencias, int qtdagencias);
 Agenciabancaria **ler_arquivo(Agenciabancaria **agencias, int *qnta);
 
 // funcao para remover conta
-Agenciabancaria *remover_conta(Agenciabancaria *agencia, int numero);
+Agenciabancaria *remove_conta(Agenciabancaria *agencia, int numero);
 
 // funcao para liberar memoria 
 void liberar_agencia(Agenciabancaria *agencia);
 
 // funcao para liberar memoria
 void liberar_agencias(Agenciabancaria **agencias, int qnta);
+

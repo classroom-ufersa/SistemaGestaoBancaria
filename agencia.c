@@ -11,12 +11,7 @@ char horario[15];
 };
 
 
-struct lista{
 
-Contabancaria *conta;
-Lista *prox;
-
-};
 
 Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, char* horario) {
 
@@ -97,8 +92,8 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
         printf("Listar agencias e contas ");
         for(int i; i<qntagencias; i++)
         {
-        Agenciabancaria * agencia = agencia[i];
-        printf(" %s(nome), %d(codigo), %s(localizacao), %s(horario)", agencia[i]->nome, agencia[i]->codigo, agencia[i]->localizacao, agencia[i]->horario);
+        Agenciabancaria * agencia = agencias[i];
+        printf(" %s(nome), %d(codigo), %s(localizacao), %s(horario)", agencias[i]->nome, agencias[i]->codigo, agencias[i]->localizacao, agencias[i]->horario);
         Lista *contas = agencia->contas;
         if (contas == NULL){
             printf("Nao ha contas cadastrada nessa agencia");
@@ -106,14 +101,14 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
             printf (" Contas cadastrada nessa agencia");
             while(contas != NULL){
                 Contabancaria *conta = contas->conta;
-                printf("cliente: %s, numero: %d , saldo %.2f, status %s", agencia[i]->cliente, agencia[i]->numero, agencia[i]->saldo, agencia[i]->status);
+                printf("cliente: %s, numero: %d , saldo %.2f, status %s", conta->cliente, conta->numero, conta->saldo, conta->status);
                 contas = contas->prox;
             }
             printf("\n");
         }
         }
         }
-    Agenciabancaria *remover_conta(Agenciabancaria *agencia, int numero){
+    Agenciabancaria *remove_conta(Agenciabancaria *agencia, int numero){
         
         if(agencia->contas == NULL)
         {
@@ -124,17 +119,17 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
     }
 
     
-    void liberar_agencias(Agenciabancaria *agencia){
+    void liberar_agencia(Agenciabancaria *agencia){
         if (agencia == NULL)
         return;
 
-        liberar_Lista_contas(agencia->contas);
+        liberar_lista_contas(agencia->contas);
         free(agencia);
     }
 
     void liberar_agencias (Agenciabancaria **agencias, int qnt){
         for (int i =0; i<qnt; i++){
-            liberar_agencias(agencias[i]);
+            liberar_agencia(agencias[i]);
         }
         free(agencias);
     }
@@ -146,22 +141,22 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
         }
         for (int i = 0; i < qntdagencias; i++)
         {
-            Agenciabancaria *agencia = agencia[i];
+            Agenciabancaria *agencia = agencias[i];
             fprintf(arquivo, "Agencia %d\tNome:%s\tCodigo:%d\tLocalizacao:%s\tHorario:%s\n", i+1, agencia ->nome, agencia->codigo, agencia->localizacao, agencia->horario);
             Lista *contas = agencia->contas;
             while(contas != NULL){
                 Contabancaria *conta = contas->conta;
-                fprintf(arquivo, "Cliente:%s\tData:%s\tSaldo:%.2f\tStatus:%s\tNumero:%d\n", conta->cliente, conta->data, cliente->saldo, cliente->status, cliente->numero);
+                fprintf(arquivo, "Cliente:%s\tData:%s\tSaldo:%.2f\tStatus:%s\tNumero:%d\n", conta->cliente, conta->data, conta->saldo, conta->status, conta->numero);
                 contas = contas->prox;
             }
         }
         fclose(arquivo);
     }
-/*
-    Agenciabancaria **ler_arquivo(Agenciabancaria **agencias, int qtnd){
+
+    Agenciabancaria **ler_arquivo(Agenciabancaria **agencias, int *qntd){
         FILE *arquivo;
         int i = 0;
-        char linhas[];
+        char linha[200];
         char *token;
         Contabancaria aux;
 
@@ -169,7 +164,7 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
         if (arquivo == NULL){
             printf("");
             exit(1);
-        }while (fgets(linhas,sizeof(linha),arquivo)!=NULL){
+        }while (fgets(linha,sizeof(linha),arquivo)!=NULL){
             char *test = strstr(linha, "agencia");
             if (test !=NULL)
             {
@@ -179,11 +174,10 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
                         printf("Erro ao alocar memoria \n");
                         exit(1);
                     }
-                    (*qtnd)++;
+                    (*qntd)++;
                 }
-            }
-            token = strtok(linha, ":");
-            token = strtok(NULL "\t");
+                token = strtok(linha, ":");
+            token = strtok(NULL, "\t");
             strcpy(agencias[i]->nome, token);
             token = strtok(NULL, ":");
             token = strtok(NULL, "\t");
@@ -195,31 +189,33 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
             token = strtok(NULL, "\n");
             strcpy(agencias[i]->horario, token);
             i++;
-        }else{
+            }
+          
+        else{
             token = strtok(linha, ":");
             token = strtok(NULL, "\t");
-            strcpy = (aux.cliente, token);
+            strcpy(aux.cliente, token);
             token = strtok(NULL, ":");
             token = strtok(NULL, "\t");
-            strcpy =(aux.data, token);
+            strcpy(aux.data, token);
             token = strtok(NULL, ":");
             token =strtok(NULL, "\t");
             aux.saldo = atof(token);
             token = strtok(linha, ":");
             token = strtok(linha, "\t");
-            strcpy = (aux.status, token);
+            strcpy(aux.status, token);
             token = strtok(linha, ":");
-            token = strtok(linha "\t");
+            token = strtok(linha, "\t");
             aux.numero = atoi(token);
-            if(agencias[i-1 == NULL])
+            if(agencias[i-1] == NULL)
             {
                 printf("Erro \n");
                 exit(1);
             }
-            Contabancaria *conta = criar_conta(aux.cliete, aux.data, aux.saldo, aux.numero );
-            agencias[i-1] = cadastra_cliente(conta, agencia[i-1]);
+            Contabancaria *conta = criar_conta(aux.cliente, aux.data, aux.saldo, aux.status, aux.numero);
+            agencias[i-1] = cadastrar_cliente(conta, agencias[i-1]);
         }
     }
     fclose(arquivo);
     return agencias;
-    */
+}
