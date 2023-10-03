@@ -77,7 +77,7 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
         printf("Informe o numero da conta que esta sendo cadastrado \n");
         scanf(" %d", &numero);
         printf(" Qual o saldo do cliente \n");
-        scanf (" %f", saldo);
+        scanf (" %f", &saldo);
 
         Contabancaria* aux = criar_conta(cliente, data, saldo, status, numero);
 
