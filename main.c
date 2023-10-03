@@ -21,15 +21,15 @@ int main(){
 */
    
     
-    int qntagencias = 0;
-    char opcao;
-    char nome[51], localizacao[51], horario[15];
+    int qntagencias = 0; // funcao para quantidade de agencias inicar em 0
+    char opcao; //  switch case
+    char nome[51], localizacao[51], horario[15]; // arrays para agencia
     int numero;
     int i;
-    int qntcontas = 0;
+    int qntcontas = 0; // funcao para quantidade de contas
     int j;
     Agenciabancaria **agencias = NULL;
-    agencias = ler_arquivo(agencias, &qntagencias);
+    agencias = ler_arquivo(agencias, &qntagencias); // carregar dados salvos em um arquivo
 
 do {
 
@@ -201,6 +201,6 @@ do {
 
     }
 }while(opcao != '8');
-liberar_agencias(agencias, qntagencias);
+liberar_agencias(agencias, qntagencias); //funcao para liberar a memoria alocada para agencias bancarias
     return 0;
 }
