@@ -10,9 +10,6 @@ char horario[15];
 
 };
 
-
-
-
 Agenciabancaria *criar_agencia(char *nome, int codigo, char* localizacao, char* horario) {
 
     
