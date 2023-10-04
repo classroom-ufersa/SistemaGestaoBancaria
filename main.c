@@ -273,7 +273,7 @@ int main()
 
             if (count_conta >= tamanho_atual_conta)
             {
-                // Se o array está cheio, realoque memória para um novo array com tamanho maior
+                // Se o array está cheio, realoca memória para um novo array com tamanho maior
                 tamanho_atual_conta *= 2;
                 conta = realloc(conta, sizeof(ContaBancaria *) * tamanho_atual_conta);
 

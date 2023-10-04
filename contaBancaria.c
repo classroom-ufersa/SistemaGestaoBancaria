@@ -298,7 +298,6 @@ void ConsultarContasAtivasPorAgencia(char nomeAgencia[])
     }
 }
 
-
 // Função para ordenar o arquivo 'contas.txt' em ordem alfabética
 void ordenarArquivoEmOrdemAlfabetica()
 {
@@ -416,7 +415,11 @@ void editarDadosContaPorNumero(int numeroConta)
 
                 // Menu de edição
                 int op;
-
+                int nomeValido = 0; // Variável para verificar se o nome do cliente fornecido é válido
+                bool entradaValida = false; // Variável para verificar se a data de abertura fornecida é válida
+                int statusValido = 0; // Variável para verificar se o status fornecido é válido
+                int saldoValido = 0;  // Variável para verificar se o saldo fornecido é válido
+                
                 do // Loop externo para o menu de edição
                 {
                     printf("\nESCOLHA UMA OPÇÃO:\n");
@@ -443,21 +446,108 @@ void editarDadosContaPorNumero(int numeroConta)
                         scanf(" %[^\n]", nomeAgencia);
                         break;
                     case 2:
-                        printf("Novo nome do Cliente: ");
-                        scanf(" %[^\n]", cliente);
+                       // Verifica se o nome do cliente fornecido é válido
+            do
+            {
+                printf("Informe o nome do cliente: ");
+                scanf(" %99[^\n]", cliente);
+                getchar(); // Limpar o buffer
+
+                nomeValido = 1;
+                for (int i = 0; cliente[i] != '\0'; i++)
+                {
+                    if (!isalpha(cliente[i]) && !isspace(cliente[i]))
+                    {
+                        nomeValido = 0;
+                        break;
+                    }
+                }
+
+                if (!nomeValido)
+                {
+                    printf("O nome digitado contém caracteres inválidos.\n");
+                }
+            } while (!nomeValido);
+
                         break;
                     case 3:
-                        printf("Nova Data de Abertura (dd/mm/aaaa): ");
-                        scanf(" %[^\n]", dataAbertura);
-                        // Aqui você deve validar o formato da data
+                        // Verifica se a data de abertura fornecida é válida
+                        do
+                        {
+                            printf("Informe a data de abertura da conta (dd/mm/aaaa): ");
+                            scanf(" %11[^\n]", dataAbertura);
+
+                            // Verifica se a entrada tem 10 caracteres, incluindo duas barras
+                            if (strlen(dataAbertura) == 10)
+                            {
+                                // Verifica se os caracteres nas posições 2 e 5 são barras
+                                if (dataAbertura[2] == '/' && dataAbertura[5] == '/')
+                                {
+                                    // Verifica se os caracteres restantes são dígitos numéricos
+                                    bool isNumeric = true;
+                                    for (int i = 0; i < 10; i++)
+                                    {
+                                        if (i != 2 && i != 5 && !isdigit(dataAbertura[i]))
+                                        {
+                                            isNumeric = false;
+                                            break;
+                                        }
+                                    }
+                                    if (isNumeric)
+                                    {
+                                        entradaValida = true;
+                                    }
+                                }
+                            }
+
+                            if (!entradaValida)
+                            {
+                                printf("Formato de data inválido. Por favor, tente novamente.\n");
+                            }
+                        } while (!entradaValida);
+
                         break;
                     case 4:
-                        printf("Novo Saldo: ");
-                        scanf("%f", &saldo);
+                        // Verifica se o saldo da conta fornecido é válido
+                        do
+                        {
+                            printf("Informe o saldo da conta: ");
+                            if (scanf(" %f", &saldo) == 1)
+                            {
+                                saldoValido = 1;
+                            }
+                            else
+                            {
+                                printf("Entrada inválida. Digite novamente:\n");
+                                // Limpar o buffer de entrada para evitar loop infinito
+                                while (getchar() != '\n')
+                                    ;
+                            }
+                        } while (!saldoValido);
                         break;
                     case 5:
-                        printf("Novo Status: ");
-                        scanf(" %[^\n]", status);
+                        // Verifica se o status da conta fornecido é válido
+                        do
+                        {
+                            printf("Informe o status da conta (ativa, desativada, bloqueada): ");
+                            scanf(" %10[^\n]", status);
+                            getchar(); // Limpar o buffer
+
+                            statusValido = 1;
+                            for (int i = 0; status[i] != '\0'; i++)
+                            {
+                                if (!isalpha(status[i]) && !isspace(status[i]))
+                                {
+                                    statusValido = 0;
+                                    break;
+                                }
+                            }
+
+                            if (!statusValido)
+                            {
+                                printf("O status digitado contém caracteres inválidos.\n");
+                            }
+                        } while (!statusValido);
                         break;
                     case 6:
                         break; // Sair
