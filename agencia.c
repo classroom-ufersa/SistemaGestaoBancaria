@@ -132,7 +132,7 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
     }
 
     void salva_arquivo(Agenciabancaria **agencias, int qntdagencias){
-        FILE *arquivo = fopen("dados.txt", "w");
+        FILE *arquivo = fopen("dados.txt", "r");
         if (arquivo == NULL){
             printf("Erro ao abrir o arquivo para escrira \n");
         }
@@ -157,7 +157,7 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
         char *token;
         Contabancaria aux;
 
-        arquivo = fopen("dados.txt", "r");
+        arquivo = fopen("dados.txt", "w");
         if (arquivo == NULL){
             printf("Erro ao inicializar arquivo \n");
             exit(1);

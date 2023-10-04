@@ -126,9 +126,10 @@ void editar_conta(Contabancaria *conta){
    printf("1 - Nome do cliente: \n");
    printf("2 - Saldo: \n");
    printf("3 - Status: \n");
-   printf("4 - Sair \n ");
+   printf("4 - Editar data de abertura: \n");
+   printf("5 - Sair \n ");
    printf("Informe sua opcao de escolha: \n");
-   opcao = le_opcao('1', '4');
+   opcao = le_opcao('1', '5');
    switch (opcao)
    {
    case '1':
@@ -144,6 +145,10 @@ void editar_conta(Contabancaria *conta){
       scanf(" %[\n]", conta->status);
       break;
    case '4':
+   printf("Editar data de abertura: \n");
+   scanf(" %[^\n]", conta->data);
+   break;
+   case '5':
    printf("Cancelar: \n");
    break;
    default:
