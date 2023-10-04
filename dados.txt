@@ -1,2 +1,2 @@
-Agencia 1	Nome:Banco Oeste Potiguar 4017	Codigo:4017	Localizacao:Pau dos Ferros	Horario:10:00 15:00
-Cliente:Paulo Henrique Medeiros da Silva	Data:03/10/2023	Saldo:2500.00	Status:ativa	Numero:10925
+Agencia 1	Nome:Banco 4917	Codigo:4917	Localizacao:Pau dos Ferros	Horario:10:00 15:00
+Cliente:Paulo Henrique	Data:04/06/2022	Saldo:0.00	Status:ativa	Numero:10925
