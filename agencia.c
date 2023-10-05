@@ -87,7 +87,7 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
 
         void listar_agencias(Agenciabancaria **agencias, int qntagencias){
         printf("Listar agencias e contas ");
-        for(int i; i<qntagencias; i++)
+        for(int i = 0; i<qntagencias; i++)
         {
         Agenciabancaria * agencia = agencias[i];
         printf(" %s(nome), %d(codigo), %s(localizacao), %s(horario)", agencias[i]->nome, agencias[i]->codigo, agencias[i]->localizacao, agencias[i]->horario);
@@ -162,12 +162,17 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
             printf("Erro ao inicializar arquivo \n");
             exit(1);
         }while (fgets(linha, sizeof(linha), arquivo)!= NULL){
-            char *test = strstr(linha, "agencia");
+            char *test = strstr(linha, "Agencia");
             if (test != NULL)
             {
                 if( i >= *qntd){
                     agencias = realloc(agencias, (*qntd + 1)* sizeof(Agenciabancaria *));
                     if(agencias == NULL){
+                        printf("Erro ao alocar memoria \n");
+                        exit(1);
+                    }
+                    agencias[*qntd] = malloc(sizeof(Agenciabancaria));
+                    if(agencias[*qntd] == NULL){
                         printf("Erro ao alocar memoria \n");
                         exit(1);
                     }
@@ -198,11 +203,11 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
             token = strtok(NULL, ":");
             token =strtok(NULL, "\t");
             aux.saldo = atof(token);
-            token = strtok(linha, ":");
-            token = strtok(linha, "\t");
+            token = strtok(NULL, ":");
+            token = strtok(NULL, "\t");
             strcpy(aux.status, token);
-            token = strtok(linha, ":");
-            token = strtok(linha, "\t");
+            token = strtok(NULL, ":");
+            token = strtok(NULL, "\n");
             aux.numero = atoi(token);
             if(agencias[i-1] == NULL)
             {
