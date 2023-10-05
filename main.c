@@ -67,7 +67,7 @@ do {
     case '2':
         // Cadastrar cliente
 
-        printf("Informe qual agencia deseja cadastrar o cliente");
+        printf("Informe qual agencia deseja cadastrar o cliente: ");
         scanf (" %d", &numero);
 
         for(i=0; i<=qntagencias; i++){
@@ -88,9 +88,9 @@ do {
     case '3':
         // remover conta
 
-        printf ("Informe o numero da conta que deseja remover \n");
+        printf ("Informe o numero da conta que deseja remover: \n");
         scanf(" %d", &numero);
-        printf("Informe o codigo da agencia que a conta está registrada \n");
+        printf("Informe o codigo da agencia que a conta está registrada:  \n");
         scanf(" %d", &j);
         for(i= 0; i<qntagencias; i++){
             if(agencias[i]->codigo ==j){
@@ -139,9 +139,9 @@ do {
         
     case '6':
     // modificar
-        printf("Informe o numero da conta que deseja fazer alguma modificacao \n");
+        printf("Informe o numero da conta que deseja fazer alguma modificacao: \n");
         scanf(" %d", &numero);
-        printf("Informe o codigo da agencia em que deseja modifcar a conta \n");
+        printf("Informe o codigo da agencia em que deseja modifcar a conta: \n");
         scanf(" %d", &j);
         for(i = 0; i < qntagencias; i++){
             if (agencias[i]->codigo == j){
