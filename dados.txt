@@ -1,2 +1,24 @@
-Agencia 1	Nome:Banco 4917	Codigo:4917	Localizacao:Pau dos Ferros	Horario:10:00 15:00
-Cliente:Paulo Henrique	Data:04/06/2022	Saldo:0.00	Status:ativa	Numero:10925
+Agencia 1	Nome:Banco Oeste Potiguar 1109	Codigo:1109	Localizacao:R. da Independencia	Horario:09:00 15:00
+Cliente:André Santos Almeida	Data:23/03/2012	Saldo:1195.00	Status:ativa	Numero:45678
+Cliente:Beatriz Alves Pereira	Data:15/01/2014	Saldo:1578.17	Status:ativa	Numero:78901
+Cliente:Gabriel Silva Xavier	Data:20/10/2017	Saldo:1985.14	Status:ativa	Numero:67890
+Cliente:Julia Rodrigues Mendes	Data:11/09/2016	Saldo:295.00	Status:ativa	Numero:89012
+Cliente:Leonardo Carneiro Costa	Data:28/06/2008	Saldo:1387.00	Status:ativa	Numero:34567
+Agencia 2	Nome:Banco Oeste Potiguar 1689	Codigo:1689	Localizacao:Av. Getulio Vargas	Horario:09:00 17:00
+Cliente:Carolina Fernandes Ribeiro	Data:16/08/2009	Saldo:2565.00	Status:ativa	Numero:12345
+Cliente:Guilherme Santos Pereira	Data:29/08/2017	Saldo:1932.14	Status:ativa	Numero:90123
+Cliente:Laura Oliveira Rodrigues	Data:27/05/2015	Saldo:1973.52	Status:ativa	Numero:56789
+Cliente:Pedro Henrique Sousa Santos	Data:02/07/2008	Saldo:0.00	Status:desativada	Numero:68527
+Cliente:Thiago Gonçalves Rodrigues	Data:22/06/2018	Saldo:7934.19	Status:ativa	Numero:67890
+Agencia 3	Nome:Banco Oeste Potiguar 5882	Codigo:5882	Localizacao:R. da Independencia	Horario:00:00 23:59
+Cliente:Isabela Santos Souza	Data:07/01/2013	Saldo:0.00	Status:ativa	Numero:1765
+Cliente:Lucas Pereira Carneiro	Data:04/09/2014	Saldo:1465.25	Status:ativa	Numero:87423
+Cliente:Marina Santos Pereira	Data:15/08/2009	Saldo:2973.25	Status:ativa	Numero:36951
+Cliente:Matheus Lima Almeida	Data:10/06/2012	Saldo:297.62	Status:ativa	Numero:53179
+Cliente:Guilherme Santos Silva	Data:19/05/2011	Saldo:782.64	Status:ativa	Numero:38264
+Agencia 4	Nome:Banco Oeste Potiguar 2207	Codigo:2207	Localizacao:R. Quitino Bocaiuva	Horario:10:00 15:00
+Cliente:Ana Ferreira Gomes	Data:08/06/2012	Saldo:1792.58	Status:ativa	Numero:61347
+Cliente:Joao Lima Rodrigues	Data:19/11/2015	Saldo:278.73	Status:bloqueada	Numero:49678
+Cliente:Laura Alves Carvalho	Data:25/09/2014	Saldo:1792.19	Status:ativo	Numero:83426
+Cliente:Maria Santos Pereira	Data:02/07/2008	Saldo:8462.49	Status:ativa	Numero:76429
+Cliente:Pedro Oliveira Silva	Data:15/03/2010	Saldo:142.67	Status:desativada	Numero:25891

@@ -41,8 +41,9 @@ do {
     printf(" 5 - Buscar conta \n");
     printf(" 6 - Editar conta \n");
     printf(" 7 - Consultar contas ativas em uma dada agencia \n");
-    printf(" 8 - Sair \n");
-    opcao = le_opcao ('1', '8');
+    printf(" 8 - Mostra a quantidade de agencias cadastrada \n");
+    printf(" 9 - Sair \n");
+    opcao = le_opcao ('1', '9');
 
     switch (opcao)
     {
@@ -60,7 +61,7 @@ do {
         agencias = realloc(agencias, (qntagencias+1)*sizeof(Agenciabancaria));
         agencias[qntagencias] = criar_agencia(nome, numero, localizacao, horario);
         qntagencias++;
-        
+        salva_arquivo(agencias, qntagencias);
         break;
 
     case '2':
@@ -171,7 +172,7 @@ do {
         if (i == qntagencias){
             printf("Agencia nao localizada \n");
         }
-
+        salva_arquivo(agencias, qntagencias);
         break;
         
     case '7':
@@ -189,8 +190,12 @@ do {
         printf("Agencia nao localizada \n");
     }
         break;
-
     case '8':
+        // informa a quantidade de agencias que está cadastrada
+        printf("Quantidade de agencias cadastrada e de: %d", qntagencias);
+        break;
+
+    case '9':
 
         printf("Sair!! ");
         break;
@@ -200,7 +205,7 @@ do {
 
 
     }
-}while(opcao != '8');
+}while(opcao != '9');
 liberar_agencias(agencias, qntagencias); //funcao para liberar a memoria alocada para agencias bancarias
     return 0;
 }
