@@ -122,7 +122,7 @@ void editar_conta(Contabancaria *conta){
       return;
    }
    char opcao;
-   printf("Conta localizada. Informe a opcao que deseja fazer alteracao");
+   printf("Conta localizada. Informe a opcao que deseja fazer alteracao\n");
    printf("1 - Nome do cliente: \n");
    printf("2 - Saldo: \n");
    printf("3 - Status: \n");
