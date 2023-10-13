@@ -125,6 +125,7 @@ do {
                 printf("Nome da conta: %s\n", contaencontrada->cliente);
                 printf("Numero da conta: %d\n", contaencontrada->numero);
                 printf("Saldo: %.2f\n", contaencontrada->saldo);
+                printf("Status: %s\n", contaencontrada->status);
 
             }else{
                 printf("Conta nao localizada na agencia informada %d\n", j);
