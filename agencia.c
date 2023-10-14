@@ -86,19 +86,20 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
     }
 
         void listar_agencias(Agenciabancaria **agencias, int qntagencias){
-        printf("Listar agencias e contas ");
+        printf("\n\tTODAS AS CONTAS CADASTRADAS NO SISTEMA\n");
         for(int i = 0; i<qntagencias; i++)
         {
         Agenciabancaria * agencia = agencias[i];
-        printf(" %s(nome), %d(codigo), %s(localizacao), %s(horario)", agencias[i]->nome, agencias[i]->codigo, agencias[i]->localizacao, agencias[i]->horario);
+         printf("\tAgencia %d\n", i + 1);
+        printf("Nome: %s\tCódigo: %d\tLocalização: %s\tHorário: %s\n", agencias[i]->nome, agencias[i]->codigo, agencias[i]->localizacao, agencias[i]->horario);
         Lista *contas = agencia->contas;
         if (contas == NULL){
-            printf("Nao ha contas cadastrada nessa agencia");
+            printf("Nao há contas cadastradas nessa agencia.\n");
         }else{
-            printf (" Contas cadastrada nessa agencia");
+            printf ("Contas cadastradas na agencia:\n");
             while(contas != NULL){
                 Contabancaria *conta = contas->conta;
-                printf("cliente: %s, numero: %d , saldo %.2f, status %s", conta->cliente, conta->numero, conta->saldo, conta->status);
+                printf("Cliente: %s\tNúmero: %d\tSaldo: %.2f\tStatus: %s\n", conta->cliente, conta->numero, conta->saldo, conta->status);
                 contas = contas->prox;
             }
             printf("\n");
