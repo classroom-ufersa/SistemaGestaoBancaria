@@ -31,6 +31,9 @@ int main(){
     Agenciabancaria **agencias = NULL;
     agencias = ler_arquivo(agencias, &qntagencias); // carregar dados salvos em um arquivo
 
+    int agenciaEncontrada = 0;// Variável para verificar se o numero da agencia fornecido é válido
+    int contaEncontrada = 0;// Variável para verificar se o numero da conta fornecido é válido    
+
 do {
 
     printf("\n MENU DE OPCOES \n");
@@ -140,44 +143,72 @@ do {
         
     case '6':
     // modificar
-        printf("Informe o numero da conta que deseja fazer alguma modificacao: \n");
-        scanf(" %d", &numero);
-        printf("Informe o codigo da agencia em que deseja modifcar a conta: \n");
-        scanf(" %d", &j);
-        for(i = 0; i < qntagencias; i++){
-            if (agencias[i]->codigo == j){
+    while (!agenciaEncontrada) {
+        printf("Informe o código da agência em que deseja fazer alguma modificação: \n");
+        if (scanf("%d", &j) != 1) {
+            printf("Entrada inválida. Digite um número válido.\n");
+            while (getchar() != '\n') {
+                // Limpa o buffer de entrada para evitar loop infinito
+            }
+            continue; // Tente novamente
+        }
+        
+        for (i = 0; i < qntagencias; i++) {
+            if (agencias[i]->codigo == j) {
+                agenciaEncontrada = 1;
+                break;
+            }
+        }
+        
+        if (!agenciaEncontrada) {
+            printf("Agência não localizada!\n");
+        }
+    }
+    
+    
+    while (!contaEncontrada) {
+        printf("Informe o número da conta que deseja modificar na agência %d: \n", j);
+        if (scanf("%d", &numero) != 1) {
+            printf("Entrada inválida. Digite um número válido.\n");
+            while (getchar() != '\n') {
+                // Limpa o buffer de entrada para evitar loop infinito
+            }
+            continue; // Tente novamente
+        }
+        
+        for (i = 0; i < qntagencias; i++) {
+            if (agencias[i]->codigo == j) {
                 Contabancaria *contaeditar = buscar_conta(agencias[i]->contas, numero);
-                if(contaeditar !=NULL){
+                if (contaeditar != NULL) {
                     printf("\n Informacoes da conta antes da edicao: \n");
                     printf("Cliente: %s\n", contaeditar->cliente);
                     printf("Numero: %d\n", contaeditar->numero);
                     printf("Saldo: %.2f\n", contaeditar->saldo);
                     printf("Status: %s\n", contaeditar->status);
-
+                    
                     editar_conta(contaeditar);
-
+                    
                     printf("\n Informacoes da conta depois da edicao: \n");
                     printf("Cliente: %s\n", contaeditar->cliente);
                     printf("Numero: %d\n", contaeditar->numero);
                     printf("Saldo: %.2f\n", contaeditar->saldo);
                     printf("Status: %s\n", contaeditar->status);
-
+                    
                     salva_arquivo(agencias, qntagencias);
+                    contaEncontrada = 1; // Conta encontrada, saia do loop
+                    break;
                 }
-                else{
-                    printf("Conta nao localizada na agencia %d\n", j);
-                }
-                break;
             }
         }
-        if (i == qntagencias){
-            printf("Agencia nao localizada \n");
-        }
-        salva_arquivo(agencias, qntagencias);
-        break;
         
-    case '7':
+        if (!contaEncontrada) {
+            printf("Conta não localizada na agência %d\n", j);
+        }
+    }
+    
+    break;
 
+    case '7':
     //consultar contas ativas
     printf ("Informe o codigo da agencia da qual deseja consultar as contas ativas \n");
     scanf(" %d", &j);
