@@ -18,7 +18,7 @@ Um Sistema de Gestão Bancária é uma ferramenta fundamental que permite o cada
 - [Diego Nascimento de Oliveira](https://github.com/diegonascimento2023)
 - [Paulo Henrique Medeiros da Silva](https://github.com/Oluaphenrique)
   
-## Problematica
+## Problemática
 A problemática deste projeto consiste em desenvolver um sistema de gestão bancária em linguagem C para uma rede de agências bancárias. O objetivo principal é permitir a manipulação de contas bancárias e agências, com a capacidade de realizar operações como adicionar, remover, listar, buscar, editar contas, consultar contas ativas em uma agência e saber quantas agências existem.
 
 ## Descrição
