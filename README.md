@@ -1,8 +1,8 @@
 # Sistema de gestão bancária
  
 ## Sumário
-1. [Introdução](#introdu%C3%A7%C3%A3o)
-2. [Desenvolvedores](#desenvolvedores)
+1. [Desenvolvedores](#desenvolvedores)
+2. [Introdução](#introdu%C3%A7%C3%A3o)
 3. [Problemática](#problemática)
 4. [Descrição](#descri%C3%A7%C3%A3o)
 5. [Funções utilizadas no programa](#fun%C3%A7%C3%B5es-utilizadas-no-programa)
@@ -10,13 +10,12 @@
 - 5.2 [Funções contidas em contaBancaria.h](#fun%C3%A7%C3%B5es-contidas-em-contabancariah)
 6. [Explicação de uma das funções utilizadas no programa](#explica%C3%A7%C3%A3o-de-uma-das-fun%C3%A7%C3%B5es-utilizadas-no-programa)
   
-   
-## Introdução 
-Um Sistema de Gestão Bancária é uma ferramenta fundamental que permite o cadastro, fornece e lista os clientes em uma agência bancária. No projeto desenvolvido foi utilizado os conceitos vistos e crompreendidos em sala de aula. Podem ser citados como exemplo: ponteiros, alocação dinâmica, tipos estruturados, manipulação de arquivos, Tipos Abstratos de Dados (TADs), estruturas de dados e  entre outros temas abordados na disciplina Algoritmos e Estruturas de Dados I.
-
 ## Desenvolvedores
 - [Diego Nascimento de Oliveira](https://github.com/diegonascimento2023)
 - [Paulo Henrique Medeiros da Silva](https://github.com/Oluaphenrique)
+  
+## Introdução 
+Um Sistema de Gestão Bancária é uma ferramenta fundamental que permite o cadastro, fornece e lista os clientes em uma agência bancária. No projeto desenvolvido foi utilizado os conceitos vistos e crompreendidos em sala de aula. Podem ser citados como exemplo: ponteiros, alocação dinâmica, tipos estruturados, manipulação de arquivos, Tipos Abstratos de Dados (TADs), estruturas de dados e  entre outros temas abordados na disciplina Algoritmos e Estruturas de Dados I.
   
 ## Problemática
 A problemática deste projeto consiste em desenvolver um sistema de gestão bancária em linguagem C para uma rede de agências bancárias. O objetivo principal é permitir a manipulação de contas bancárias e agências, com a capacidade de realizar operações como adicionar, remover, listar, buscar, editar contas, consultar contas ativas em uma agência e saber quantas agências existem.
