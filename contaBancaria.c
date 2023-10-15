@@ -84,7 +84,7 @@ void listar_contas_ativas(Lista *contas, int ativas)
       if ((ativas && strcasecmp(conta->status, "ativa") == 0) || (!ativas && strcasecmp(conta->status, "ativa") != 0))
       {
          printf("Cliente: %s \n", conta->cliente);
-         printf("Numero da conta: %d \n", conta->numero);
+         printf("Número da conta: %d \n", conta->numero);
          printf("Saldo: %.2f\n", conta->saldo);
          printf("Status: %s\n", conta->status);
          printf("\n");
@@ -141,7 +141,7 @@ void editar_conta(Contabancaria *conta)
 {
    if (conta == NULL)
    {
-      printf("Conta não localizada na agencia.\n");
+      printf("Conta não localizada na agência.\n");
       return;
    }
    int nomeValido = 0;   // Variável para verificar se o nome do cliente fornecido é válido

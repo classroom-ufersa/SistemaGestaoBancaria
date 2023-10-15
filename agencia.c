@@ -304,7 +304,7 @@ Agenciabancaria **ler_arquivo(Agenciabancaria **agencias, int *qntd)
     arquivo = fopen("dados.txt", "r");
     if (arquivo == NULL)
     {
-        printf("Erro ao inicializar arquivo \n");
+        printf("Erro ao inicializar arquivo.\n");
         exit(1);
     }
     while (fgets(linha, sizeof(linha), arquivo) != NULL)

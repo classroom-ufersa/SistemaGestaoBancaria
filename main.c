@@ -48,7 +48,7 @@ int main()
             // Verifica se o nome da agência fornecido é válido
             do
             {
-                printf("Informe o nome da agencia: ");
+                printf("Informe o nome da agência: ");
                 scanf(" %[^\n]", nome);
                 getchar(); // Limpar o buffer
 
@@ -71,7 +71,7 @@ int main()
             // Verifica se o numero do codigo da agencia fornecido é válido
             do
             {
-                printf("Informe o codigo da agencia: ");
+                printf("Informe o código da agência: ");
                 if (scanf(" %49s", input) != 1)
                 {
                     printf("Entrada inválida. Tente novamente.\n");
