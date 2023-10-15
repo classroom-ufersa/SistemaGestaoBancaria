@@ -197,7 +197,7 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
     }
 
         void listar_agencias(Agenciabancaria **agencias, int qntagencias){
-        printf("\n\tTODAS AS CONTAS CADASTRADAS NO SISTEMA\n");
+        printf("\nTODAS AS CONTAS CADASTRADAS NO SISTEMA\n");
         for(int i = 0; i<qntagencias; i++)
         {
         Agenciabancaria * agencia = agencias[i];
