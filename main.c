@@ -2,43 +2,30 @@
 
 int main()
 {
-    /*
-        Contabancaria * nome1 = criar_conta("joao", "15/09/2023", 1506.65, "ativo", 12711 );
-        printf(" %s\n", nome1->cliente);
-        printf(" %s\n", nome1->data);
-        printf(" %.2f\n", nome1->saldo);
-        printf(" %s\n", nome1->status);
-        printf(" %d\n", nome1->numero);
+    printf("\nBem vindo ao nosso Programa!\n");
+    printf("O presente sistema tem como função auxiliar no gerenciamento de uma rede de bancos, manipulando agências bancarias e contas bancárias.\n");
+    printf("AUTORES:\nDiego Nascimento de Oliveira\nPaulo Henrique Medeiros da Silva\n\n");
 
-        Agenciabancaria * agencia = criar_agencia("Banco", 1134, "São Bento", "09:30 ate 15:00" );
-        printf(" %s\n", agencia->nome);
-        printf(" %d\n", agencia->codigo);
-        printf(" %s\n", agencia->localizacao);
-        printf(" %s\n", agencia->horario);
-
-        agencia = cadastrar_cliente (nome1, agencia);
-        printf(" %s\n", agencia->contas->conta->cliente);
-
-    */
-
-    int qntagencias = 0;                         // funcao para quantidade de agencias inicar em 0
-    char opcao;                                  //  switch case
-    char nome[51], localizacao[51], horario[12]; // arrays para agencia
-    int numero;
-    int i;
-    int qntcontas = 0; // funcao para quantidade de contas
-    int j;
+    // Variáveis para auxiliar na execução da main
+    int qntcontas = 0; // Variável para armazenar a quantidade de contas
+    int qntagencias = 0; // Variável para armazenar a quantidade de agencias 
+    char opcao;// Armazena a opção verificada 
     Agenciabancaria **agencias = NULL;
     agencias = ler_arquivo(agencias, &qntagencias); // carregar dados salvos em um arquivo
+
+    // Variváveis utilizadas na criação de um agência
+    char nome[51], localizacao[51], horario[12]; // arrays para agencia
+    int numero, i;
 
     // Variaveis utilizadas nas veririficações
     int agenciaEncontrada = 0;  // Variável para verificar se o numero da agencia fornecido é válido
     int contaEncontrada = 0;    // Variável para verificar se o numero da conta fornecido é válido
-    int nomeValido = 0;         // Variável para verificar se o nome da agência fornecido é válido
+    int nomeValido = 0;     // Variável para verificar se o nome da agência fornecido é válido
     int localizacaoValida = 0;  // Variável para verificar se a localização da agência fornecida é válida
     bool horarioValido = false; // Variável para verificar se o horario de funcionamento fornecida é válido
-    bool numValido = false;     // Variável para verificar se o numero do codigo da agencia fornecido é válido
-    char input[50];             // Armazena número como string
+    bool numValido = false; // Variável para verificar se o numero do codigo da agencia fornecido é válido
+    char input[50]; // Armazena número como string
+    int numAgencia; //  Variável para armazenar o valor do codigo de uma agência 
 
     do
     {
@@ -215,7 +202,7 @@ int main()
                 }
 
                 char *endptr;
-                j = strtol(input, &endptr, 10);
+                numAgencia = strtol(input, &endptr, 10);
 
                 if (*endptr != '\0')
                 {
@@ -225,7 +212,7 @@ int main()
 
                 for (i = 0; i < qntagencias; i++)
                 {
-                    if (agencias[i]->codigo == j)
+                    if (agencias[i]->codigo == numAgencia)
                     {
                         agenciaEncontrada = 1;
                         break;
@@ -234,22 +221,15 @@ int main()
 
                 if (!agenciaEncontrada)
                 {
-                    printf("Agência não localizada. Deseja tentar novamente? (S/N): ");
-                    char tentarNovamente;
-                    scanf(" %c", &tentarNovamente);
-                    if (tentarNovamente != 'S' && tentarNovamente != 's')
-                    {
-                        break; // Sai do loop e retorna ao menu principal
-                    }
-                    else
-                    {
-                        continue; // Tente novamente
-                    }
+                    printf("Agência não localizada.\n");
+                    break; // Sai do loop e retorna ao menu principal
+                    
+                   
                 }
 
                 do
                 {
-                    printf("Informe o número da conta que deseja remover da agência %d:\n", j);
+                    printf("Informe o número da conta que deseja remover da agência %d:\n", numAgencia);
 
                     if (scanf(" %49s", input) != 1)
                     {
@@ -271,7 +251,7 @@ int main()
 
                     for (i = 0; i < qntagencias; i++)
                     {
-                        if (agencias[i]->codigo == j)
+                        if (agencias[i]->codigo == numAgencia)
                         {
                             Contabancaria *conta = buscar_conta(agencias[i]->contas, numero);
                             if (conta != NULL)
@@ -284,14 +264,10 @@ int main()
 
                     if (!contaEncontrada)
                     {
-                        printf("Conta não localizada na agência %d. Deseja tentar novamente? (S/N): ", j);
-                        char tentarNovamente;
-                        scanf(" %c", &tentarNovamente);
-                        if (tentarNovamente != 'S' && tentarNovamente != 's')
-                        {
+                        printf("Conta não localizada na agência %d.\n", numAgencia);
                             break; // Sai do loop
-                        }
                     }
+                    
                     else
                     {
                         agencias[i] = remove_conta(agencias[i], numero);
@@ -323,7 +299,7 @@ int main()
                 }
 
                 char *endptr;
-                j = strtol(input, &endptr, 10);
+                numAgencia = strtol(input, &endptr, 10);
 
                 if (*endptr != '\0')
                 {
@@ -333,7 +309,7 @@ int main()
 
                 for (i = 0; i < qntagencias; i++)
                 {
-                    if (agencias[i]->codigo == j)
+                    if (agencias[i]->codigo == numAgencia)
                     {
                         agenciaEncontrada = 1;
                         break;
@@ -349,7 +325,7 @@ int main()
 
                 do
                 {
-                    printf("Informe o número da conta que deseja buscar na agência %d:\n", j);
+                    printf("Informe o número da conta que deseja buscar na agência %d:\n", numAgencia);
 
                     if (scanf(" %49s", input) != 1)
                     {
@@ -371,7 +347,7 @@ int main()
 
                     for (i = 0; i < qntagencias; i++)
                     {
-                        if (agencias[i]->codigo == j)
+                        if (agencias[i]->codigo == numAgencia)
                         {
                             Contabancaria *contaencontrada = buscar_conta(agencias[i]->contas, numero);
                             if (contaencontrada != NULL)
@@ -390,7 +366,7 @@ int main()
 
                     if (!contaEncontrada)
                     {
-                        printf("Conta não localizada na agência %d.\n", j);
+                        printf("Conta não localizada na agência %d.\n", numAgencia);
                         break; // Sai do loop de busca de conta e retorna ao menu principal
                     }
                 } while (!contaEncontrada);
@@ -413,7 +389,7 @@ int main()
                 }
 
                 char *endptr;
-                j = strtol(input, &endptr, 10);
+                numAgencia = strtol(input, &endptr, 10);
 
                 if (*endptr != '\0')
                 {
@@ -423,7 +399,7 @@ int main()
 
                 for (i = 0; i < qntagencias; i++)
                 {
-                    if (agencias[i]->codigo == j)
+                    if (agencias[i]->codigo == numAgencia)
                     {
                         agenciaEncontrada = 1;
                         break;
@@ -439,7 +415,7 @@ int main()
 
                 do
                 {
-                    printf("Informe o número da conta que deseja modificar na agência %d:\n", j);
+                    printf("Informe o número da conta que deseja modificar na agência %d:\n", numAgencia);
                     if (scanf(" %49s", input) != 1)
                     {
                         printf("Entrada inválida. Digite um número válido.\n");
@@ -481,7 +457,7 @@ int main()
                     }
                     if (!contaEncontrada)
                     {
-                        printf("Conta não localizada na agência %d.\n", j);
+                        printf("Conta não localizada na agência %d.\n", numAgencia);
                         break; // Sai do loop de busca de conta e retorna ao menu principal
                     }
 
@@ -491,37 +467,62 @@ int main()
 
         case '7':
             // consultar contas ativas
-            printf("Informe o codigo da agencia da qual deseja consultar as contas ativas \n");
-            scanf(" %d", &j);
-            for (i = 0; i < qntagencias; i++)
+            do
             {
-                if (agencias[i]->codigo == j)
+
+                printf("Informe o codigo da agencia da qual deseja consultar as contas ativas \n");
+                if (scanf(" %49s", input) != 1)
                 {
-                    listar_contas_ativas(agencias[i]->contas, j);
-                    break;
+                    printf("Entrada inválida. Digite um número válido.\n");
+                    while (getchar() != '\n')
+                    {
+                        // Limpa o buffer de entrada para evitar loop infinito
+                    }
+                    continue; // Tente novamente
                 }
-            }
-            if (i == qntagencias)
-            {
-                printf("Agencia nao localizada \n");
-            }
+
+                char *endptr;
+                numAgencia = strtol(input, &endptr, 10);
+
+                if (*endptr != '\0')
+                {
+                    printf("Entrada inválida. Digite um número válido.\n");
+                    continue; // Tente novamente
+                }
+
+                for (i = 0; i < qntagencias; i++)
+                {
+                    if (agencias[i]->codigo == numAgencia)
+                    {
+                        listar_contas_ativas(agencias[i]->contas, numAgencia);
+                        agenciaEncontrada = 1;
+                        break;
+                    }
+                }
+
+                if (!agenciaEncontrada)
+                {
+                    printf("Agência não localizada.\n");
+
+                    break; // Sai do loop e retorna ao menu principal
+                }
+            } while (!agenciaEncontrada);
             break;
         case '8':
             // informa a quantidade de agencias que está cadastrada
-            printf("Quantidade de agencias cadastrada e de: %d", qntagencias);
+            printf("Quantidade de agências cadastradas: %d\n", qntagencias);
             break;
 
         case '9':
 
-            printf("Sair!! ");
+            printf("Programa finalizado com sucesso! Obrigado por usar nosso programa.\n");
             break;
 
         default:
             printf("Tente novamente, opcao fornecida está invalida! \n");
         }
-        }
-        while (opcao != '9')
-            ;
-        liberar_agencias(agencias, qntagencias); // funcao para liberar a memoria alocada para agencias bancarias
-        return 0;
-    }
+    } while (opcao != '9');
+
+    liberar_agencias(agencias, qntagencias); // funcao para liberar a memoria alocada para agencias bancarias
+    return 0;
+}

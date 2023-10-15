@@ -81,7 +81,7 @@ void listar_contas_ativas(Lista *contas, int ativas)
    while (contas != NULL)
    {
       Contabancaria *conta = contas->conta;
-      if ((ativas && strcmp(conta->status, "ativa") == 0) || (!ativas && strcmp(conta->status, "ativa") != 0))
+      if ((ativas && strcasecmp(conta->status, "ativa") == 0) || (!ativas && strcasecmp(conta->status, "ativa") != 0))
       {
          printf("Cliente: %s \n", conta->cliente);
          printf("Numero da conta: %d \n", conta->numero);
@@ -183,61 +183,66 @@ void editar_conta(Contabancaria *conta)
       break;
 
    case '2':
-      while (1) {
-        printf("Informe o saldo da conta: ");
-        char input[20];
-        if (fgets(input, sizeof(input), stdin)) {
+      while (1)
+      {
+         printf("Informe o saldo da conta: ");
+         char input[20];
+         if (fgets(input, sizeof(input), stdin))
+         {
             int valido = 1;
             char *endptr;
 
             // Converte a entrada para um número de ponto flutuante
-           conta->saldo= strtof(input, &endptr);
+            conta->saldo = strtof(input, &endptr);
 
-            if (endptr == input) {
-                valido = 0;
-            } else {
-                // Verifica se há caracteres não numéricos após o número
-                for (int i = 0; input[i] != '\0'; i++) {
-                    if (!isdigit(input[i]) && input[i] != '.' && input[i] != '\n') {
-                        valido = 0;
-                        break;
-                    }
-                }
+            if (endptr == input)
+            {
+               valido = 0;
+            }
+            else
+            {
+               // Verifica se há caracteres não numéricos após o número
+               for (int i = 0; input[i] != '\0'; i++)
+               {
+                  if (!isdigit(input[i]) && input[i] != '.' && input[i] != '\n')
+                  {
+                     valido = 0;
+                     break;
+                  }
+               }
             }
 
-            if (valido) {
-                saldoValido = 1;
-                break; // Sai do loop se o saldo for válido
-            } else {
-                printf("Entrada inválida. Digite novamente (somente números):\n");
+            if (valido)
+            {
+               saldoValido = 1;
+               break; // Sai do loop se o saldo for válido
             }
-        }
-    }
-    break;
+            else
+            {
+               printf("Entrada inválida. Digite novamente (somente números):\n");
+            }
+         }
+      }
+      break;
+
    case '3':
-      scanf(" %[^\n]", conta->status);
       do
       {
          printf("Informe o novo status da conta (Ativa, Desativada, Bloqueada): \n");
          scanf(" %[^\n]", conta->status);
          getchar(); // Limpar o buffer
 
-         statusValido = 1;
-         for (int i = 0; conta->status[i] != '\0'; i++)
-         {
-            if (!isalpha(conta->status[i]) && !isspace(conta->status[i]))
-            {
-               statusValido = 0;
-               break;
-            }
-         }
+         statusValido = (strcasecmp(conta->status, "ativa") == 0 ||
+                         strcasecmp(conta->status, "desativada") == 0 ||
+                         strcasecmp(conta->status, "bloqueada") == 0);
 
          if (!statusValido)
          {
-            printf("O status digitado contém caracteres inválidos.\n");
+            printf("O status digitado é inválido. Digite Ativa, Desativada ou Bloqueada.\n");
          }
       } while (!statusValido);
       break;
+
    case '4':
       printf("Cancelado! \n");
       break;
@@ -248,11 +253,14 @@ void editar_conta(Contabancaria *conta)
 }
 
 // Função para verificar se a entrada contém apenas dígitos (números)
-bool entradaContemApenasDigitos(const char *entrada) {
-    for (int i = 0; entrada[i] != '\0'; i++) {
-        if (!isdigit(entrada[i])) {
-            return false;
-        }
-    }
-    return true;
+bool entradaContemApenasDigitos(const char *entrada)
+{
+   for (int i = 0; entrada[i] != '\0'; i++)
+   {
+      if (!isdigit(entrada[i]))
+      {
+         return false;
+      }
+   }
+   return true;
 }
