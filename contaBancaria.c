@@ -129,7 +129,7 @@ char le_opcao(int menorvalor, int maiorvalor)
       }
       else
       {
-         printf("Opção inválida!\nDigite uma opção entre %c e %c", menorvalor, maiorvalor);
+         printf("Opção inválida!\nDigite uma opção entre %c e %c.\n", menorvalor, maiorvalor);
          ;
          limpa_buffer();
       }
@@ -229,4 +229,14 @@ void editar_conta(Contabancaria *conta)
       printf("Opcao inválida!\n");
       break;
    }
+}
+
+// Função para verificar se a entrada contém apenas dígitos (números)
+bool entradaContemApenasDigitos(const char *entrada) {
+    for (int i = 0; entrada[i] != '\0'; i++) {
+        if (!isdigit(entrada[i])) {
+            return false;
+        }
+    }
+    return true;
 }

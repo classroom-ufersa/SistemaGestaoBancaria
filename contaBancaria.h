@@ -4,6 +4,7 @@
 #include <string.h>
 #include <time.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 typedef struct contabancaria Contabancaria;
 
@@ -34,6 +35,9 @@ char le_opcao(int menorValor, int maiorValor);
 
 // funcao para listar contas ativas
 void listar_contas_ativas(Lista *contas, int ativas);
+
+// Função para verificar se a entrada contém apenas dígitos (números)
+bool entradaContemApenasDigitos(const char *entrada);
 
 //Funcao para liberar contas
 void liberar_lista_contas(Lista *lista);

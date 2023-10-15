@@ -1,5 +1,3 @@
-/*Bibliotecas utilizadas*/
-
 
 typedef struct agenciabancaria Agenciabancaria;
 
