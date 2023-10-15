@@ -34,7 +34,7 @@ Lista *lista_insere_ordena(Lista *k, Contabancaria *conta)
     Lista *novo;
     Lista *ant = NULL;
     Lista *p = k;
-    while (p != NULL && strcmp(p->conta->cliente, conta->cliente) < 0)
+    while (p != NULL && strcasecmp(p->conta->cliente, conta->cliente) < 0)
     {
         ant = p;
         p = p->prox;
