@@ -156,8 +156,7 @@ int main()
 
                 // Limpar o buffer de entrada
                 int c;
-                while ((c = getchar()) != '\n' && c != EOF)
-                    ;
+                while ((c = getchar()) != '\n' && c != EOF);
             }
 
             agencias = realloc(agencias, (qntagencias + 1) * sizeof(Agenciabancaria));
