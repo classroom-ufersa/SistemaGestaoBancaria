@@ -341,17 +341,10 @@ int main()
 
                 if (!agenciaEncontrada)
                 {
-                    printf("Agência não localizada. Deseja tentar novamente? (S/N): ");
-                    char tentarNovamente;
-                    scanf(" %c", &tentarNovamente);
-                    if (tentarNovamente != 'S' && tentarNovamente != 's')
-                    {
+                    printf("Agência não localizada.\n");
+                    
                         break; // Sai do loop e retorna ao menu principal
-                    }
-                    else
-                    {
-                        continue; // Tente novamente
-                    }
+                    
                 }
 
                 do
@@ -397,13 +390,8 @@ int main()
 
                     if (!contaEncontrada)
                     {
-                        printf("Conta não localizada na agência %d. Deseja tentar novamente? (S/N): ", j);
-                        char tentarNovamente;
-                        scanf(" %c", &tentarNovamente);
-                        if (tentarNovamente != 'S' && tentarNovamente != 's')
-                        {
+                        printf("Conta não localizada na agência %d.\n", j);
                             break; // Sai do loop de busca de conta e retorna ao menu principal
-                        }
                     }
                 } while (!contaEncontrada);
             } while (!agenciaEncontrada);
