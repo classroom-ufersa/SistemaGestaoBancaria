@@ -68,16 +68,127 @@ Agenciabancaria *cadastrar_cliente (Contabancaria *contabancaria, Agenciabancari
         char cliente[51], data[12], status[11];
         int numero;
         float saldo;
-        printf("Informe o nome do cliente \n");
-        scanf(" %[^\n]", cliente);
-        printf("Informe data de abertura \n");
-        scanf(" %[^\n]", data);
-        printf("Informe o status da conta (ativa, desativada, bloqueada) \n");
-        scanf(" %[^\n]", status);
-        printf("Informe o numero da conta que esta sendo cadastrado \n");
-        scanf(" %d", &numero);
-        printf(" Qual o saldo do cliente \n");
-        scanf (" %f", &saldo);
+         // Variaveis utilizadas nas veririficações 
+    int nomeValido = 0;         // Variável para verificar se o nome da agência fornecido é válido
+    bool entradaValida = false; // Variável para verificar se a data de abertura fornecida é válida
+    int statusValido = 0; // Variável para verificar se o status da conta fornecido é válido
+    int numContaValido = 0; // Variável para verificar se o numero da conta fornecido é válido
+    int saldoValido = 0;     // Variável para verificar se o saldo da conta fornecido é válido
+    
+        // Verifica se o nome do cliente fornecido é válido
+            do
+            {
+                printf("Informe o nome do cliente: ");
+                scanf(" %[^\n]", cliente);
+                getchar(); // Limpar o buffer
+
+                nomeValido = 1;
+                for (int i = 0; cliente[i] != '\0'; i++)
+                {
+                    if (!isalpha(cliente[i]) && !isspace(cliente[i]))
+                    {
+                        nomeValido = 0;
+                        break;
+                    }
+                }
+
+                if (!nomeValido)
+                {
+                    printf("O nome digitado contém caracteres inválidos.\n");
+                }
+            } while (!nomeValido);
+
+        // Verifica se a data de abertura fornecida é válida
+            do
+            {
+                printf("Informe a data de abertura da conta (dd/mm/aaaa): ");
+                scanf(" %11[^\n]", data);
+
+                // Verifica se a entrada tem 10 caracteres, incluindo duas barras
+                if (strlen(data) == 10)
+                {
+                    // Verifica se os caracteres nas posições 2 e 5 são barras
+                    if (data[2] == '/' && data[5] == '/')
+                    {
+                        // Verifica se os caracteres restantes são dígitos numéricos
+                        bool isNumeric = true;
+                        for (int i = 0; i < 10; i++)
+                        {
+                            if (i != 2 && i != 5 && !isdigit(data[i]))
+                            {
+                                isNumeric = false;
+                                break;
+                            }
+                        }
+                        if (isNumeric)
+                        {
+                            entradaValida = true;
+                        }
+                    }
+                }
+
+                if (!entradaValida)
+                {
+                    printf("Formato de data inválido. Por favor, tente novamente.\n");
+                }
+            } while (!entradaValida);
+
+
+        // Verifica se o status da conta fornecido é válido
+            do
+            {
+                printf("Informe o status da conta (ativa, desativada, bloqueada): ");
+                scanf(" %10[^\n]", status);
+                getchar(); // Limpar o buffer
+
+                statusValido = 1;
+                for (int i = 0; status[i] != '\0'; i++)
+                {
+                    if (!isalpha(status[i]) && !isspace(status[i]))
+                    {
+                        statusValido = 0;
+                        break;
+                    }
+                }
+
+                if (!statusValido)
+                {
+                    printf("O status digitado contém caracteres inválidos.\n");
+                }
+            } while (!statusValido);
+
+        // Verifica se o numero da conta fornecido é válido
+            do
+            {
+                printf("Informe o numero da conta: ");
+                if (scanf(" %d", &numero) == 1)
+                {
+                    numContaValido = 1;
+                }
+                else
+                {
+                    printf("Entrada inválida. Digite novamente:\n");
+                    // Limpar o buffer de entrada para evitar loop infinito
+                    while (getchar() != '\n');
+                }
+            } while (!numContaValido);
+
+           // Verifica se o saldo da conta fornecido é válido
+            do
+            {
+                printf("Informe o saldo da conta: ");
+                if (scanf(" %f", &saldo) == 1)
+                {
+                    saldoValido = 1;
+                }
+                else
+                {
+                    printf("Entrada inválida. Digite novamente:\n");
+                    // Limpar o buffer de entrada para evitar loop infinito
+                    while (getchar() != '\n')
+                        ;
+                }
+            } while (!saldoValido);
 
         Contabancaria* aux = criar_conta(cliente, data, saldo, status, numero);
 
