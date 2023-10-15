@@ -1,14 +1,14 @@
 # Sistema de gestão bancária
  
 ## Sumário
-1. [Introdução](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria/edit/main/README.md#introdu%C3%A7%C3%A3o)
-2. [Desenvolvedores](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria/edit/main/README.md#desenvolvedores)
-3. [Problematica](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria/edit/main/README.md#problematica)
-4. [Descrição](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria/edit/main/README.md#descri%C3%A7%C3%A3o)
-5. [Funções utilizadas no programa](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria/edit/main/README.md#fun%C3%A7%C3%B5es-utilizadas-no-programa)
-- 5.1 [Funções contidas em agencia.h](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria/edit/main/README.md#fun%C3%A7%C3%B5es-contidas-em-agenciah)
-- 5.2 [Funções contidas em contaBancaria.h](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria/edit/main/README.md#fun%C3%A7%C3%B5es-contidas-em-contabancariah)
-6. [Explicação de uma das funções utilizadas no programa](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria/edit/main/README.md#explica%C3%A7%C3%A3o-de-uma-das-fun%C3%A7%C3%B5es-utilizadas-no-programa)
+1. [Introdução](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria#introdu%C3%A7%C3%A3o)
+2. [Desenvolvedores](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria#desenvolvedores)
+3. [Problematica](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria#problematica)
+4. [Descrição](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria#descri%C3%A7%C3%A3o)
+5. [Funções utilizadas no programa](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria#fun%C3%A7%C3%B5es-utilizadas-no-programa)
+- 5.1 [Funções contidas em agencia.h](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria#fun%C3%A7%C3%B5es-contidas-em-agenciah)
+- 5.2 [Funções contidas em contaBancaria.h](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria#fun%C3%A7%C3%B5es-contidas-em-contabancariah)
+6. [Explicação de uma das funções utilizadas no programa](https://github.com/classroom-ufersa/Sistema_de_Gestao_Bancaria#explica%C3%A7%C3%A3o-de-uma-das-fun%C3%A7%C3%B5es-utilizadas-no-programa)
   
    
 ## Introdução 
