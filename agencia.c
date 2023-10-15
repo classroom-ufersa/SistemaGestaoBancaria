@@ -205,7 +205,7 @@ Agenciabancaria *cadastrar_conta(Agenciabancaria *agencia)
                 saldoValido = 1;
                 break; // Sai do loop se o saldo for válido
             } else {
-                printf("Entrada inválida. Digite novamente (somente números decimais):\n");
+                printf("Entrada inválida. Digite novamente (somente números):\n");
             }
         }
     }

@@ -148,6 +148,7 @@ void editar_conta(Contabancaria *conta)
    int saldoValido = 0;  // Variável para verificar se o saldo fornecido é válido
    int statusValido = 0; // Variável para verificar se o status fornecido é válido
    char opcao;
+
    printf("\nESCOLHA UMA OPÇÃO:\n");
    printf("1 - NOME DO CLIENTE\n");
    printf("2 - SALDO\n");
@@ -182,22 +183,37 @@ void editar_conta(Contabancaria *conta)
       break;
 
    case '2':
-      do
-      {
-         printf("Informe o novo saldo do cliente: \n");
-         if (scanf(" %f", &conta->saldo) == 1)
-         {
-            saldoValido = 1;
-         }
-         else
-         {
-            printf("Entrada inválida. Digite novamente:\n");
-            // Limpar o buffer de entrada para evitar loop infinito
-            while (getchar() != '\n')
-               ;
-         }
-      } while (!saldoValido);
-      break;
+      while (1) {
+        printf("Informe o saldo da conta: ");
+        char input[20];
+        if (fgets(input, sizeof(input), stdin)) {
+            int valido = 1;
+            char *endptr;
+
+            // Converte a entrada para um número de ponto flutuante
+           conta->saldo= strtof(input, &endptr);
+
+            if (endptr == input) {
+                valido = 0;
+            } else {
+                // Verifica se há caracteres não numéricos após o número
+                for (int i = 0; input[i] != '\0'; i++) {
+                    if (!isdigit(input[i]) && input[i] != '.' && input[i] != '\n') {
+                        valido = 0;
+                        break;
+                    }
+                }
+            }
+
+            if (valido) {
+                saldoValido = 1;
+                break; // Sai do loop se o saldo for válido
+            } else {
+                printf("Entrada inválida. Digite novamente (somente números):\n");
+            }
+        }
+    }
+    break;
    case '3':
       scanf(" %[^\n]", conta->status);
       do
@@ -223,7 +239,7 @@ void editar_conta(Contabancaria *conta)
       } while (!statusValido);
       break;
    case '4':
-      printf("Cancelar: \n");
+      printf("Cancelado! \n");
       break;
    default:
       printf("Opcao inválida!\n");

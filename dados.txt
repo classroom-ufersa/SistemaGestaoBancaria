@@ -16,7 +16,7 @@ Cliente:Lucas Pereira Carneiro	Data:04/09/2014	Saldo:1465.25	Status:ativa	Numero
 Cliente:Marina Santos Pereira	Data:15/08/2009	Saldo:2973.25	Status:ativa	Numero:36951
 Cliente:Matheus Lima Almeida	Data:10/06/2012	Saldo:297.62	Status:ativa	Numero:53179
 Agencia 4	Nome:Banco Oeste Potiguar 2207	Codigo:2207	Localizacao:R. Quitino Bocaiuva	Horario:10:00 15:00
-Cliente:Joao Rodrigues	Data:19/11/2015	Saldo:300.00	Status:bloqueada	Numero:49678
+Cliente:Joao Rodrigues	Data:19/11/2015	Saldo:1111.00	Status:bloqueada	Numero:49678
 Cliente:Laura Alves Carvalho	Data:25/09/2014	Saldo:1792.19	Status:ativo	Numero:83426
 Cliente:Maria Santos Pereira	Data:02/07/2008	Saldo:300.00	Status:ativa	Numero:76429
 Cliente:Pedro Oliveira Silva	Data:15/03/2010	Saldo:142.67	Status:desativada	Numero:25891
