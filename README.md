@@ -5,10 +5,13 @@
 2. [Introdução](#introdu%C3%A7%C3%A3o)
 3. [Problemática](#problemática)
 4. [Descrição](#descri%C3%A7%C3%A3o)
-5. [Funções utilizadas no programa](#fun%C3%A7%C3%B5es-utilizadas-no-programa)
-- 5.1 [Funções contidas em agencia.h](#fun%C3%A7%C3%B5es-contidas-em-agenciah)
-- 5.2 [Funções contidas em contaBancaria.h](#fun%C3%A7%C3%B5es-contidas-em-contabancariah)
-6. [Explicação de uma das funções utilizadas no programa](#explica%C3%A7%C3%A3o-de-uma-das-fun%C3%A7%C3%B5es-utilizadas-no-programa)
+5. [Listas Encadeadas Simples](#listas-encadeadas-simples)
+- 5.1 [Vantagens](#vantagens)
+- 5.2 [Desvantagens](#desvantagens)
+6. [Funções utilizadas no programa](#fun%C3%A7%C3%B5es-utilizadas-no-programa)
+- 6.1 [Funções contidas em agencia.h](#fun%C3%A7%C3%B5es-contidas-em-agenciah)
+- 6.2 [Funções contidas em contaBancaria.h](#fun%C3%A7%C3%B5es-contidas-em-contabancariah)
+7. [Explicação de uma das funções utilizadas no programa](#explica%C3%A7%C3%A3o-de-uma-das-fun%C3%A7%C3%B5es-utilizadas-no-programa)
   
 ## Desenvolvedores
 - [Diego Nascimento de Oliveira](https://github.com/diegonascimento2023)
@@ -22,6 +25,20 @@ A problemática deste projeto consiste em desenvolver um sistema de gestão banc
 
 ## Descrição
 O sistema de gestão bancária conta com duas "TAD's", um arquivo principal (main.c) e um arquivo de texto (dados.txt).
+
+## Listas Encadeadas Simples
+
+Lista encadadedas são estruturas de dados que armazenam dados de forma sequencial, mas cada elemento da lista é um objeto que contém um campo com o dado e um campo com o endereço do próximo elemento da lista.
+
+### Vantagens
+
+- __Uso eficiente de memória:__ Listas encadeadas simples permitem a inserção e exclusão de elementos de forma eficiente, mesmo no meio da lista, uma vez que apenas é necessário ajustar os ponteiros, sem a necessidade de realocação de memória, como em um array dinâmico. 
+- __Flexibilidade:__ Listas encadeadas podem crescer ou encolher dinamicamente, adaptando-se facilmente às necessidades do programa.
+
+### Desvantagens
+
+- __Acesso lento a elementos:__ Para acessar um elemento específico em uma lista encadeada, você deve percorrer a lista a partir do início ou de outro ponto de referência, o que é uma operação de tempo linear no pior caso. Isso torna o acesso aleatório lento.
+- __Complexidade de implementação:__ A implementação de uma lista encadeada, especialmente com manipulação de ponteiros, pode ser mais complexa do que outras estruturas de dados, como arrays. Isso pode aumentar o risco de erros de programação.
 
 ## Funções utilizadas no programa
 - ### Funções contidas em agencia.h
