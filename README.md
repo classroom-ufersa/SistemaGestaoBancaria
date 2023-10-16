@@ -9,8 +9,8 @@
 - 5.1 [Vantagens](#vantagens)
 - 5.2 [Desvantagens](#desvantagens)
 6. [Funções utilizadas no programa](#fun%C3%A7%C3%B5es-utilizadas-no-programa)
-- 6.1 [Funções contidas em agencia.h](#fun%C3%A7%C3%B5es-contidas-em-agenciah)
-- 6.2 [Funções contidas em contaBancaria.h](#fun%C3%A7%C3%B5es-contidas-em-contabancariah)
+- 6.1 [Funções contidas em agencia.c](#fun%C3%A7%C3%B5es-contidas-em-agenciac)
+- 6.2 [Funções contidas em contaBancaria.c](#fun%C3%A7%C3%B5es-contidas-em-contabancariac)
 7. [Explicação de uma das funções utilizadas no programa](#explica%C3%A7%C3%A3o-de-uma-das-fun%C3%A7%C3%B5es-utilizadas-no-programa)
   
 ## Desenvolvedores
@@ -41,7 +41,7 @@ Lista encadadedas são estruturas de dados que armazenam dados de forma sequenci
 - __Complexidade de implementação:__ A implementação de uma lista encadeada, especialmente com manipulação de ponteiros, pode ser mais complexa do que outras estruturas de dados, como arrays. Isso pode aumentar o risco de erros de programação.
 
 ## Funções utilizadas no programa
-- ### Funções contidas em agencia.h
+- ### Funções contidas em agencia.c
 ```c
 
 // Função para criar agência bancaria
@@ -76,7 +76,7 @@ void liberar_agencias(Agenciabancaria **agencias, int qnta);
 
 ```
 
-- ###  Funções contidas em contaBancaria.h
+- ###  Funções contidas em contaBancaria.c
 ```c
 // Função para remover conta da lista
 Lista *lista_remove(Lista *k, int numero);
