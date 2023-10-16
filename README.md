@@ -18,7 +18,7 @@
 - [Paulo Henrique Medeiros da Silva](https://github.com/Oluaphenrique)
   
 ## Introdução 
-Um Sistema de Gestão Bancária é uma ferramenta fundamental que permite o cadastro, fornece e lista os clientes em uma agência bancária. No projeto desenvolvido foi utilizado os conceitos vistos e crompreendidos em sala de aula. Podem ser citados como exemplo: ponteiros, alocação dinâmica, tipos estruturados, manipulação de arquivos, Tipos Abstratos de Dados (TADs), estruturas de dados e  entre outros temas abordados na disciplina Algoritmos e Estruturas de Dados I.
+Um Sistema de Gestão Bancária é uma ferramenta fundamental que permite o cadastrar, fornecer e listar os clientes em uma agência bancária. No projeto desenvolvido foi utilizado os conceitos vistos e crompreendidos em sala de aula. Podem ser citados como exemplo: ponteiros, alocação dinâmica, tipos estruturados, manipulação de arquivos, Tipos Abstratos de Dados (TADs), estruturas de dados e  entre outros temas abordados na disciplina Algoritmos e Estruturas de Dados I.
   
 ## Problemática
 A problemática deste projeto consiste em desenvolver um sistema de gestão bancária em linguagem C para uma rede de agências bancárias. O objetivo principal é permitir a manipulação de contas bancárias e agências, com a capacidade de realizar operações como adicionar, remover, listar, buscar, editar contas, consultar contas ativas em uma agência e saber quantas agências existem.
