@@ -21,7 +21,7 @@ Um Sistema de Gestão Bancária é uma ferramenta fundamental que permite o cada
 A problemática deste projeto consiste em desenvolver um sistema de gestão bancária em linguagem C para uma rede de agências bancárias. O objetivo principal é permitir a manipulação de contas bancárias e agências, com a capacidade de realizar operações como adicionar, remover, listar, buscar, editar contas, consultar contas ativas em uma agência e saber quantas agências existem.
 
 ## Descrição
-O sistema de gestão bancária conta com cinco "TAD's" e um arquivo ".txt". O projeto possui dois arquivos cabeçalho (agencia.h e contaBancaria.h), dois arquivos de implementação (agencia.c e contaBancaria.c), um arquivo principal (main.c) e um arquivo de texto (dados.txt).
+O sistema de gestão bancária conta com duas "TAD's", um arquivo principal (main.c) e um arquivo de texto (dados.txt).
 
 ## Funções utilizadas no programa
 - ### Funções contidas em agencia.h
