@@ -20,4 +20,3 @@ Cliente:Joao Rodrigues	Data:19/11/2015	Saldo:1111.00	Status:bloqueada	Numero:496
 Cliente:Laura Alves Carvalho	Data:25/09/2014	Saldo:1792.19	Status:Ativa	Numero:83426
 Cliente:Maria Santos Pereira	Data:02/07/2008	Saldo:300.00	Status:ativa	Numero:76429
 Cliente:Pedro Oliveira Silva	Data:15/03/2010	Saldo:142.67	Status:ATIVA	Numero:25891
-Agencia 5	Nome:banco do brasil	Codigo:888	Localizacao:avenida principal	Horario:11:20 16:30

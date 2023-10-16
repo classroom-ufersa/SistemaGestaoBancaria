@@ -29,12 +29,28 @@ Agenciabancaria *criar_agencia(char *nome, int codigo, char *localizacao, char *
     return criar_agencia;
 }
 
+int comparaContas(const char *conta1, const char *conta2) {
+    while (*conta1 && *conta2) {
+        char c1 = tolower(*conta1);
+        char c2 = tolower(*conta2);
+
+        if (c1 != c2) {
+            return c1 - c2;
+        }
+
+        conta1++;
+        conta2++;
+    }
+
+    return tolower(*conta1) - tolower(*conta2);
+}
+
 Lista *lista_insere_ordena(Lista *k, Contabancaria *conta)
 {
     Lista *novo;
     Lista *ant = NULL;
     Lista *p = k;
-    while (p != NULL && strcasecmp(p->conta->cliente, conta->cliente) < 0)
+    while (p != NULL && comparaContas(p->conta->cliente, conta->cliente) < 0)
     {
         ant = p;
         p = p->prox;

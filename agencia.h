@@ -6,6 +6,9 @@ typedef struct agenciabancaria Agenciabancaria;
 //funcao para criar agencia bancaria
 Agenciabancaria *criar_agencia(char *nome, int codigo, char *localizacao, char *horario);
 
+// Funcao para comparar duas strings, ignorando a diferenciação entre maiúsculas e minúsculas.
+int comparaContas(const char *conta1, const char *conta2);
+
 //funcao para lista em ordem
 Lista *lista_insere_ordena(Lista *k, Contabancaria *conta);
 

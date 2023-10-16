@@ -81,7 +81,7 @@ void listar_contas_ativas(Lista *contas, int ativas)
    while (contas != NULL)
    {
       Contabancaria *conta = contas->conta;
-      if ((ativas && strcasecmp(conta->status, "ativa") == 0) || (!ativas && strcasecmp(conta->status, "ativa") != 0))
+      if ((ativas && comparaContas(conta->status, "ativa") == 0) || (!ativas && comparaContas(conta->status, "ativa") != 0))
       {
          printf("Cliente: %s \n", conta->cliente);
          printf("Número da conta: %d \n", conta->numero);
@@ -232,9 +232,9 @@ void editar_conta(Contabancaria *conta)
          scanf(" %[^\n]", conta->status);
          getchar(); // Limpar o buffer
 
-         statusValido = (strcasecmp(conta->status, "ativa") == 0 ||
-                         strcasecmp(conta->status, "desativada") == 0 ||
-                         strcasecmp(conta->status, "bloqueada") == 0);
+         statusValido = (comparaContas(conta->status, "ativa") == 0 ||
+                         comparaContas(conta->status, "desativada") == 0 ||
+                         comparaContas(conta->status, "bloqueada") == 0);
 
          if (!statusValido)
          {
