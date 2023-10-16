@@ -1,4 +1,0 @@
-Aracaju	Antonio Silva de Oliveira	01/10/2023	300.00	Ativa	2
-Aracaju	Diego Nascimento de Oliveira	01/10/2023	600.00	Aiva	1
-Aracaju	Joao Pedro da Silva 01/10/2023	600.00	Ativa	4
-Aracaju	Maria de Fatima do Nascimento	01/10/2023	700.00	Ativa	3
